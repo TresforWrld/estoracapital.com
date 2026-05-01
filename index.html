@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estora Capital Investment — Lusaka, Zambia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0A1628;
+    --navy-mid:   #0F2040;
+    --navy-light: #152848;
+    --silver:     #B8C5D4;
+    --silver-dim: #7A8EA3;
+    --platinum:   #D6E0EC;
+    --gold:       #C0A96A;
+    --gold-light: #D4BF8A;
+    --gold-dim:   #8A7340;
+    --white:      #F0F4F8;
+    --off-white:  #E2E8F0;
+    --line:       rgba(192,169,106,0.25);
+    --line-silver:rgba(184,197,212,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--off-white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+  }
+
+  .label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    height: 80px;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line-silver);
+    transition: background 0.4s;
+  }
+
+  .nav-logo img {
+    height: 46px;
+    width: auto;
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.35s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+    padding: 9px 22px;
+    font-size: 10px !important;
+    letter-spacing: 0.2em !important;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s !important;
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  .nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+  }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 60px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(192,169,106,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 70% at 10% 80%, rgba(15,32,64,0.8) 0%, transparent 70%),
+      linear-gradient(160deg, #0A1628 0%, #0F2040 50%, #0A1628 100%);
+  }
+
+  /* Animated vertical lines */
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-lines::before,
+  .hero-lines::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+    animation: lineFade 6s ease-in-out infinite;
+  }
+
+  .hero-lines::before { left: 58%; animation-delay: 0s; opacity: 0.4; }
+  .hero-lines::after  { left: 72%; animation-delay: 2s; opacity: 0.2; }
+
+  @keyframes lineFade {
+    0%, 100% { opacity: 0; transform: scaleY(0.3); }
+    50%       { opacity: 0.5; transform: scaleY(1); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.3s forwards;
+  }
+
+  .hero-eyebrow-line {
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(44px, 6vw, 80px);
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-content h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--silver);
+    max-width: 540px;
+    line-height: 1.9;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 18px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 15px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--off-white);
+    padding: 15px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--silver-dim);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 48px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeIn 1s 1.4s forwards;
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1; }
+  }
+
+  .hero-scroll span {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--silver-dim);
+    writing-mode: vertical-rl;
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .section-pad { padding: 120px 0; }
+
+  .section-header {
+    margin-bottom: 72px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(36px, 4vw, 58px);
+    color: var(--white);
+    margin-top: 14px;
+    font-weight: 300;
+  }
+
+  .gold-rule {
+    width: 48px; height: 1px;
+    background: var(--gold);
+    margin-top: 24px;
+  }
+
+  /* ── ABOUT / INTRO ── */
+  #about { background: var(--navy-mid); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-left p {
+    font-size: 15px;
+    color: var(--silver);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .about-left p.lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--off-white);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .about-right { padding-top: 8px; }
+
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    border-left: 1px solid var(--line);
+  }
+
+  .timeline-item {
+    margin-bottom: 36px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -34px; top: 6px;
+    width: 8px; height: 8px;
+    border: 1px solid var(--gold);
+    background: var(--navy-mid);
+    transform: rotate(45deg);
+  }
+
+  .timeline-year {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .timeline-text {
+    font-size: 14px;
+    color: var(--silver);
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line-silver);
+    margin-top: 56px;
+  }
+
+  .stat-cell {
+    background: var(--navy-mid);
+    padding: 36px 32px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .stat-cell.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-desc {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--silver-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--navy); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line-silver);
+    border: 1px solid var(--line-silver);
+  }
+
+  .service-card {
+    background: var(--navy);
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s, background 0.4s;
+  }
+
+  .service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+
+  .service-card:hover { background: var(--navy-light); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    margin-bottom: 28px;
+    color: var(--gold);
+  }
+
+  .service-card h3 {
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .service-card p {
+    font-size: 13px;
+    color: var(--silver-dim);
+    line-height: 1.85;
+  }
+
+  /* ── INVESTMENT ── */
+  #investment { background: var(--navy-mid); }
+
+  .investment-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .invest-targets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line-silver);
+    margin-top: 40px;
+  }
+
+  .invest-target {
+    background: var(--navy-mid);
+    padding: 28px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .invest-target svg {
+    flex-shrink: 0;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .invest-target-text {
+    font-size: 13px;
+    color: var(--silver);
+    font-weight: 400;
+  }
+
+  .returns-box {
+    border: 1px solid var(--line);
+    padding: 56px 48px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(192,169,106,0.04) 0%, transparent 60%);
+  }
+
+  .returns-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 40px; right: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .returns-box h3 {
+    font-size: 32px;
+    color: var(--white);
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .returns-list {
+    list-style: none;
+  }
+
+  .returns-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line-silver);
+    font-size: 14px;
+    color: var(--silver);
+  }
+
+  .returns-list li:last-child { border-bottom: none; }
+
+  .returns-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    flex-shrink: 0;
+    transform: rotate(45deg);
+  }
+
+  /* ── STRATEGY ── */
+  #strategy { background: var(--navy); }
+
+  .strategy-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-bottom: 80px;
+  }
+
+  .pillar {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .pillar.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: rgba(192,169,106,0.12);
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+
+  .pillar h3 {
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .pillar p {
+    font-size: 13px;
+    color: var(--silver-dim);
+    line-height: 1.85;
+  }
+
+  .pillar-rule {
+    width: 32px; height: 1px;
+    background: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .principles-band {
+    background: var(--navy-light);
+    border: 1px solid var(--line-silver);
+    padding: 48px 56px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .principles-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .principles-items {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .principle-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--silver);
+  }
+
+  .principle-item svg { color: var(--gold); }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--navy-mid); }
+
+  .portfolio-cats {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 56px;
+  }
+
+  .cat-btn {
+    background: transparent;
+    border: 1px solid var(--line-silver);
+    color: var(--silver-dim);
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .cat-btn.active, .cat-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(192,169,106,0.06);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line-silver);
+  }
+
+  .portfolio-card {
+    background: var(--navy-mid);
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+  }
+
+  .portfolio-card-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    background: linear-gradient(to top, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.2) 60%, transparent 100%);
+    transition: background 0.4s;
+  }
+
+  .portfolio-card:hover .portfolio-card-inner {
+    background: linear-gradient(to top, rgba(10,22,40,0.98) 0%, rgba(10,22,40,0.5) 70%, transparent 100%);
+  }
+
+  /* SVG-based placeholder visuals */
+  .portfolio-visual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .p-cat {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .p-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--white);
+  }
+
+  .p-loc {
+    font-size: 12px;
+    color: var(--silver-dim);
+    margin-top: 4px;
+  }
+
+  /* ── SUSTAINABILITY ── */
+  #sustainability { background: var(--navy); }
+
+  .sustain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    margin-top: 48px;
+  }
+
+  .sustain-item {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+
+  .sustain-item svg {
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .sustain-item h4 {
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .sustain-item p {
+    font-size: 13px;
+    color: var(--silver-dim);
+    line-height: 1.85;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--line-silver);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-left h2 {
+    font-size: clamp(36px, 4vw, 54px);
+    color: var(--white);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .contact-left p {
+    font-size: 14px;
+    color: var(--silver);
+    line-height: 1.9;
+    margin-bottom: 48px;
+  }
+
+  .contact-detail {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 28px;
+    align-items: flex-start;
+  }
+
+  .contact-detail svg { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+
+  .contact-detail-text strong {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .contact-detail-text span {
+    font-size: 14px;
+    color: var(--silver);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .form-group label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line-silver);
+    color: var(--off-white);
+    padding: 14px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group textarea { height: 120px; resize: vertical; }
+
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--navy); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060F1C;
+    border-top: 1px solid var(--line-silver);
+    padding: 48px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo img { height: 36px; }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--silver-dim);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    margin: 0 auto;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    .container { padding: 0 32px; }
+    footer { padding: 40px 32px; }
+    #home { padding: 0 32px; }
+    .hero-scroll { left: 32px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .strategy-pillars { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    .sustain-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid, .investment-layout, .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid, .strategy-pillars, .portfolio-grid, .sustain-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .principles-band { flex-direction: column; gap: 24px; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#investment">Investment</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">Lusaka, Zambia &nbsp;·&nbsp; Est. 2017</span>
+    </div>
+    <h1>Building <em>long-term value</em> through strategic real estate investment</h1>
+    <p class="hero-sub">Estora Capital is a Lusaka-based real estate investment firm focused on acquiring, developing, and actively managing property assets that deliver stable income and long-term capital growth.</p>
+    <div class="hero-btns">
+      <a href="#investment" class="btn-primary">View Investments</a>
+      <a href="#contact" class="btn-outline">Partner With Us</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="section-header" style="margin-bottom:36px">
+          <span class="label">About Estora Capital</span>
+          <h2>A disciplined,<br>performance-driven<br>approach</h2>
+          <div class="gold-rule"></div>
+        </div>
+        <p class="lead">We believe sustainable returns are built through discipline, patience, and execution.</p>
+        <p>Estora Capital is a Lusaka-based real estate investment firm with over 10 years of combined experience across property investment, development, asset management, and operations. We act as a fully integrated partner, managing assets from acquisition through to long-term performance optimization.</p>
+        <p>Since 2017, we have focused on identifying undervalued opportunities, enhancing asset performance, and delivering sustainable, risk-adjusted returns. Our integrated model ensures control across the full investment lifecycle — from acquisition and development to long-term asset management.</p>
+        <div class="about-stats">
+          <div class="stat-cell reveal">
+            <div class="stat-num">10+</div>
+            <div class="stat-desc">Years Combined Experience</div>
+          </div>
+          <div class="stat-cell reveal">
+            <div class="stat-num">4</div>
+            <div class="stat-desc">Core Service Lines</div>
+          </div>
+          <div class="stat-cell reveal">
+            <div class="stat-num">2017</div>
+            <div class="stat-desc">Established in Lusaka</div>
+          </div>
+          <div class="stat-cell reveal">
+            <div class="stat-num">100%</div>
+            <div class="stat-desc">Integrated Management</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right reveal">
+        <span class="label" style="display:block;margin-bottom:28px">Our Journey</span>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2017</div>
+            <div class="timeline-text">Establishment in Lusaka as a focused real estate investment firm.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-text">Expansion into professional property management services.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-text">Entry into active development projects across Lusaka.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-text">Adoption of a fully integrated asset management model, optimizing performance across the entire portfolio.</div>
+          </div>
+        </div>
+        <div style="margin-top:56px;border:1px solid var(--line);padding:40px 36px;background:linear-gradient(135deg,rgba(192,169,106,0.04),transparent)">
+          <span class="label" style="display:block;margin-bottom:16px">Vision</span>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--off-white);font-weight:300;line-height:1.6;font-style:italic;">"To become a leading real estate investment and asset management firm in Zambia, recognized for consistency, performance, and trusted partnerships."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SERVICES -->
+<section id="services" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">What We Do</span>
+      <h2>End-to-end real estate<br>platform</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="services-grid">
+      <!-- Property Investment -->
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 40V20L24 8l16 12v20H8z"/>
+          <path d="M18 40v-10h12v10"/>
+          <path d="M12 28h4M32 28h4"/>
+          <circle cx="24" cy="20" r="3"/>
+        </svg>
+        <h3>Property Investment</h3>
+        <p>We identify and acquire high-potential assets in strategic locations, focusing on strong fundamentals and long-term growth potential across the Zambian market.</p>
+      </div>
+      <!-- Property Development -->
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="20" width="36" height="20" rx="1"/>
+          <path d="M14 20V12M24 20V8M34 20V14"/>
+          <path d="M6 20h36"/>
+          <path d="M10 28h4M22 28h4M34 28h4"/>
+          <path d="M10 34h4M22 34h4M34 34h4"/>
+        </svg>
+        <h3>Property Development</h3>
+        <p>We unlock value through land development, renovations, repositioning, and new construction projects that create lasting capital appreciation.</p>
+      </div>
+      <!-- Asset Management -->
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 36l8-10 8 6 8-14 8 8"/>
+          <path d="M6 40h36"/>
+          <circle cx="16" cy="26" r="2" fill="currentColor"/>
+          <circle cx="24" cy="32" r="2" fill="currentColor"/>
+          <circle cx="32" cy="18" r="2" fill="currentColor"/>
+          <circle cx="40" cy="26" r="2" fill="currentColor"/>
+        </svg>
+        <h3>Asset Management</h3>
+        <p>We actively manage assets to improve income performance, control operational costs, and enhance long-term value through disciplined portfolio oversight.</p>
+      </div>
+      <!-- Property Management -->
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="10" y="8" width="28" height="32" rx="1"/>
+          <path d="M18 8v32M10 20h28M10 32h8"/>
+          <circle cx="32" cy="32" r="6"/>
+          <path d="M32 29v3l2 2"/>
+        </svg>
+        <h3>Property Management</h3>
+        <p>We ensure efficient operations through professional tenant management, maintenance coordination, and structured rent collection systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- INVESTMENT -->
+<section id="investment" class="section-pad">
+  <div class="container">
+    <div class="investment-layout">
+      <div class="reveal">
+        <div class="section-header" style="margin-bottom:36px">
+          <span class="label">Investment Approach</span>
+          <h2>Selective acquisition.<br>Active management.<br>Value creation.</h2>
+          <div class="gold-rule"></div>
+        </div>
+        <p style="font-size:14px;color:var(--silver);line-height:1.9;margin-bottom:32px;">Our strategy is centered on selective acquisitions, active asset management, and value creation through development. We maintain a deep understanding of the Zambian real estate market with hands-on operational control and transparent, disciplined processes.</p>
+        <span class="label" style="display:block;margin-bottom:20px">Target Investment Classes</span>
+        <div class="invest-targets">
+          <div class="invest-target">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 15V7l6-4.5L15 7v8H3z"/><path d="M7 15v-4h4v4"/></svg>
+            <span class="invest-target-text">Residential rental properties</span>
+          </div>
+          <div class="invest-target">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="14" height="10"/><path d="M5 6V4a4 4 0 0 1 8 0v2"/><path d="M2 10h14"/></svg>
+            <span class="invest-target-text">Commercial real estate</span>
+          </div>
+          <div class="invest-target">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="8" width="7" height="8"/><rect x="10" y="5" width="7" height="11"/><path d="M4 8V5a2 2 0 0 1 2-2h6"/></svg>
+            <span class="invest-target-text">Mixed-use developments</span>
+          </div>
+          <div class="invest-target">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16l4-4 4 4 4-4 4 4"/><path d="M2 2h14v10H2z"/></svg>
+            <span class="invest-target-text">Strategic land holdings</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="returns-box">
+          <span class="label" style="display:block;margin-bottom:12px">Return Focus</span>
+          <h3>What We Aim to Deliver</h3>
+          <ul class="returns-list">
+            <li>
+              <div class="returns-dot"></div>
+              Stable, risk-adjusted income yields from quality rental assets
+            </li>
+            <li>
+              <div class="returns-dot"></div>
+              Long-term capital appreciation through disciplined value creation
+            </li>
+            <li>
+              <div class="returns-dot"></div>
+              Optimized asset performance through active management oversight
+            </li>
+            <li>
+              <div class="returns-dot"></div>
+              Consistent, transparent reporting and investor alignment
+            </li>
+            <li>
+              <div class="returns-dot"></div>
+              Long-term capital preservation and portfolio growth
+            </li>
+          </ul>
+        </div>
+        <div style="margin-top:24px;background:var(--navy-light);border:1px solid var(--line-silver);padding:32px 36px;">
+          <span class="label" style="display:block;margin-bottom:16px">Why Estora Capital</span>
+          <ul class="returns-list">
+            <li><div class="returns-dot"></div>Strong local expertise in Lusaka and the broader Zambian market</li>
+            <li><div class="returns-dot"></div>Hands-on, active management approach throughout the asset lifecycle</li>
+            <li><div class="returns-dot"></div>Focus on income-generating and appreciating assets</li>
+            <li><div class="returns-dot"></div>Full alignment of interests with our investors</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Our Portfolio</span>
+      <h2>Disciplined assets,<br>strategic locations</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="portfolio-cats reveal">
+      <button class="cat-btn active">All Projects</button>
+      <button class="cat-btn">Residential</button>
+      <button class="cat-btn">Commercial</button>
+      <button class="cat-btn">Development</button>
+    </div>
+    <div class="portfolio-grid">
+      <!-- Card 1 -->
+      <div class="portfolio-card">
+        <div class="portfolio-visual">
+          <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#0D1F3A"/>
+            <rect x="60" y="80" width="80" height="180" fill="#142540" stroke="#1E3A60" stroke-width="1"/>
+            <rect x="150" y="50" width="100" height="210" fill="#0F2040" stroke="#1E3A60" stroke-width="1"/>
+            <rect x="260" y="100" width="80" height="160" fill="#142540" stroke="#1E3A60" stroke-width="1"/>
+            <rect x="70" y="90" width="12" height="16" fill="rgba(192,169,106,0.3)"/>
+            <rect x="90" y="90" width="12" height="16" fill="rgba(192,169,106,0.15)"/>
+            <rect x="70" y="116" width="12" height="16" fill="rgba(192,169,106,0.2)"/>
+            <rect x="90" y="116" width="12" height="16" fill="rgba(192,169,106,0.35)"/>
+            <rect x="160" y="60" width="16" height="20" fill="rgba(192,169,106,0.4)"/>
+            <rect x="184" y="60" width="16" height="20" fill="rgba(192,169,106,0.2)"/>
+            <rect x="208" y="60" width="16" height="20" fill="rgba(192,169,106,0.3)"/>
+            <rect x="160" y="90" width="16" height="20" fill="rgba(192,169,106,0.15)"/>
+            <rect x="184" y="90" width="16" height="20" fill="rgba(192,169,106,0.35)"/>
+            <rect x="208" y="90" width="16" height="20" fill="rgba(192,169,106,0.25)"/>
+            <line x1="0" y1="260" x2="400" y2="260" stroke="#1E3A60" stroke-width="1"/>
+            <ellipse cx="200" cy="260" rx="300" ry="40" fill="rgba(10,22,40,0.7)"/>
+          </svg>
+        </div>
+        <div class="portfolio-card-inner">
+          <div class="p-cat">Residential</div>
+          <div class="p-name">Northmead Residential Portfolio</div>
+          <div class="p-loc">Northmead, Lusaka</div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="portfolio-card">
+        <div class="portfolio-visual">
+          <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#091828"/>
+            <rect x="80" y="40" width="240" height="220" fill="#0D1F3A" stroke="#1E3A60" stroke-width="1"/>
+            <line x1="80" y1="80" x2="320" y2="80" stroke="#1E3A60" stroke-width="1"/>
+            <line x1="80" y1="120" x2="320" y2="120" stroke="#1E3A60" stroke-width="1"/>
+            <line x1="80" y1="160" x2="320" y2="160" stroke="#1E3A60" stroke-width="1"/>
+            <line x1="80" y1="200" x2="320" y2="200" stroke="#1E3A60" stroke-width="1"/>
+            <line x1="160" y1="40" x2="160" y2="260" stroke="#1E3A60" stroke-width="1"/>
+            <line x1="240" y1="40" x2="240" y2="260" stroke="#1E3A60" stroke-width="1"/>
+            <rect x="90" y="90" width="60" height="20" fill="rgba(192,169,106,0.3)"/>
+            <rect x="168" y="90" width="60" height="20" fill="rgba(192,169,106,0.15)"/>
+            <rect x="248" y="90" width="60" height="20" fill="rgba(192,169,106,0.25)"/>
+            <rect x="90" y="130" width="60" height="20" fill="rgba(192,169,106,0.2)"/>
+            <rect x="168" y="130" width="60" height="20" fill="rgba(192,169,106,0.35)"/>
+            <rect x="248" y="130" width="60" height="20" fill="rgba(192,169,106,0.1)"/>
+            <rect x="150" y="220" width="100" height="40" fill="#0A1628"/>
+          </svg>
+        </div>
+        <div class="portfolio-card-inner">
+          <div class="p-cat">Commercial</div>
+          <div class="p-name">Cairo Road Commercial Asset</div>
+          <div class="p-loc">Cairo Road, Lusaka</div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="portfolio-card">
+        <div class="portfolio-visual">
+          <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#0A1628"/>
+            <!-- Land plot grid -->
+            <rect x="40" y="60" width="320" height="180" fill="#0D1F3A" stroke="#1A3050" stroke-width="1"/>
+            <line x1="40" y1="120" x2="360" y2="120" stroke="#1A3050" stroke-width="1"/>
+            <line x1="40" y1="180" x2="360" y2="180" stroke="#1A3050" stroke-width="1"/>
+            <line x1="147" y1="60" x2="147" y2="240" stroke="#1A3050" stroke-width="1"/>
+            <line x1="253" y1="60" x2="253" y2="240" stroke="#1A3050" stroke-width="1"/>
+            <rect x="50" y="70" width="87" height="40" fill="rgba(192,169,106,0.2)" stroke="rgba(192,169,106,0.4)" stroke-width="1"/>
+            <rect x="157" y="130" width="86" height="40" fill="rgba(192,169,106,0.15)" stroke="rgba(192,169,106,0.3)" stroke-width="1"/>
+            <rect x="263" y="70" width="87" height="100" fill="rgba(192,169,106,0.1)" stroke="rgba(192,169,106,0.25)" stroke-width="1"/>
+            <!-- Compass rose -->
+            <circle cx="340" cy="90" r="16" fill="none" stroke="rgba(192,169,106,0.4)" stroke-width="1"/>
+            <path d="M340 76 L343 88 L340 90 L337 88 Z" fill="rgba(192,169,106,0.6)"/>
+            <path d="M340 104 L343 92 L340 90 L337 92 Z" fill="rgba(192,169,106,0.2)"/>
+            <text x="340" y="75" text-anchor="middle" fill="rgba(192,169,106,0.7)" font-size="8" font-family="Montserrat">N</text>
+          </svg>
+        </div>
+        <div class="portfolio-card-inner">
+          <div class="p-cat">Land Development</div>
+          <div class="p-name">Ibex Hill Strategic Land</div>
+          <div class="p-loc">Ibex Hill, Lusaka</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:24px;text-align:center;" class="reveal">
+      <p style="font-size:13px;color:var(--silver-dim);font-style:italic;">Portfolio highlights represent asset categories. Specific project details available upon engagement.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- STRATEGY -->
+<section id="strategy" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Strategic Framework</span>
+      <h2>How we create<br>lasting value</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="strategy-pillars">
+      <div class="pillar reveal">
+        <div class="pillar-num">01</div>
+        <div class="pillar-rule"></div>
+        <h3>Selective Investment</h3>
+        <p>Targeting assets with strong fundamentals and genuine growth potential. We evaluate every opportunity with rigorous discipline, focusing only on those that align with our long-term value creation mandate.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">02</div>
+        <div class="pillar-rule"></div>
+        <h3>Active Management</h3>
+        <p>Enhancing performance through hands-on oversight across the asset lifecycle. Our integrated model ensures operational excellence and continuous optimization of every holding.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">03</div>
+        <div class="pillar-rule"></div>
+        <h3>Value Creation</h3>
+        <p>Unlocking potential through development and strategic repositioning. We identify opportunities for structural and operational improvement that others overlook.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">04</div>
+        <div class="pillar-rule"></div>
+        <h3>Long-Term Hold</h3>
+        <p>Focusing on sustained income generation and capital growth over time. We resist short-term thinking in favour of building durable, compounding asset value.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">05</div>
+        <div class="pillar-rule"></div>
+        <h3>Financial Discipline</h3>
+        <p>Maintaining rigorous financial controls and risk management across all investments. Our approach to capital deployment prioritizes preservation alongside growth.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">06</div>
+        <div class="pillar-rule"></div>
+        <h3>Investor Alignment</h3>
+        <p>We invest alongside our partners, ensuring our incentives are fully aligned with long-term investor outcomes. Transparency and trust are the foundations of every relationship.</p>
+      </div>
+    </div>
+    <div class="principles-band reveal">
+      <span class="principles-label">Execution Principles</span>
+      <div class="principles-items">
+        <div class="principle-item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+          Financial Discipline
+        </div>
+        <div class="principle-item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+          Operational Efficiency
+        </div>
+        <div class="principle-item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+          Continuous Optimization
+        </div>
+        <div class="principle-item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+          Transparent Reporting
+        </div>
+        <div class="principle-item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+          Risk-Adjusted Returns
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SUSTAINABILITY -->
+<section id="sustainability" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Sustainability</span>
+      <h2>Responsible investment<br>practices</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <p class="reveal" style="font-size:15px;color:var(--silver);max-width:640px;line-height:1.9;">We are committed to responsible real estate practices that support long-term value creation — for our investors, our communities, and the broader Zambian economy.</p>
+    <div class="sustain-grid">
+      <div class="sustain-item reveal">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="20" cy="20" r="16"/>
+          <path d="M20 4v16l10 6"/>
+          <path d="M12 28a10 10 0 0 0 16 0"/>
+        </svg>
+        <h4>Efficient Resource Utilization</h4>
+        <p>We apply careful resource management across all development and management activities, prioritizing efficiency without compromising quality or performance.</p>
+      </div>
+      <div class="sustain-item reveal">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 6 L34 32 H6 Z"/>
+          <path d="M20 6 C14 14 14 22 20 32 C26 22 26 14 20 6Z"/>
+          <line x1="6" y1="32" x2="34" y2="32"/>
+        </svg>
+        <h4>Sustainable Development</h4>
+        <p>Our development philosophy considers long-term impact, integrating sound construction practices and responsible land use into every project we undertake.</p>
+      </div>
+      <div class="sustain-item reveal">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 32V16l12-8 12 8v16H8z"/>
+          <circle cx="20" cy="20" r="4"/>
+          <path d="M16 32v-6h8v6"/>
+          <path d="M8 20h4M28 20h4"/>
+        </svg>
+        <h4>Local Economic Growth</h4>
+        <p>We actively support Zambia's real estate sector through investment, employment creation, and the development of high-quality assets that serve local communities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="reveal">
+        <span class="label" style="display:block;margin-bottom:14px">Get In Touch</span>
+        <h2>Partner with Estora Capital</h2>
+        <p>We welcome enquiries from investors, strategic partners, and property owners seeking a disciplined and experienced real estate management partner.</p>
+        <div class="contact-detail">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 2C7.24 2 5 4.24 5 7c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z"/>
+            <circle cx="10" cy="7" r="2"/>
+          </svg>
+          <div class="contact-detail-text">
+            <strong>Location</strong>
+            <span>Lusaka, Zambia</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 5h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/>
+            <path d="M2 6l8 5 8-5"/>
+          </svg>
+          <div class="contact-detail-text">
+            <strong>Enquiries</strong>
+            <span>info@estoracapital.com</span>
+          </div>
+        </div>
+        <div style="margin-top:40px;border:1px solid var(--line);padding:28px 32px;background:linear-gradient(135deg,rgba(192,169,106,0.04),transparent)">
+          <span class="label" style="display:block;margin-bottom:12px">We Welcome</span>
+          <ul class="returns-list">
+            <li><div class="returns-dot"></div>Investment opportunity discussions</li>
+            <li><div class="returns-dot"></div>Strategic partnership enquiries</li>
+            <li><div class="returns-dot"></div>Property management mandates</li>
+            <li><div class="returns-dot"></div>General business enquiries</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="border:1px solid var(--line-silver);padding:48px 44px;background:rgba(255,255,255,0.02)">
+          <span class="label" style="display:block;margin-bottom:28px">Send An Enquiry</span>
+          <div class="contact-form">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="First name">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Last name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+              <label>Organisation (Optional)</label>
+              <input type="text" placeholder="Company or organisation">
+            </div>
+            <div class="form-group">
+              <label>Nature of Enquiry</label>
+              <select>
+                <option value="">Select enquiry type</option>
+                <option>Investment Opportunities</option>
+                <option>Strategic Partnership</option>
+                <option>Property Management</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Briefly describe your enquiry..."></textarea>
+            </div>
+            <button type="button" class="btn-primary" style="width:100%;margin-top:8px;border:none;" onclick="handleFormSubmit(this)">Submit Enquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#home" class="footer-logo">
+    <img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment">
+  </a>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#investment">Investment</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p>
+</footer>
+
+<script>
+  // ── SCROLL REVEAL ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .timeline-item, .stat-cell, .service-card, .pillar, .sustain-item').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // Stagger children
+  document.querySelectorAll('.service-card, .pillar, .sustain-item').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 4) * 0.1}s`;
+  });
+
+  // ── NAV SCROLL STATE ──
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 60
+      ? 'rgba(8,17,33,0.97)'
+      : 'rgba(10,22,40,0.92)';
+  });
+
+  // ── PORTFOLIO CATEGORY BUTTONS ──
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // ── FORM SUBMIT ──
+  function handleFormSubmit(btn) {
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.7';
+    btn.style.cursor = 'not-allowed';
+    setTimeout(() => {
+      btn.textContent = 'Enquiry Submitted';
+      btn.style.background = 'var(--gold-dim)';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btn.style.background = '';
+      }, 3000);
+    }, 1200);
+  }
+
+  // ── SMOOTH SCROLL for nav links ──
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        const offset = 80;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
