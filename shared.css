@@ -1,5 +1,5 @@
 /* ── ESTORA CAPITAL — SHARED STYLES ── */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --nav-bg:      #0A1628;
@@ -30,21 +30,21 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   line-height: 1.7;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 600;
   line-height: 1.18;
   letter-spacing: -0.01em;
   color: var(--navy);
 }
 .label {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.24em;
@@ -56,16 +56,16 @@ h1, h2, h3, h4 {
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 60px; height: 80px;
+  padding: 0 60px; height: 60px;
   background: rgba(10,22,40,0.97);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(184,197,212,0.1);
   transition: background 0.4s;
 }
-.nav-logo img { height: 44px; width: auto; display: block; }
+.nav-logo img { height: 34px; width: auto; display: block; }
 .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
 .nav-links a {
-  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 600;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600;
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--silver-nav); text-decoration: none;
   position: relative; transition: color 0.3s; white-space: nowrap;
@@ -96,7 +96,7 @@ nav {
 
 /* Mobile drawer */
 .nav-drawer {
-  display: none; position: fixed; top: 80px; left: 0; right: 0;
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
   background: rgba(8,17,33,0.99); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(192,169,106,0.15);
   padding: 28px 28px 36px; z-index: 999;
@@ -106,7 +106,7 @@ nav {
 }
 .nav-drawer.open { display: flex; transform: translateY(0); opacity: 1; }
 .nav-drawer a {
-  display: block; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
+  display: block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: rgba(184,197,212,0.8); text-decoration: none;
   padding: 16px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
@@ -121,7 +121,7 @@ nav {
 /* ── BUTTONS ── */
 .btn-primary {
   background: var(--navy); color: #fff;
-  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  padding: 14px 34px; font-family: 'Inter', sans-serif; font-size: 11px;
   font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border: 2px solid var(--navy); cursor: pointer;
   transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
@@ -129,7 +129,7 @@ nav {
 .btn-primary:hover { background: transparent; color: var(--navy); transform: translateY(-1px); }
 .btn-gold {
   background: var(--gold); color: var(--navy);
-  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  padding: 14px 34px; font-family: 'Inter', sans-serif; font-size: 11px;
   font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border: 2px solid var(--gold); cursor: pointer;
   transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
@@ -137,7 +137,7 @@ nav {
 .btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-1px); }
 .btn-outline {
   background: transparent; color: var(--navy);
-  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  padding: 14px 34px; font-family: 'Inter', sans-serif; font-size: 11px;
   font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border: 2px solid var(--navy); cursor: pointer;
   transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
@@ -145,7 +145,7 @@ nav {
 .btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
 .btn-outline-gold {
   background: transparent; color: var(--gold);
-  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  padding: 14px 34px; font-family: 'Inter', sans-serif; font-size: 11px;
   font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border: 2px solid var(--gold); cursor: pointer;
   transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
@@ -163,7 +163,7 @@ nav {
 
 /* ── PAGE HERO ── */
 .page-hero {
-  padding: 160px 0 84px; background: var(--navy);
+  padding: 130px 0 84px; background: var(--navy);
   position: relative; overflow: hidden;
 }
 .page-hero::before {
@@ -174,62 +174,11 @@ nav {
   content: ''; position: absolute; top: 0; right: 18%; bottom: 0; width: 1px;
   background: linear-gradient(to bottom, transparent, rgba(192,169,106,0.2), transparent);
 }
-.page-hero.has-image {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.page-hero.has-image::before {
-  background: linear-gradient(90deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.68) 42%, rgba(10,22,40,0.18) 100%);
-}
-.page-hero.about-hero {
-  background-image: url('assets/about-hero.jpeg');
-  background-position: center 48%;
-}
-.page-hero.about-hero::before {
-  background:
-    linear-gradient(90deg, rgba(8,39,78,0.90) 0%, rgba(12,72,132,0.72) 48%, rgba(15,105,180,0.42) 100%),
-    rgba(13,81,150,0.34);
-}
-.page-hero.portfolio-hero {
-  background-image: url('assets/portfolio-hero.jpeg');
-  background-position: center 52%;
-}
-.page-hero.portfolio-hero::before {
-  background: none;
-}
-.page-hero.portfolio-hero .page-hero-inner {
-  background: rgba(10,22,40,0.84);
-  border-left: 3px solid var(--gold);
-  max-width: 720px;
-  margin-left: 60px;
-  padding: 38px 44px 42px;
-  box-shadow: 0 24px 70px rgba(0,0,0,0.22);
-}
 .page-hero-inner { position: relative; z-index: 1; }
 .page-hero .label { color: var(--gold-light); }
-.page-hero h1 { font-size: clamp(38px, 5vw, 66px); color: #fff; font-weight: 700; margin-top: 12px; }
+.page-hero h1 { font-size: clamp(38px, 5vw, 66px); color: #fff; font-weight: 600; margin-top: 12px; }
 .page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 400; }
-.page-hero p { font-size: 15px; color: rgba(184,197,212,0.86); max-width: 560px; line-height: 1.9; margin-top: 20px; font-weight: 400; }
-@media (max-width: 1024px) {
-  .page-hero.portfolio-hero .page-hero-inner {
-    margin-left: 36px;
-    margin-right: 36px;
-  }
-}
-@media (max-width: 768px) {
-  .page-hero.portfolio-hero .page-hero-inner {
-    margin-left: 22px;
-    margin-right: 22px;
-    padding: 30px 26px 34px;
-  }
-}
-@media (max-width: 480px) {
-  .page-hero.portfolio-hero .page-hero-inner {
-    margin-left: 18px;
-    margin-right: 18px;
-  }
-}
+.page-hero p { font-size: 15px; color: rgba(184,197,212,0.8); max-width: 560px; line-height: 1.9; margin-top: 20px; font-weight: 300; }
 
 /* ── SHARED LISTS ── */
 .returns-list { list-style: none; }
@@ -242,7 +191,7 @@ footer { background: var(--navy); }
 .footer-top { padding: 56px 60px 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.07); }
 .footer-logo img { height: 36px; margin-bottom: 16px; display: block; }
 .footer-tagline { font-size: 12px; color: rgba(184,197,212,0.4); max-width: 220px; line-height: 1.7; }
-.footer-links-group h4 { font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.footer-links-group h4 { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
 .footer-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
 .footer-links a { font-size: 12px; color: rgba(184,197,212,0.5); text-decoration: none; transition: color 0.3s; letter-spacing: 0.04em; }
 .footer-links a:hover { color: var(--gold); }
@@ -273,7 +222,7 @@ footer { background: var(--navy); }
   .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
   .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
   .section-pad { padding: 64px 0; }
-  .page-hero { padding: 130px 0 56px; }
+  .page-hero { padding: 110px 0 56px; }
 }
 @media (max-width: 480px) {
   nav { padding: 0 18px; }
