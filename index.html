@@ -31,33 +31,16 @@
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.2s ease;
-  animation: heroKen 18s ease-in-out infinite;
+  animation: heroKen 7s ease-in-out infinite;
 }
 .hero-slide.active { opacity: 1; }
 .hero-slide:nth-child(1) { animation-delay: 0s; }
-.hero-slide:nth-child(2) { animation-delay: 6s; }
-.hero-slide:nth-child(3) { animation-delay: 12s; }
+3.hero-slide:nth-child(2) { animation-delay: 3s; }
+.hero-slide:nth-child(3) { animation-delay: 4s; }
 
 @keyframes heroKen {
   0%   { transform: scale(1); }
   100% { transform: scale(1.06); }
-}
-
-/* ── Gradient: dark wash left side (behind text), vignette bottom ── */
-.hero-overlay-left {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(
-    to right,
-    rgba(10,22,40,0.90) 0%,
-    rgba(10,22,40,0.75) 36%,
-    rgba(10,22,40,0.28) 56%,
-    transparent 70%
-  );
-}
-.hero-overlay-bottom {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
-  z-index: 1; pointer-events: none;
-  background: linear-gradient(to top, rgba(10,22,40,0.50) 0%, transparent 100%);
 }
 
 /* ── Subtle vertical line at the text/image boundary ── */
