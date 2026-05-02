@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sustainability — Estora Capital Investment</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
+<link rel="stylesheet" href="shared.css">
+<style>
+.sustain-intro { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+.sustain-intro p { font-size:15px; color:var(--text-mid); line-height:1.9; margin-bottom:14px; }
+.sustain-intro .lead { font-family:'Playfair Display',serif; font-size:21px; font-style:italic; color:var(--navy); line-height:1.55; font-weight:400; margin-bottom:20px; }
+
+.focus-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:72px; }
+.focus-card { background:var(--bg-white); padding:44px 36px; border-top:3px solid transparent; transition:border-color 0.3s, background 0.3s; }
+.focus-card:hover { border-top-color:var(--gold); background:var(--bg); }
+.focus-card svg { color:var(--gold); margin-bottom:24px; }
+.focus-card h3 { font-size:22px; color:var(--navy); margin-bottom:14px; font-weight:600; }
+.focus-card p { font-size:14px; color:var(--text-muted); line-height:1.85; }
+.focus-card ul { list-style:none; margin-top:20px; display:flex; flex-direction:column; gap:10px; }
+.focus-card li { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text-muted); }
+.focus-card li::before { content:''; width:5px; height:5px; background:var(--gold); flex-shrink:0; transform:rotate(45deg); margin-top:6px; }
+
+.commitment-band { background:var(--navy); padding:80px 0; }
+.commit-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+.commit-text .label { color:var(--gold-light); display:block; margin-bottom:14px; }
+.commit-text h2 { color:#fff; margin-bottom:20px; }
+.commit-text p { color:rgba(184,197,212,0.75); font-size:15px; line-height:1.9; margin-bottom:14px; }
+.commit-stats { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.05); }
+.commit-stat { background:rgba(255,255,255,0.03); padding:36px 28px; text-align:center; }
+.commit-stat-num { font-family:'Playfair Display',serif; font-size:44px; font-weight:600; color:var(--gold-light); line-height:1; margin-bottom:8px; }
+.commit-stat-lbl { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(184,197,212,0.4); font-weight:600; }
+
+@media (max-width:1024px) {
+  .sustain-intro { grid-template-columns:1fr; gap:40px; }
+  .focus-grid { grid-template-columns:repeat(2,1fr); }
+  .commit-grid { grid-template-columns:1fr; gap:48px; }
+}
+@media (max-width:640px) { .focus-grid { grid-template-columns:1fr; } .commit-stats { grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li><li><a href="strategy.html">Strategy</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a>
+  <a href="investment.html">Investment</a><a href="portfolio.html">Portfolio</a>
+  <a href="strategy.html">Strategy</a><a href="sustainability.html" class="active">Sustainability</a>
+  <a href="contact.html" class="drawer-cta">Contact Us</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Sustainability</span>
+    <h1>Responsible investment.<br><em>Lasting impact.</em></h1>
+    <p>We are committed to responsible real estate practices that support long-term value creation — for our investors, our communities, and the broader Zambian economy.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="section-pad" style="background:var(--bg-white);">
+  <div class="container">
+    <div class="sustain-intro reveal">
+      <div>
+        <span class="label">Our Commitment</span>
+        <h2 style="margin-top:10px;margin-bottom:24px;">Beyond returns —<br>responsible real estate</h2>
+        <div class="gold-rule" style="margin-bottom:28px;"></div>
+        <p class="lead">"Sustainable real estate is not just about environmental standards — it is about how we build, manage, and contribute to the places we operate in."</p>
+        <p>At Estora Capital, we recognise that our work has consequences beyond the financial. The assets we develop, the tenants we house, and the communities we operate within are all stakeholders in our success. Responsible practice is therefore not a separate agenda — it is woven into how we do business.</p>
+      </div>
+      <div>
+        <p>We take a practical, long-term view of sustainability. Our approach is not built around external certification or marketing claims — it is built around sound operational decisions that reduce waste, improve quality, and create lasting economic value for Zambia's real estate sector.</p>
+        <p style="margin-top:14px;">We believe that responsible real estate and strong financial returns are not competing goals. When done correctly, they are mutually reinforcing — quality assets in well-managed environments attract quality tenants, command stronger rents, and appreciate more reliably over time.</p>
+        <div style="margin-top:32px;background:var(--gold-pale);border-left:3px solid var(--gold);padding:24px 28px;">
+          <p style="font-size:14px;color:var(--navy);line-height:1.75;margin:0;font-weight:500;">Responsible stewardship of assets and communities is not a constraint on our investment returns — it is a source of them.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOCUS AREAS -->
+    <div class="section-header reveal" style="margin-top:80px;margin-bottom:0;">
+      <span class="label">Focus Areas</span>
+      <h2 style="margin-top:10px;">Where we direct our efforts</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card reveal">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="13"/><path d="M18 5v13l8 5"/><path d="M9 27a10 10 0 0 0 18 0"/></svg>
+        <h3>Efficient Resource Utilisation</h3>
+        <p>We apply careful resource management across all development and management activities — reducing waste and improving efficiency without compromising quality or performance.</p>
+        <ul>
+          <li>Water and energy efficiency in property operations</li>
+          <li>Waste reduction during construction and renovation</li>
+          <li>Preventive maintenance to extend asset lifespan</li>
+          <li>Cost-effective procurement and supply chain management</li>
+        </ul>
+      </div>
+      <div class="focus-card reveal reveal-delay-1">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 4L32 28H4Z"/><path d="M18 4C12 12 12 20 18 28C24 20 24 12 18 4Z"/><line x1="4" y1="28" x2="32" y2="28"/></svg>
+        <h3>Sustainable Development</h3>
+        <p>Our development philosophy integrates responsible construction practices and thoughtful land use into every project — building assets that serve their communities for decades.</p>
+        <ul>
+          <li>Responsible site selection and land use planning</li>
+          <li>Quality construction standards that reduce lifecycle costs</li>
+          <li>Designs that suit local climate and community context</li>
+          <li>Long-term asset durability over short-term cost savings</li>
+        </ul>
+      </div>
+      <div class="focus-card reveal reveal-delay-2">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 28V16l12-10 12 10v12H6z"/><circle cx="18" cy="18" r="4"/><path d="M6 20h4M26 20h4"/></svg>
+        <h3>Local Economic Growth</h3>
+        <p>We actively support Zambia's real estate sector through investment, employment creation, and the development of high-quality assets that serve and strengthen local communities.</p>
+        <ul>
+          <li>Prioritising local contractors and service providers</li>
+          <li>Creating employment through development activity</li>
+          <li>Developing quality assets that elevate local standards</li>
+          <li>Building long-term relationships with community stakeholders</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENT BAND -->
+<section class="commitment-band">
+  <div class="container">
+    <div class="commit-grid">
+      <div class="commit-text reveal">
+        <span class="label">Long-Term Thinking</span>
+        <h2>Sustainability as a business principle</h2>
+        <p>We do not view sustainability as a compliance exercise. We view it as a reflection of the long-term thinking that characterises everything we do at Estora Capital.</p>
+        <p>The same discipline that drives our investment decisions — patience, quality focus, and attention to long-term consequences — informs how we approach our responsibilities to the environment, our communities, and our stakeholders.</p>
+        <p>As our portfolio grows, so too will our commitment to raising the standard of responsible real estate practice in Zambia.</p>
+      </div>
+      <div class="commit-stats reveal">
+        <div class="commit-stat"><div class="commit-stat-num">100%</div><div class="commit-stat-lbl">Local Market Focus</div></div>
+        <div class="commit-stat"><div class="commit-stat-num">Long</div><div class="commit-stat-lbl">Term Hold Strategy</div></div>
+        <div class="commit-stat"><div class="commit-stat-num">Zero</div><div class="commit-stat-lbl">Tolerance for Poor Quality</div></div>
+        <div class="commit-stat"><div class="commit-stat-num">Active</div><div class="commit-stat-lbl">Community Engagement</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-white);padding:80px 0;text-align:center;border-top:1px solid var(--line-dark);">
+  <div class="container reveal">
+    <span class="label">Get In Touch</span>
+    <h2 style="margin:16px auto;max-width:520px;">Partner with a responsible investment firm</h2>
+    <p style="font-size:15px;color:var(--text-muted);max-width:480px;margin:0 auto 40px;line-height:1.85;">We welcome conversations with investors who share our long-term, responsible approach to real estate.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn-primary">Contact Us</a>
+      <a href="about.html" class="btn-outline">Learn About Us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
+    <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+    <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

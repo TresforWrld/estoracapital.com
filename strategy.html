@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategy — Estora Capital Investment</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
+<link rel="stylesheet" href="shared.css">
+<style>
+.strategy-intro { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+.strategy-intro p { font-size:15px; color:var(--text-mid); line-height:1.9; margin-bottom:14px; }
+.strategy-intro .lead { font-family:'Playfair Display',serif; font-size:21px; font-style:italic; color:var(--navy); line-height:1.55; font-weight:400; margin-bottom:20px; }
+
+.pillars-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); }
+.pillar-cell { background:var(--bg-white); padding:48px 40px; position:relative; overflow:hidden; transition:background 0.3s; }
+.pillar-cell:hover { background:var(--bg); }
+.pillar-cell::after { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--gold); transform:scaleY(0); transform-origin:top; transition:transform 0.4s ease; }
+.pillar-cell:hover::after { transform:scaleY(1); }
+.pillar-num { font-family:'Playfair Display',serif; font-size:64px; font-weight:600; color:rgba(184,149,42,0.1); line-height:1; margin-bottom:-16px; }
+.pillar-icon { color:var(--gold); margin-bottom:16px; }
+.pillar-cell h3 { font-size:24px; color:var(--navy); margin-bottom:14px; font-weight:600; }
+.pillar-cell p { font-size:14px; color:var(--text-muted); line-height:1.85; }
+
+.principles-section { background:var(--navy); padding:80px 0; }
+.principles-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.05); margin-top:52px; }
+.principle-card { background:var(--navy); padding:40px 32px; border-bottom:2px solid transparent; transition:border-color 0.3s, background 0.3s; }
+.principle-card:hover { background:var(--navy-light); border-bottom-color:var(--gold); }
+.principle-card svg { color:var(--gold); margin-bottom:20px; }
+.principle-card h4 { font-size:20px; color:#fff; margin-bottom:12px; font-weight:600; }
+.principle-card p { font-size:13px; color:rgba(184,197,212,0.65); line-height:1.85; }
+
+.framework-band { background:var(--bg-white); border:1px solid var(--line-dark); padding:56px 52px; margin-top:72px; display:grid; grid-template-columns:auto 1fr; gap:52px; align-items:center; }
+.framework-band h3 { font-size:28px; color:var(--navy); margin-bottom:12px; font-weight:600; }
+.framework-band p { font-size:14px; color:var(--text-muted); line-height:1.85; }
+.framework-divider { width:2px; background:var(--gold); align-self:stretch; }
+
+@media (max-width:1024px) {
+  .strategy-intro { grid-template-columns:1fr; gap:40px; }
+  .pillars-grid { grid-template-columns:1fr; }
+  .principles-grid { grid-template-columns:repeat(2,1fr); }
+  .framework-band { grid-template-columns:1fr; gap:32px; }
+  .framework-divider { width:100%; height:2px; }
+}
+@media (max-width:640px) { .principles-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="strategy.html" class="active">Strategy</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a>
+  <a href="investment.html">Investment</a><a href="portfolio.html">Portfolio</a>
+  <a href="strategy.html" class="active">Strategy</a><a href="sustainability.html">Sustainability</a>
+  <a href="contact.html" class="drawer-cta">Contact Us</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Strategic Framework</span>
+    <h1>How we create<br><em>lasting value</em></h1>
+    <p>Our strategy is built on four interlocking pillars — selective investment, active management, value creation, and long-term holding — executed through disciplined operational principles.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="section-pad" style="background:var(--bg-white);">
+  <div class="container">
+    <div class="strategy-intro reveal">
+      <div>
+        <span class="label">Our Approach</span>
+        <h2 style="margin-top:10px;margin-bottom:24px;">A framework built<br>for compounding returns</h2>
+        <div class="gold-rule" style="margin-bottom:28px;"></div>
+        <p class="lead">"We resist short-term thinking in favour of building durable, compounding asset value."</p>
+        <p>The Estora Capital strategic framework is not a set of abstract principles — it is an operational discipline applied to every acquisition, management decision, and disposition we make. It guides how we deploy capital, how we manage our assets, and how we report to our investors.</p>
+      </div>
+      <div>
+        <p>At its core, our strategy recognises that superior real estate returns are rarely the product of luck or timing. They are the result of patient capital, active stewardship, and the willingness to make difficult operational decisions when they are required.</p>
+        <p style="margin-top:14px;">We apply this discipline equally across every asset in the portfolio — from a single residential unit to a large-scale development project. The standard does not change with asset size.</p>
+        <div style="margin-top:32px;background:var(--gold-pale);border-left:3px solid var(--gold);padding:24px 28px;">
+          <p style="font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);font-style:italic;font-weight:400;line-height:1.6;margin:0;">"Discipline applied consistently across a portfolio creates a structural performance advantage that is very difficult for others to replicate."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PILLARS -->
+<section class="section-pad" style="background:var(--bg);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Four Strategic Pillars</span>
+      <h2>The foundations of our model</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="pillars-grid">
+
+      <div class="pillar-cell reveal">
+        <div class="pillar-num">01</div>
+        <svg class="pillar-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="5"/><line x1="16" y1="4" x2="16" y2="11"/><line x1="16" y1="21" x2="16" y2="28"/><line x1="4" y1="16" x2="11" y2="16"/><line x1="21" y1="16" x2="28" y2="16"/></svg>
+        <h3>Selective Investment</h3>
+        <p>We do not chase volume. We target assets with strong fundamentals and genuine growth potential — evaluating every opportunity through rigorous financial modelling, market analysis, and site assessment before committing capital.</p>
+        <p style="margin-top:12px;">Our investment committee process ensures that only opportunities meeting our strict criteria enter the portfolio. We would rather pass on a marginal deal than dilute the quality of our holdings.</p>
+      </div>
+
+      <div class="pillar-cell reveal reveal-delay-1">
+        <div class="pillar-num">02</div>
+        <svg class="pillar-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 24l6-8 6 4 6-10 6 6"/><path d="M4 28h24"/><circle cx="12" cy="16" r="2" fill="currentColor"/><circle cx="18" cy="20" r="2" fill="currentColor"/><circle cx="24" cy="10" r="2" fill="currentColor"/></svg>
+        <h3>Active Management</h3>
+        <p>We treat every property as a business. Our asset management approach sets clear performance benchmarks, monitors key metrics continuously, and makes proactive operational decisions to protect and enhance value.</p>
+        <p style="margin-top:12px;">This hands-on oversight means we identify and address performance issues early — before they become costly problems for investors.</p>
+      </div>
+
+      <div class="pillar-cell reveal">
+        <div class="pillar-num">03</div>
+        <svg class="pillar-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="12" width="10" height="16"/><rect x="18" y="6" width="10" height="22"/><path d="M4 8l8-4 8 4 8-4"/></svg>
+        <h3>Value Creation</h3>
+        <p>We actively seek opportunities where strategic intervention — whether through renovation, repositioning, lease restructuring, or development — can unlock value that the market has not yet recognised or captured.</p>
+        <p style="margin-top:12px;">Our in-house development capability means we can execute value-add strategies directly, without reliance on external contractors who may not share our performance standards.</p>
+      </div>
+
+      <div class="pillar-cell reveal reveal-delay-1">
+        <div class="pillar-num">04</div>
+        <svg class="pillar-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4v24"/><path d="M4 16h24"/><path d="M8 8l16 16M24 8L8 24"/></svg>
+        <h3>Long-Term Hold</h3>
+        <p>Real estate rewards patience. We structure our investments with a long-term horizon — typically five years or more — allowing time for income compounding, capital appreciation, and the full realisation of our value creation work.</p>
+        <p style="margin-top:12px;">This discipline also protects investors from forced selling in unfavourable market conditions, preserving capital through cycles.</p>
+      </div>
+
+    </div>
+
+    <div class="framework-band reveal">
+      <div>
+        <h3>The Integrated Advantage</h3>
+        <p>Because we operate across investment, development, and management under one roof, each pillar reinforces the others. Our acquisition team knows what the management team can deliver. Our development team understands what investors need to see.</p>
+        <p style="margin-top:12px;">This integration creates a compounding operational advantage that fragmented or externally managed funds cannot replicate.</p>
+      </div>
+      <div class="framework-divider"></div>
+      <div>
+        <h3>Investor Alignment</h3>
+        <p>We invest alongside our partners. Our management team has skin in the game — ensuring that our incentives are fully and demonstrably aligned with long-term investor outcomes at every stage of the asset lifecycle.</p>
+        <p style="margin-top:12px;">Transparency, clear reporting, and honest communication are non-negotiable standards across all investor relationships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label" style="color:var(--gold-light);">Execution Principles</span>
+      <h2 style="color:#fff;">How we operate day-to-day</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="principles-grid">
+      <div class="principle-card reveal">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="20" height="20" rx="1"/><path d="M4 10h20"/><path d="M10 4v6"/><path d="M18 4v6"/><path d="M8 16l3 3 7-7"/></svg>
+        <h4>Financial Discipline</h4>
+        <p>Every capital decision is stress-tested. We maintain conservative leverage, rigorous cost controls, and clear approval processes — protecting investors from the consequences of financial indiscipline.</p>
+      </div>
+      <div class="principle-card reveal reveal-delay-1">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 4"/></svg>
+        <h4>Operational Efficiency</h4>
+        <p>We continuously benchmark our operational costs against market standards and implement systematic improvements. Efficiency gains flow directly to net income — and therefore directly to investor returns.</p>
+      </div>
+      <div class="principle-card reveal reveal-delay-2">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l6-8 6 4 6-10 6 6"/><path d="M3 24h22"/></svg>
+        <h4>Continuous Optimization</h4>
+        <p>We do not set and forget. Regular asset-level reviews, tenant feedback loops, and market benchmarking ensure each property performs to its potential — and that we identify improvement opportunities early.</p>
+      </div>
+      <div class="principle-card reveal">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="20" height="16" rx="1"/><path d="M4 11h20"/><path d="M9 6v5M19 6v5"/></svg>
+        <h4>Transparent Reporting</h4>
+        <p>Our investors receive timely, clear, and comprehensive reporting — covering financial performance, operational metrics, and strategic updates. We believe informed investors are long-term investors.</p>
+      </div>
+      <div class="principle-card reveal reveal-delay-1">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4L4 10v4c0 6.18 4.28 11.94 10 13.33C19.72 25.94 24 20.18 24 14v-4L14 4z"/><path d="M10 14l3 3 6-6"/></svg>
+        <h4>Risk-Adjusted Returns</h4>
+        <p>We do not chase yield at the expense of capital preservation. Our investment framework weights downside scenarios as heavily as upside potential — targeting returns that are sustainable through market cycles.</p>
+      </div>
+      <div class="principle-card reveal reveal-delay-2">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="5"/><circle cx="20" cy="18" r="5"/><path d="M14 13l2 2"/></svg>
+        <h4>Investor Alignment</h4>
+        <p>We structure our relationships so that our financial outcomes are tied to investor performance. Co-investment, fee alignment, and long-term partnership thinking are embedded in our business model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-white);padding:80px 0;text-align:center;border-top:1px solid var(--line-dark);">
+  <div class="container reveal">
+    <span class="label">Partner With Us</span>
+    <h2 style="margin:16px auto;max-width:520px;">A strategy built for the long term</h2>
+    <p style="font-size:15px;color:var(--text-muted);max-width:480px;margin:0 auto 40px;line-height:1.85;">If our disciplined, performance-driven approach aligns with your investment objectives, we would welcome a conversation.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn-primary">Contact Our Team</a>
+      <a href="investment.html" class="btn-outline">View Investment Approach</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
+    <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+    <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

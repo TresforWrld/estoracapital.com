@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment — Estora Capital Investment</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
+<link rel="stylesheet" href="shared.css">
+<style>
+.inv-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+.invest-targets { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:36px; }
+.invest-target { background:var(--bg-white); padding:24px 20px; display:flex; align-items:flex-start; gap:14px; transition:background 0.3s; }
+.invest-target:hover { background:var(--gold-pale); }
+.invest-target svg { color:var(--gold); flex-shrink:0; margin-top:2px; }
+.invest-target-text strong { display:block; font-size:13px; color:var(--navy); font-weight:600; margin-bottom:3px; }
+.invest-target-text span { font-size:12px; color:var(--text-muted); }
+
+.returns-box { border-left:3px solid var(--gold); padding:40px 40px 40px 44px; background:var(--bg-white); border-top:1px solid var(--line-dark); border-right:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); }
+.returns-box h3 { font-size:28px; margin-bottom:24px; }
+.why-box { background:var(--navy); padding:40px; margin-top:24px; position:relative; }
+.why-box::before { content:''; position:absolute; top:0; left:32px; right:32px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.why-box .label { color:var(--gold-light); display:block; margin-bottom:16px; }
+.why-box .returns-list li { color:rgba(184,197,212,0.8); border-color:rgba(255,255,255,0.06); }
+.why-box .returns-dot { background:var(--gold); }
+
+.approach-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); }
+.approach-cell { background:var(--bg-white); padding:40px 32px; position:relative; overflow:hidden; transition:background 0.3s; }
+.approach-cell:hover { background:var(--bg); }
+.approach-cell::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gold); transform:scaleX(0); transition:transform 0.4s; }
+.approach-cell:hover::after { transform:scaleX(1); }
+.approach-cell h4 { font-size:20px; color:var(--navy); margin-bottom:12px; font-weight:600; margin-top:16px; }
+.approach-cell p { font-size:13px; color:var(--text-muted); line-height:1.85; }
+.approach-num { font-family:'Playfair Display',serif; font-size:48px; font-weight:600; color:rgba(184,149,42,0.15); line-height:1; }
+
+@media (max-width:1024px) { .inv-grid { grid-template-columns:1fr; gap:48px; } .approach-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:768px) { .invest-targets { grid-template-columns:1fr; } .approach-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="investment.html" class="active">Investment</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li><li><a href="strategy.html">Strategy</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a>
+  <a href="investment.html" class="active">Investment</a><a href="portfolio.html">Portfolio</a>
+  <a href="strategy.html">Strategy</a><a href="sustainability.html">Sustainability</a>
+  <a href="contact.html" class="drawer-cta">Contact Us</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Investment</span>
+    <h1>Selective. Active.<br><em>Value-driven.</em></h1>
+    <p>Our investment approach is centred on selective acquisitions, active asset management, and value creation through disciplined development and operational oversight.</p>
+  </div>
+</section>
+
+<section class="section-pad" style="background:var(--bg-white);">
+  <div class="container">
+    <div class="inv-grid">
+      <div class="reveal">
+        <span class="label">Investment Approach</span>
+        <h2 style="margin-top:10px;margin-bottom:20px;">Why capital allocators choose Estora</h2>
+        <div class="gold-rule" style="margin-bottom:28px;"></div>
+        <p style="font-size:15px;color:var(--text-mid);line-height:1.9;margin-bottom:14px;">We maintain a deep understanding of the Zambian real estate market with hands-on operational control and transparent, disciplined processes focused on long-term capital preservation and growth.</p>
+        <p style="font-size:15px;color:var(--text-mid);line-height:1.9;">Our investment thesis is straightforward: identify quality assets, enhance their performance through active management and development, and hold for the long term to realise compounding returns.</p>
+        <span class="label" style="display:block;margin-top:36px;margin-bottom:18px;">Target Investment Classes</span>
+        <div class="invest-targets">
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17V9l7-6 7 6v8H3z"/><path d="M8 17v-5h4v5"/></svg>
+            <div class="invest-target-text"><strong>Residential Rental</strong><span>Income-generating properties</span></div>
+          </div>
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="16" height="10" rx="1"/><path d="M5 7V5a5 5 0 0 1 10 0v2"/></svg>
+            <div class="invest-target-text"><strong>Commercial Real Estate</strong><span>Office &amp; retail assets</span></div>
+          </div>
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="9" width="7" height="8"/><rect x="12" y="6" width="7" height="11"/><path d="M5 9V6a2 2 0 0 1 2-2h6"/></svg>
+            <div class="invest-target-text"><strong>Mixed-Use Development</strong><span>Diversified income streams</span></div>
+          </div>
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16l4-4 4 4 4-4 4 4"/><path d="M2 2h16v10H2z"/></svg>
+            <div class="invest-target-text"><strong>Strategic Land</strong><span>Development parcels</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="returns-box">
+          <span class="label" style="display:block;margin-bottom:12px;">Return Focus</span>
+          <h3>What We Aim to Deliver</h3>
+          <ul class="returns-list">
+            <li><div class="returns-dot"></div>Stable, risk-adjusted income yields from quality rental assets</li>
+            <li><div class="returns-dot"></div>Long-term capital appreciation through disciplined value creation</li>
+            <li><div class="returns-dot"></div>Optimized asset performance via active management</li>
+            <li><div class="returns-dot"></div>Consistent, transparent reporting and investor alignment</li>
+            <li><div class="returns-dot"></div>Long-term capital preservation and portfolio growth</li>
+          </ul>
+        </div>
+        <div class="why-box reveal">
+          <span class="label">Why Estora Capital</span>
+          <ul class="returns-list">
+            <li><div class="returns-dot"></div>Deep understanding of the Lusaka and broader Zambian real estate market</li>
+            <li><div class="returns-dot"></div>Hands-on, active management throughout the full asset lifecycle</li>
+            <li><div class="returns-dot"></div>Transparent and disciplined investment processes</li>
+            <li><div class="returns-dot"></div>Full alignment of interests between management and investors</li>
+            <li><div class="returns-dot"></div>Focus on income-generating and capital-appreciating assets</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<section class="section-pad" style="background:var(--bg);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Investment Highlights</span>
+      <h2>Assets that work harder</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-cell reveal">
+        <div class="approach-num">01</div>
+        <h4>Consistent Rental Income</h4>
+        <p>We focus on assets with structural demand drivers — location, accessibility, quality — that support reliable, recurring rental income through market cycles.</p>
+      </div>
+      <div class="approach-cell reveal reveal-delay-1">
+        <div class="approach-num">02</div>
+        <h4>Capital Appreciation</h4>
+        <p>Every acquisition is evaluated for its long-term capital trajectory. We hold assets through value cycles, allowing time for appreciation to materialise fully.</p>
+      </div>
+      <div class="approach-cell reveal reveal-delay-2">
+        <div class="approach-num">03</div>
+        <h4>Value Creation Opportunities</h4>
+        <p>We actively seek assets where operational improvement or physical development can unlock significant additional value beyond the base acquisition thesis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--navy);padding:80px 0;text-align:center;">
+  <div class="container reveal">
+    <span class="label" style="color:var(--gold-light);">Investor Enquiries</span>
+    <h2 style="color:#fff;margin:16px auto;max-width:520px;">Explore investment opportunities with Estora Capital</h2>
+    <p style="color:rgba(184,197,212,0.7);max-width:460px;margin:0 auto 36px;font-size:14px;line-height:1.85;">We welcome discussions with investors seeking disciplined, active real estate management in Zambia.</p>
+    <a href="contact.html" class="btn-gold">Contact Our Team</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
+    <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+    <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Estora Capital Investment</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
+<link rel="stylesheet" href="shared.css">
+<style>
+.contact-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:72px; align-items:start; }
+
+.contact-info h2 { font-size:clamp(28px,3.5vw,44px); margin-bottom:20px; }
+.contact-info > p { font-size:15px; color:var(--text-mid); line-height:1.9; margin-bottom:44px; }
+
+.contact-detail { display:flex; gap:18px; margin-bottom:28px; align-items:flex-start; }
+.contact-detail-icon { width:44px; height:44px; background:var(--gold-pale); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.contact-detail-icon svg { color:var(--gold); }
+.contact-detail-body strong { display:block; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; font-weight:700; }
+.contact-detail-body span { font-size:14px; color:var(--text-mid); }
+
+.enquiry-types { background:var(--bg); border:1px solid var(--line-dark); border-left:3px solid var(--gold); padding:28px 28px; margin-top:36px; }
+.enquiry-types h4 { font-size:16px; color:var(--navy); margin-bottom:14px; font-weight:600; }
+.enquiry-types ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.enquiry-types li { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text-muted); }
+.enquiry-types li svg { color:var(--gold); flex-shrink:0; }
+
+/* FORM */
+.contact-form-wrap { background:var(--bg-white); border:1px solid var(--line-dark); padding:52px 48px; }
+.form-title { font-size:24px; color:var(--navy); margin-bottom:8px; font-weight:600; }
+.form-sub { font-size:13px; color:var(--text-muted); margin-bottom:36px; }
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.form-group { display:flex; flex-direction:column; gap:8px; }
+.form-group.full { grid-column:1/-1; }
+.form-group label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted); font-weight:700; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background:var(--bg); border:1.5px solid var(--line-dark);
+  color:var(--text); padding:13px 16px;
+  font-family:'Inter',sans-serif; font-size:14px; font-weight:400;
+  outline:none; transition:border-color 0.3s; -webkit-appearance:none;
+  border-radius:0;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color:var(--gold); background:var(--bg-white); }
+.form-group textarea { height:130px; resize:vertical; }
+.form-group select { cursor:pointer; }
+.form-group select option { background:#fff; }
+
+.form-submit { width:100%; margin-top:8px; }
+.form-note { font-size:11px; color:var(--text-faint); margin-top:12px; text-align:center; line-height:1.6; }
+
+/* Success state */
+.form-success { display:none; text-align:center; padding:48px 32px; }
+.form-success svg { color:var(--gold); margin-bottom:20px; }
+.form-success h3 { font-size:26px; color:var(--navy); margin-bottom:12px; }
+.form-success p { font-size:14px; color:var(--text-muted); line-height:1.8; }
+
+@media (max-width:1024px) {
+  .contact-layout { grid-template-columns:1fr; gap:48px; }
+  .contact-form-wrap { padding:40px 32px; }
+}
+@media (max-width:640px) {
+  .form-grid { grid-template-columns:1fr; }
+  .form-group.full { grid-column:auto; }
+  .contact-form-wrap { padding:32px 22px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li><li><a href="strategy.html">Strategy</a></li>
+    <li><a href="contact.html" class="nav-cta active">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a>
+  <a href="investment.html">Investment</a><a href="portfolio.html">Portfolio</a>
+  <a href="strategy.html">Strategy</a><a href="sustainability.html">Sustainability</a>
+  <a href="contact.html" class="drawer-cta active">Contact Us</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Get In Touch</span>
+    <h1>Let us start a<br><em>conversation</em></h1>
+    <p>We welcome enquiries from investors, strategic partners, and property owners seeking a disciplined and experienced real estate management partner.</p>
+  </div>
+</section>
+
+<section class="section-pad" style="background:var(--bg);">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- LEFT: Info -->
+      <div class="reveal">
+        <span class="label">Contact Information</span>
+        <h2>Estora Capital Investment</h2>
+        <p>Based in Lusaka, Zambia, we are always open to discussions about investment opportunities, strategic partnerships, and property management mandates.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2C7.24 2 5 4.24 5 7c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z"/><circle cx="10" cy="7" r="2"/></svg>
+          </div>
+          <div class="contact-detail-body">
+            <strong>Office</strong>
+            <span>Lusaka, Zambia</span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="1"/><path d="M2 6l8 5 8-5"/></svg>
+          </div>
+          <div class="contact-detail-body">
+            <strong>Email</strong>
+            <span>info@estoracapital.com</span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M3 9h14"/><path d="M9 3v14"/></svg>
+          </div>
+          <div class="contact-detail-body">
+            <strong>Business Hours</strong>
+            <span>Monday – Friday, 08:00 – 17:00 CAT</span>
+          </div>
+        </div>
+
+        <div class="enquiry-types">
+          <h4>We Welcome</h4>
+          <ul>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+              Investment opportunity discussions
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+              Strategic partnership enquiries
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+              Property management mandates
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
+              General business enquiries
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top:36px;background:var(--navy);padding:36px 32px;position:relative;">
+          <div style="position:absolute;top:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
+          <span class="label" style="color:var(--gold-light);display:block;margin-bottom:12px;">Our Commitment</span>
+          <p style="font-family:'Playfair Display',serif;font-size:17px;color:#fff;font-style:italic;font-weight:400;line-height:1.6;margin:0;">"We respond to every serious enquiry with the attention and professionalism it deserves."</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="reveal">
+        <div class="contact-form-wrap">
+          <div id="formContent">
+            <p class="form-title">Send an Enquiry</p>
+            <p class="form-sub">Complete the form below and a member of our team will be in touch within two business days.</p>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" placeholder="First name" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" placeholder="Last name" required>
+              </div>
+              <div class="form-group full">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+260 ...">
+              </div>
+              <div class="form-group">
+                <label for="org">Organisation</label>
+                <input type="text" id="org" placeholder="Company or organisation">
+              </div>
+              <div class="form-group full">
+                <label for="enquiryType">Nature of Enquiry *</label>
+                <select id="enquiryType" required>
+                  <option value="" disabled selected>Select enquiry type</option>
+                  <option>Investment Opportunities</option>
+                  <option>Strategic Partnership</option>
+                  <option>Property Management Mandate</option>
+                  <option>General Enquiry</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label for="message">Message *</label>
+                <textarea id="message" placeholder="Please briefly describe your enquiry and how we can assist you..." required></textarea>
+              </div>
+              <div class="form-group full">
+                <button type="button" class="btn-primary form-submit" onclick="submitForm(this)">Submit Enquiry</button>
+                <p class="form-note">By submitting this form you agree that Estora Capital Investment may contact you regarding your enquiry. Your information will not be shared with third parties.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-success" id="formSuccess">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="26" cy="26" r="22"/><path d="M16 26l7 7 13-14"/></svg>
+            <h3>Enquiry Received</h3>
+            <p>Thank you for reaching out to Estora Capital Investment. A member of our team will review your enquiry and respond within two business days.</p>
+            <a href="index.html" class="btn-outline" style="display:inline-block;margin-top:28px;">Return to Home</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
+    <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+    <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function submitForm(btn) {
+  const firstName = document.getElementById('firstName').value.trim();
+  const email     = document.getElementById('email').value.trim();
+  const enquiry   = document.getElementById('enquiryType').value;
+  const message   = document.getElementById('message').value.trim();
+
+  if (!firstName || !email || !enquiry || !message) {
+    btn.textContent = 'Please fill required fields';
+    btn.style.background = '#c0392b';
+    btn.style.borderColor = '#c0392b';
+    setTimeout(() => {
+      btn.textContent = 'Submit Enquiry';
+      btn.style.background = '';
+      btn.style.borderColor = '';
+    }, 2500);
+    return;
+  }
+
+  btn.textContent = 'Submitting...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('formContent').style.display = 'none';
+    const success = document.getElementById('formSuccess');
+    success.style.display = 'block';
+  }, 1200);
+}
+</script>
+</body>
+</html>
