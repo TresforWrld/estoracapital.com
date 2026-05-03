@@ -5,14 +5,278 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Estora Capital Investment</title>
 <link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── CONTACT HERO IMAGE ── */
-.page-hero-bg {
-  background-image: url('https://i.imgur.com/LGWESEI.jpeg');
-  background-position: center center;
+
+/* ══════════════════════════════════════════
+   CSS VARIABLES
+   ══════════════════════════════════════════ */
+:root {
+  --nav-bg:      #0A1628;
+  --bg:          #F5F3EF;
+  --bg-alt:      #EDEAE4;
+  --bg-white:    #FFFFFF;
+  --bg-dark-sec: #1C1C1C;
+  --surface:     #FFFFFF;
+  --text:        #1A1A1A;
+  --text-mid:    #3D3D3D;
+  --text-muted:  #6B6B6B;
+  --text-faint:  #9A9A9A;
+  --gold:        #B8952A;
+  --gold-light:  #CDA83C;
+  --gold-dim:    #8A7020;
+  --gold-pale:   #F5EDD6;
+  --navy:        #0A1628;
+  --navy-mid:    #0F2040;
+  --navy-light:  #152848;
+  --line:        rgba(184,149,42,0.18);
+  --line-dark:   rgba(26,26,26,0.1);
+  --line-mid:    rgba(26,26,26,0.06);
+  --silver-nav:  rgba(184,197,212,0.8);
 }
 
+/* ══════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY
+   ══════════════════════════════════════════ */
+h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+p, li, span, a, td, th, blockquote { font-family: 'Open Sans', sans-serif; }
+.label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ══════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 60px;
+  background: rgba(10,22,40,0.97);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(184,197,212,0.1);
+  transition: background 0.4s;
+}
+.nav-logo img { height: 34px; width: auto; display: block; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a {
+  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--silver-nav); text-decoration: none;
+  position: relative; transition: color 0.3s; white-space: nowrap;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--gold); transition: width 0.35s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-cta {
+  background: transparent !important; border: 1px solid var(--gold) !important;
+  color: var(--gold) !important; padding: 8px 22px !important;
+  transition: background 0.3s, color 0.3s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; background: none; border: none; z-index: 1100;
+}
+.nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--silver-nav); transition: all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--gold); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--gold); }
+
+.nav-drawer {
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(8,17,33,0.99); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(192,169,106,0.15);
+  padding: 28px 28px 36px; z-index: 999;
+  flex-direction: column; gap: 0;
+  transform: translateY(-8px); opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-drawer.open { display: flex; transform: translateY(0); opacity: 1; }
+.nav-drawer a {
+  display: block; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(184,197,212,0.8); text-decoration: none;
+  padding: 16px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer a:hover, .nav-drawer a.active { color: var(--gold); }
+.nav-drawer .drawer-cta {
+  margin-top: 20px; background: var(--gold); color: var(--navy) !important;
+  text-align: center; padding: 14px; font-weight: 700; border: none;
+}
+
+/* ══════════════════════════════════════════
+   BUTTONS
+   ══════════════════════════════════════════ */
+.btn-primary {
+  background: var(--navy); color: #fff;
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--navy); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-primary:hover { background: transparent; color: var(--navy); transform: translateY(-1px); }
+.btn-gold {
+  background: var(--gold); color: var(--navy);
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--gold); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--navy);
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--navy); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════════ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+.section-pad { padding: 112px 0; }
+.gold-divider { width: 100%; height: 1px; background: var(--line-dark); }
+
+/* ══════════════════════════════════════════
+   HERO — matches index.html exactly
+   ══════════════════════════════════════════ */
+#hero {
+  height: 50vh;
+  min-height: 280px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden; padding: 0;
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background-image: url('https://i.imgur.com/LGWESEI.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(1.03);
+}
+/* Dark gradient bottom */
+.hero-gradient {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(10,22,40,0.78) 0%,
+    rgba(10,22,40,0.40) 35%,
+    rgba(10,22,40,0.08) 60%,
+    transparent 100%
+  );
+}
+/* White tint */
+.hero-tint {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: rgba(255, 255, 255, 0.30);
+}
+/* Decorative gold lines */
+.hero-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.hero-lines::before, .hero-lines::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(192,169,106,0.2), transparent);
+  animation: lineFade 7s ease-in-out infinite;
+}
+.hero-lines::before { left: 60%; }
+.hero-lines::after  { left: 75%; animation-delay: 2.8s; opacity: 0.4; }
+@keyframes lineFade { 0%,100%{opacity:0;transform:scaleY(0.2)} 50%{opacity:1;transform:scaleY(1)} }
+/* Content pinned bottom-left */
+.hero-content {
+  position: absolute; bottom: 0; left: 0;
+  z-index: 3; max-width: 680px;
+  padding: 0 48px 36px;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
+}
+.hero-eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
+.hero-eyebrow .label { color: var(--gold-light); font-size: 9px; }
+.hero-content h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 600; color: #fff; margin-bottom: 10px;
+  opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+  line-height: 1.25;
+}
+.hero-content h1 em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+.hero-sub {
+  font-size: 12px; color: rgba(240,244,248,0.78); max-width: 480px;
+  line-height: 1.75; margin-bottom: 0; font-weight: 400;
+  opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+footer { background: var(--navy); }
+.footer-top {
+  padding: 56px 60px 40px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.footer-tagline { font-family: 'Open Sans', sans-serif; font-size: 12px; color: rgba(184,197,212,0.4); max-width: 220px; line-height: 1.7; }
+.footer-links-group h4 {
+  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.footer-links a { font-family: 'Open Sans', sans-serif; font-size: 12px; color: rgba(184,197,212,0.5); text-decoration: none; transition: color 0.3s; letter-spacing: 0.04em; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  padding: 20px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-family: 'Open Sans', sans-serif; font-size: 11px; color: rgba(184,197,212,0.3); letter-spacing: 0.06em; }
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════ */
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+.reveal { opacity:0; transform:translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+
+/* ══════════════════════════════════════════
+   CONTACT PAGE STYLES
+   ══════════════════════════════════════════ */
 .contact-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:72px; align-items:start; }
 
 .contact-info h2 { font-size:clamp(28px,3.5vw,44px); margin-bottom:20px; }
@@ -24,15 +288,15 @@
 .contact-detail-body strong { display:block; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; font-weight:700; }
 .contact-detail-body span { font-size:14px; color:var(--text-mid); }
 
-.enquiry-types { background:var(--bg); border:1px solid var(--line-dark); border-left:3px solid var(--gold); padding:28px 28px; margin-top:36px; }
+.enquiry-types { background:var(--bg); border:1px solid var(--line-dark); border-left:3px solid var(--gold); padding:28px; margin-top:36px; }
 .enquiry-types h4 { font-size:16px; color:var(--navy); margin-bottom:14px; font-weight:600; }
 .enquiry-types ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
 .enquiry-types li { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text-muted); }
 .enquiry-types li svg { color:var(--gold); flex-shrink:0; }
 
-/* FORM */
+/* Form */
 .contact-form-wrap { background:var(--bg-white); border:1px solid var(--line-dark); padding:52px 48px; }
-.form-title { font-size:24px; color:var(--navy); margin-bottom:8px; font-weight:600; }
+.form-title { font-size:24px; color:var(--navy); margin-bottom:8px; font-weight:600; font-family:'Roboto',sans-serif; }
 .form-sub { font-size:13px; color:var(--text-muted); margin-bottom:36px; }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
 .form-group { display:flex; flex-direction:column; gap:8px; }
@@ -43,7 +307,7 @@
 .form-group textarea {
   background:var(--bg); border:1.5px solid var(--line-dark);
   color:var(--text); padding:13px 16px;
-  font-family:'Inter',sans-serif; font-size:14px; font-weight:400;
+  font-family:'Open Sans',sans-serif; font-size:14px; font-weight:400;
   outline:none; transition:border-color 0.3s; -webkit-appearance:none;
   border-radius:0;
 }
@@ -53,55 +317,95 @@
 .form-group textarea { height:130px; resize:vertical; }
 .form-group select { cursor:pointer; }
 .form-group select option { background:#fff; }
-
 .form-submit { width:100%; margin-top:8px; }
 .form-note { font-size:11px; color:var(--text-faint); margin-top:12px; text-align:center; line-height:1.6; }
 
-/* Success state */
 .form-success { display:none; text-align:center; padding:48px 32px; }
 .form-success svg { color:var(--gold); margin-bottom:20px; }
 .form-success h3 { font-size:26px; color:var(--navy); margin-bottom:12px; }
 .form-success p { font-size:14px; color:var(--text-muted); line-height:1.8; }
 
-@media (max-width:1024px) {
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 0 32px; }
+  .container { padding: 0 36px; }
+  .footer-top, .footer-bottom { padding-left: 36px; padding-right: 36px; }
+  .section-pad { padding: 80px 0; }
   .contact-layout { grid-template-columns:1fr; gap:48px; }
   .contact-form-wrap { padding:40px 32px; }
 }
-@media (max-width:640px) {
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .container { padding: 0 22px; }
+  .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
+  .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
+  .section-pad { padding: 64px 0; }
+  #hero { min-height: 44vh; }
+  .hero-content { padding: 0 20px 24px; max-width: 85%; }
+  .hero-eyebrow { display: none; }
+  .hero-content h1 { font-size: 17px; margin-bottom: 8px; }
+  .hero-sub { display: none; }
+}
+@media (max-width: 640px) {
   .form-grid { grid-template-columns:1fr; }
   .form-group.full { grid-column:auto; }
   .contact-form-wrap { padding:32px 22px; }
 }
+@media (max-width: 480px) {
+  nav { padding: 0 18px; }
+  .container { padding: 0 18px; }
+  #hero { min-height: 38vh; }
+  .hero-content h1 { font-size: 15px; }
+}
 </style>
 </head>
 <body>
+
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li><li><a href="strategy.html">Strategy</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="investment.html">Investment</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="strategy.html">Strategy</a></li>
     <li><a href="contact.html" class="nav-cta active">Contact Us</a></li>
   </ul>
   <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-drawer">
-  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a>
-  <a href="investment.html">Investment</a><a href="portfolio.html">Portfolio</a>
-  <a href="strategy.html">Strategy</a><a href="sustainability.html">Sustainability</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="services.html">Services</a>
+  <a href="investment.html">Investment</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="strategy.html">Strategy</a>
+  <a href="sustainability.html">Sustainability</a>
   <a href="contact.html" class="drawer-cta active">Contact Us</a>
 </div>
 
-<section class="page-hero page-hero--image">
-  <div class="page-hero-bg" aria-hidden="true"></div>
-  <div class="page-hero-overlay" aria-hidden="true"></div>
-  <div class="container page-hero-inner">
-    <span class="label">Get In Touch</span>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img" aria-hidden="true"></div>
+  <div class="hero-gradient" aria-hidden="true"></div>
+  <div class="hero-tint" aria-hidden="true"></div>
+  <div class="hero-lines" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">Get In Touch</span>
+    </div>
     <h1>Let us start a<br><em>conversation</em></h1>
-    <p>We welcome enquiries from investors, strategic partners, and property owners seeking a disciplined and experienced real estate management partner.</p>
+    <p class="hero-sub">We welcome enquiries from investors, strategic partners, and property owners seeking a disciplined and experienced real estate management partner.</p>
   </div>
 </section>
 
+<!-- CONTACT CONTENT -->
 <section class="section-pad" style="background:var(--bg);">
   <div class="container">
     <div class="contact-layout">
@@ -145,29 +449,17 @@
         <div class="enquiry-types">
           <h4>We Welcome</h4>
           <ul>
-            <li>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
-              Investment opportunity discussions
-            </li>
-            <li>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
-              Strategic partnership enquiries
-            </li>
-            <li>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
-              Property management mandates
-            </li>
-            <li>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>
-              General business enquiries
-            </li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>Investment opportunity discussions</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>Strategic partnership enquiries</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>Property management mandates</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/></svg>General business enquiries</li>
           </ul>
         </div>
 
         <div style="margin-top:36px;background:var(--navy);padding:36px 32px;position:relative;">
           <div style="position:absolute;top:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
           <span class="label" style="color:var(--gold-light);display:block;margin-bottom:12px;">Our Commitment</span>
-          <p style="font-family:'Playfair Display',serif;font-size:17px;color:#fff;font-style:italic;font-weight:400;line-height:1.6;margin:0;">"We respond to every serious enquiry with the attention and professionalism it deserves."</p>
+          <p style="font-family:'Roboto',serif;font-size:17px;color:#fff;font-style:italic;font-weight:300;line-height:1.6;margin:0;">"We respond to every serious enquiry with the attention and professionalism it deserves."</p>
         </div>
       </div>
 
@@ -177,7 +469,6 @@
           <div id="formContent">
             <p class="form-title">Send an Enquiry</p>
             <p class="form-sub">Complete the form below and a member of our team will be in touch within two business days.</p>
-
             <div class="form-grid">
               <div class="form-group">
                 <label for="firstName">First Name *</label>
@@ -233,18 +524,47 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
-    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
+    <div>
+      <a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a>
+      <p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p>
+    </div>
     <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
     <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
     <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
   </div>
-  <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p>
+    <p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p>
+  </div>
 </footer>
 
 <script src="shared.js"></script>
 <script>
+// Reveal on scroll
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+})();
+
+// Hamburger
+(function() {
+  const btn = document.querySelector('.nav-hamburger');
+  const drawer = document.querySelector('.nav-drawer');
+  if (btn && drawer) {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+  }
+})();
+
+// Form submit
 function submitForm(btn) {
   const firstName = document.getElementById('firstName').value.trim();
   const email     = document.getElementById('email').value.trim();
@@ -269,8 +589,7 @@ function submitForm(btn) {
 
   setTimeout(() => {
     document.getElementById('formContent').style.display = 'none';
-    const success = document.getElementById('formSuccess');
-    success.style.display = 'block';
+    document.getElementById('formSuccess').style.display = 'block';
   }, 1200);
 }
 </script>
