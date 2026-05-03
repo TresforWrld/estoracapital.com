@@ -240,17 +240,19 @@ nav {
   to   { transform: scale(1.06); }
 }
 
-/* Blue-tint + darkening gradient overlay
-   Produces the steel-blue tint seen on the index hero */
+/* White + blue-tint + darkening gradient overlay
+   Layered top-to-bottom so the white wash sits above the image,
+   then a navy gradient ensures text stays legible */
 .page-hero-overlay {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background:
-    rgba(30, 80, 160, 0.30),                  /* blue colour tint */
+    rgba(255, 255, 255, 0.28),                /* white tint — same as index hero */
+    rgba(30, 80, 160, 0.18),                  /* subtle blue cast */
     linear-gradient(
       160deg,
-      rgba(8, 20, 50, 0.72) 0%,               /* dark navy top-left */
-      rgba(12, 35, 75, 0.52) 45%,             /* mid blue */
-      rgba(8, 18, 46, 0.80) 100%              /* dark bottom-right */
+      rgba(8, 20, 50, 0.65) 0%,              /* dark navy top-left keeps text readable */
+      rgba(12, 35, 75, 0.40) 45%,
+      rgba(8, 18, 46, 0.72) 100%
     );
 }
 /* Edge vignette — keeps corners dark so text always pops */
