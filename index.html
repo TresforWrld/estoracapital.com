@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estora Capital Investment — Lusaka, Zambia</title>
-<link rel="icon" type="image/png" href="assets/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Investment — Estora Capital Investment</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
 <link rel="stylesheet" href="shared.css">
 <style>
 
 /* ══════════════════════════════════════════
-   HERO — full-width slideshow ~56vh
-   Text block floats left ~50% of image
+   INVESTMENT PAGE HERO
+   — matches index.html hero: image bg,
+     white tint, bottom-left text, Roboto font
    ══════════════════════════════════════════ */
-#hero {
+
+.inv-page-hero {
   height: 56vh;
   min-height: 380px;
   max-height: 640px;
@@ -23,494 +22,278 @@
   overflow: hidden;
 }
 
-/* ── Slideshow slides ── */
-.hero-slide {
+/* Background image — replace URL in HTML to swap photo */
+.inv-hero-img {
   position: absolute; inset: 0;
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  animation: heroKen 7s ease-in-out infinite;
-}
-.hero-slide.active { opacity: 1; }
-.hero-slide:nth-child(1) { animation-delay: 0s; }
-3.hero-slide:nth-child(2) { animation-delay: 3s; }
-.hero-slide:nth-child(3) { animation-delay: 4s; }
-
-@keyframes heroKen {
-  0%   { transform: scale(1); }
-  100% { transform: scale(1.06); }
+  /* Fallback colour if no image is set yet */
+  background-color: var(--navy);
 }
 
-/* ── Subtle vertical line at the text/image boundary ── */
-.hero-line-accent {
-  position: absolute; top: 0; bottom: 0; left: 51%;
-  width: 1px; z-index: 2; pointer-events: none;
+/* White tint overlay — change opacity here (0 = none, 1 = solid white) */
+.inv-hero-tint {
+  position: absolute; inset: 0;
+  background: rgba(255, 255, 255, 0.38);
+  z-index: 1;
+}
+
+/* Stronger dark gradient at the very bottom so light text is readable */
+.inv-page-hero::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(10,22,40,0.72) 0%,
+    rgba(10,22,40,0.30) 32%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Decorative gold vertical line */
+.inv-hero-line {
+  position: absolute; top: 0; bottom: 0; left: 51%; z-index: 3;
+  width: 1px; pointer-events: none;
   background: linear-gradient(
     to bottom,
     transparent 5%,
-    rgba(192,169,106,0.25) 35%,
-    rgba(192,169,106,0.25) 65%,
+    rgba(192,169,106,0.22) 35%,
+    rgba(192,169,106,0.22) 65%,
     transparent 95%
   );
 }
 
-/* ── Text content — centred vertically, left half only ── */
-.hero-content {
+/* Text block — pinned bottom-left, max 52% width, matches index */
+.inv-hero-content {
   position: absolute;
-  top: 50%; left: 0;
-  transform: translateY(-50%);
-  z-index: 3;
-  padding: 0 60px;
-  max-width: 52%;
+  bottom: 0; left: 0;
+  z-index: 4;
+  padding: 0 60px 40px;
+  max-width: 54%;
 }
 
-.hero-eyebrow {
-  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+.inv-hero-eyebrow {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
   opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
 }
-.hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold); flex-shrink: 0; }
-.hero-eyebrow .label { color: rgba(192,169,106,0.95); font-size: 10px; letter-spacing: 0.22em; }
+.inv-eyebrow-rule { width: 32px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.inv-hero-eyebrow .label { color: var(--gold-light); font-size: 10px; letter-spacing: 0.22em; }
 
-.hero-content h1 {
+.inv-hero-content h1 {
   font-family: 'Roboto', sans-serif;
-  font-size: clamp(24px, 2.8vw, 46px);
-  font-weight: 600; color: #FFFFFF;
-  line-height: 1.15; letter-spacing: -0.01em;
-  margin-bottom: 16px;
+  font-size: clamp(20px, 2.6vw, 32px);
+  font-weight: 600; color: #fff;
+  line-height: 1.18; letter-spacing: -0.01em;
+  margin-bottom: 12px;
   opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
 }
-.hero-content h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.inv-hero-content h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
 
-.hero-sub {
+.inv-hero-sub {
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px; color: rgba(220,230,240,0.80);
-  line-height: 1.85; margin-bottom: 28px; font-weight: 300;
-  max-width: 420px;
+  font-size: 12px; color: rgba(220,230,240,0.82);
+  line-height: 1.8; font-weight: 300; max-width: 400px;
   opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
 }
 
-.hero-btns {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
-}
-.hero-btns .btn-primary {
-  background: var(--gold); color: var(--navy); border-color: var(--gold);
-  padding: 12px 26px; font-size: 10px;
-}
-.hero-btns .btn-primary:hover { background: transparent; color: var(--gold); }
-.hero-btns .btn-outline {
-  color: rgba(240,244,248,0.88); border-color: rgba(200,215,230,0.38);
-  padding: 12px 26px; font-size: 10px;
-}
-.hero-btns .btn-outline:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.55); }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
-/* ── Stats — bottom-right, over image ── */
-.hero-stats {
-  position: absolute; bottom: 0; right: 0; z-index: 4;
-  display: flex;
-  opacity: 0; animation: fadeIn 1s 1.1s forwards;
-}
-.hero-stat {
-  padding: 18px 24px;
-  background: rgba(10,22,40,0.76);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  border-left: 1px solid rgba(192,169,106,0.18);
-  border-top: 1px solid rgba(192,169,106,0.12);
-  text-align: center; min-width: 100px;
-}
-.hero-stat-num {
-  font-family: 'Roboto', sans-serif;
-  font-size: 26px; font-weight: 600; color: var(--gold-light); line-height: 1;
-}
-.hero-stat-lbl {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(184,197,212,0.50); margin-top: 5px; font-weight: 600;
-}
-
-/* ── Slide dots ── */
-.hero-dots {
-  position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 8px; z-index: 5;
-  opacity: 0; animation: fadeIn 1s 1.3s forwards;
-}
-.hero-dot {
-  width: 7px; height: 7px;
-  border: 1.5px solid rgba(255,255,255,0.5);
-  background: transparent; cursor: pointer;
-  transition: background 0.3s, border-color 0.3s;
-}
-.hero-dot.active, .hero-dot:hover { background: var(--gold); border-color: var(--gold); }
-
-/* ── Scroll indicator ── */
-.hero-scroll {
-  position: absolute; bottom: 26px; left: 60px; z-index: 5;
-  display: flex; align-items: center; gap: 12px;
-  opacity: 0; animation: fadeIn 1s 1.5s forwards;
-}
-.hero-scroll-line {
-  width: 1px; height: 42px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: sPulse 2.2s ease-in-out infinite;
-}
-@keyframes sPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
-.hero-scroll span {
-  font-family: 'Open Sans', sans-serif; font-size: 9px;
-  letter-spacing: 0.24em; color: rgba(184,197,212,0.45);
-  writing-mode: vertical-rl; font-weight: 600; text-transform: uppercase;
-}
-
-/* ══════════════════════════════════════════
-   INTRO BAND
-   ══════════════════════════════════════════ */
-.intro-band { background: var(--bg-white); border-bottom: 1px solid var(--line-dark); }
-.intro-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
-  padding: 80px 0;
-}
-.intro-left p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px; color: var(--text-mid); line-height: 1.9; margin-bottom: 14px;
-}
-.intro-left .lead {
-  font-family: 'Roboto', sans-serif; font-size: 21px; font-style: italic;
-  color: var(--navy); line-height: 1.55; margin-bottom: 20px; font-weight: 300;
-}
-.intro-right {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark);
-}
-.intro-cap {
-  background: var(--bg); padding: 26px 20px;
-  display: flex; align-items: flex-start; gap: 13px; transition: background 0.3s;
-}
-.intro-cap:hover { background: var(--bg-white); }
-.intro-cap svg { color: var(--gold); flex-shrink: 0; margin-top: 3px; }
-.intro-cap strong {
-  display: block; font-family: 'Roboto', sans-serif; font-size: 15px;
-  color: var(--navy); margin-bottom: 3px; font-weight: 500;
-}
-.intro-cap span { font-family: 'Open Sans', sans-serif; font-size: 12px; color: var(--text-muted); }
-
-/* ══════════════════════════════════════════
-   SECTION CARDS
-   ══════════════════════════════════════════ */
-.sections-area { background: var(--bg); padding: 100px 0; }
-.sections-label { margin-bottom: 52px; }
-.sections-label h2 { font-size: clamp(30px, 4vw, 50px); }
-
-.cards-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark);
-}
-.section-card {
-  background: var(--bg-white); padding: 52px 40px;
-  text-decoration: none; display: flex; flex-direction: column;
-  transition: background 0.3s; border-bottom: 3px solid transparent;
-}
-.section-card:hover { background: var(--bg); border-bottom-color: var(--gold); }
-.section-card:hover .card-icon { color: var(--navy); }
-
-.card-icon { width: 44px; height: 44px; color: var(--gold); margin-bottom: 26px; transition: color 0.3s; }
-.section-card h3 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 22px; color: var(--navy); margin-bottom: 12px; font-weight: 600;
-}
-.section-card p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px; color: var(--text-muted); line-height: 1.85; flex: 1;
-}
-.card-link {
-  display: flex; align-items: center; gap: 8px; margin-top: 28px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); font-weight: 700;
-}
-.card-link svg { transition: transform 0.3s; }
-.section-card:hover .card-link svg { transform: translateX(5px); }
-
-/* ══════════════════════════════════════════
-   HIGHLIGHTS
-   ══════════════════════════════════════════ */
-.highlights { background: var(--navy); padding: 80px 0; }
-.highlights-grid {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05);
-}
-.highlight-cell { background: var(--navy); padding: 44px 32px; text-align: center; }
-.highlight-num {
-  font-family: 'Roboto', sans-serif;
-  font-size: 52px; font-weight: 600; color: var(--gold-light);
-  line-height: 1; margin-bottom: 10px;
-}
-.highlight-desc {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(184,197,212,0.45); font-weight: 600;
-}
-
-/* ══════════════════════════════════════════
-   CLOSING CTA
-   ══════════════════════════════════════════ */
-.closing-cta {
-  background: var(--bg-white); padding: 100px 0;
-  text-align: center; border-top: 1px solid var(--line-dark);
-}
-.closing-cta h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: clamp(30px, 4vw, 54px); max-width: 640px; margin: 16px auto;
-}
-.closing-cta h2 em { font-style: italic; color: var(--gold); font-weight: 300; }
-.closing-cta p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px; color: var(--text-muted);
-  max-width: 480px; margin: 0 auto 40px; line-height: 1.85;
-}
-.closing-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-/* ══════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════ */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-  .hero-content { padding: 0 36px; max-width: 62%; }
-  .hero-stats { display: none; }
-  .hero-scroll { left: 36px; }
-  .cards-grid { grid-template-columns: repeat(2,1fr); }
-  .highlights-grid { grid-template-columns: repeat(2,1fr); }
-  .intro-inner { gap: 48px; }
+  .inv-hero-content { padding: 0 36px 32px; max-width: 65%; }
+  .inv-hero-line { display: none; }
 }
 @media (max-width: 768px) {
-  #hero { height: 52vh; min-height: 300px; max-height: 460px; }
-  .hero-content { max-width: 80%; padding: 0 22px; }
-  .hero-content h1 { font-size: 19px; margin-bottom: 10px; }
-  .hero-sub { font-size: 12px; margin-bottom: 18px; }
-  .hero-btns a { padding: 10px 18px; font-size: 9.5px; }
-  .hero-line-accent { display: none; }
-  .hero-scroll { display: none; }
-  .cards-grid { grid-template-columns: 1fr; }
-  .highlights-grid { grid-template-columns: repeat(2,1fr); }
-  .intro-inner { grid-template-columns: 1fr; gap: 40px; }
-  .intro-right { grid-template-columns: 1fr; }
-  .section-card { padding: 40px 26px; }
-  .highlight-num { font-size: 40px; }
+  .inv-page-hero { height: 50vh; min-height: 280px; max-height: 440px; }
+  .inv-hero-content { padding: 0 22px 24px; max-width: 78%; }
+  .inv-hero-content h1 { font-size: 18px; }
+  .inv-hero-sub { display: none; }
 }
 @media (max-width: 480px) {
-  #hero { height: 46vh; min-height: 260px; }
-  .hero-content { max-width: 88%; }
-  .hero-content h1 { font-size: 16px; }
-  .hero-sub { display: none; }
-  .hero-btns { flex-direction: column; gap: 8px; }
-  .hero-btns a { text-align: center; }
-  .highlight-cell { padding: 32px 20px; }
+  .inv-page-hero { height: 44vh; min-height: 240px; }
+  .inv-hero-content h1 { font-size: 16px; }
+  .inv-hero-eyebrow { display: none; }
 }
 
 /* ══════════════════════════════════════════
-   ANIMATIONS
+   REST OF PAGE
    ══════════════════════════════════════════ */
-@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+.inv-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+.invest-targets { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:36px; }
+.invest-target { background:var(--bg-white); padding:24px 20px; display:flex; align-items:flex-start; gap:14px; transition:background 0.3s; }
+.invest-target:hover { background:var(--gold-pale); }
+.invest-target svg { color:var(--gold); flex-shrink:0; margin-top:2px; }
+.invest-target-text strong { display:block; font-size:13px; color:var(--navy); font-weight:600; margin-bottom:3px; }
+.invest-target-text span { font-size:12px; color:var(--text-muted); }
+
+.returns-box { border-left:3px solid var(--gold); padding:40px 40px 40px 44px; background:var(--bg-white); border-top:1px solid var(--line-dark); border-right:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); }
+.returns-box h3 { font-size:28px; margin-bottom:24px; }
+.why-box { background:var(--navy); padding:40px; margin-top:24px; position:relative; }
+.why-box::before { content:''; position:absolute; top:0; left:32px; right:32px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.why-box .label { color:var(--gold-light); display:block; margin-bottom:16px; }
+.why-box .returns-list li { color:rgba(184,197,212,0.8); border-color:rgba(255,255,255,0.06); }
+.why-box .returns-dot { background:var(--gold); }
+
+.approach-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); }
+.approach-cell { background:var(--bg-white); padding:40px 32px; position:relative; overflow:hidden; transition:background 0.3s; }
+.approach-cell:hover { background:var(--bg); }
+.approach-cell::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gold); transform:scaleX(0); transition:transform 0.4s; }
+.approach-cell:hover::after { transform:scaleX(1); }
+.approach-cell h4 { font-size:20px; color:var(--navy); margin-bottom:12px; font-weight:600; margin-top:16px; }
+.approach-cell p { font-size:13px; color:var(--text-muted); line-height:1.85; }
+.approach-num { font-family:'Roboto',sans-serif; font-size:48px; font-weight:600; color:rgba(184,149,42,0.15); line-height:1; }
+
+@media (max-width:1024px) { .inv-grid { grid-template-columns:1fr; gap:48px; } .approach-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:768px) { .invest-targets { grid-template-columns:1fr; } .approach-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Estora Capital Investment"></a>
+  <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
   <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="about.html">About</a></li>
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="investment.html">Investment</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="strategy.html">Strategy</a></li>
+    <li><a href="investment.html" class="active">Investment</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li><li><a href="strategy.html">Strategy</a></li>
     <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
   </ul>
   <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-drawer">
-  <a href="index.html" class="active">Home</a>
-  <a href="about.html">About Us</a>
-  <a href="services.html">Services</a>
-  <a href="investment.html">Investment</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="strategy.html">Strategy</a>
-  <a href="sustainability.html">Sustainability</a>
+  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a>
+  <a href="investment.html" class="active">Investment</a><a href="portfolio.html">Portfolio</a>
+  <a href="strategy.html">Strategy</a><a href="sustainability.html">Sustainability</a>
   <a href="contact.html" class="drawer-cta">Contact Us</a>
 </div>
 
-<!-- ══════════════════ HERO ══════════════════ -->
-<section id="hero">
+<section class="inv-page-hero">
 
-  <!-- Slides — full bleed, behind everything -->
-  <div class="hero-slide active" style="background-image:url('assets/home-hero-1.jpeg');"></div>
-  <div class="hero-slide"        style="background-image:url('assets/home-hero-2.jpeg');"></div>
-  <div class="hero-slide"        style="background-image:url('assets/home-hero-3.jpeg');"></div>
+  <!-- ── Background image: swap src below with your own image ── -->
+  <div class="inv-hero-img" style="background-image: url('assets/investment-hero.jpg');"></div>
 
-  <!-- Overlays -->
-  <div class="hero-overlay-left"></div>
-  <div class="hero-overlay-bottom"></div>
-  <div class="hero-line-accent"></div>
+  <!-- ── White tint overlay — adjust opacity in CSS ── -->
+  <div class="inv-hero-tint"></div>
 
-  <!-- Text — left half -->
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      <span class="label"></span>
+  <!-- ── Decorative vertical gold line ── -->
+  <div class="inv-hero-line"></div>
+
+  <!-- ── Text — bottom-left, matching index hero style ── -->
+  <div class="inv-hero-content">
+    <div class="inv-hero-eyebrow">
+      <div class="inv-eyebrow-rule"></div>
+      <span class="label">Investment</span>
     </div>
-    <h1>Building <em>long term value</em><br>through strategic real estate investment</h1>
-    <p class="hero-sub">Estora Capital is a real estate investment firm focused on acquiring, developing, and actively managing property assets that deliver stable income and long-term capital growth.</p>
-    <div class="hero-btns">
-      <a href="investment.html" class="btn-outline">View Investments</a>
-    </div>
+    <h1>Selective. Active.<br><em>Value-driven.</em></h1>
+    <p class="inv-hero-sub">Our investment approach is centred on selective acquisitions, active asset management, and value creation through disciplined development and operational oversight.</p>
   </div>
-
-  <!-- Stats — bottom right -->
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-lbl">Years Experience</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-lbl">Service Lines</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">2017</div><div class="hero-stat-lbl">Established</div></div>
-  </div>
-
-  <!-- Dots -->
-  <div class="hero-dots">
-    <div class="hero-dot active" data-index="0"></div>
-    <div class="hero-dot" data-index="1"></div>
-    <div class="hero-dot" data-index="2"></div>
-  </div>
-
-  <!-- Scroll -->
-  <div class="hero-scroll"><div class="hero-scroll-line"></div><span>Scroll</span></div>
 
 </section>
-<!-- ══════════════════ /HERO ══════════════════ -->
 
-<!-- INTRO BAND -->
-<section class="intro-band">
+<section class="section-pad" style="background:var(--bg-white);">
   <div class="container">
-    <div class="intro-inner">
-      <div class="intro-left reveal">
-        <p class="lead">"We don't just invest in real estate — we build, manage, and optimize assets to deliver lasting value."</p>
-        <p>Since 2017, Estora Capital has focused on identifying undervalued opportunities, enhancing asset performance, and delivering sustainable, risk-adjusted returns. Our integrated model ensures control across the full investment lifecycle.</p>
-        <div style="margin-top:32px"><a href="about.html" class="btn-primary" style="font-size:10px;padding:12px 28px;">Learn About Us</a></div>
-      </div>
-      <div class="intro-right reveal">
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17V9l7-6 7 6v8H3z"/><path d="M8 17v-5h4v5"/></svg>
-          <div><strong>Property Investment</strong><span>Portfolio growth &amp; acquisitions</span></div>
-        </div>
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="14" height="8"/><path d="M6 9V6a4 4 0 0 1 8 0v3"/><path d="M3 13h14"/></svg>
-          <div><strong>Property Development</strong><span>Value creation &amp; construction</span></div>
-        </div>
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 14l4-5 4 3 4-7 4 4"/><path d="M2 17h16"/></svg>
-          <div><strong>Asset Management</strong><span>Performance optimization</span></div>
-        </div>
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="12" height="14" rx="1"/><path d="M7 3v14M4 9h7M4 13h5"/><circle cx="14" cy="14" r="3"/><path d="M14 12.5v1.5l1 1"/></svg>
-          <div><strong>Property Management</strong><span>Efficient operations</span></div>
+    <div class="inv-grid">
+      <div class="reveal">
+        <span class="label">Investment Approach</span>
+        <h2 style="margin-top:10px;margin-bottom:20px;">Why capital allocators choose Estora</h2>
+        <div class="gold-rule" style="margin-bottom:28px;"></div>
+        <p style="font-size:15px;color:var(--text-mid);line-height:1.9;margin-bottom:14px;">We maintain a deep understanding of the Zambian real estate market with hands-on operational control and transparent, disciplined processes focused on long-term capital preservation and growth.</p>
+        <p style="font-size:15px;color:var(--text-mid);line-height:1.9;">Our investment thesis is straightforward: identify quality assets, enhance their performance through active management and development, and hold for the long term to realise compounding returns.</p>
+        <span class="label" style="display:block;margin-top:36px;margin-bottom:18px;">Target Investment Classes</span>
+        <div class="invest-targets">
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17V9l7-6 7 6v8H3z"/><path d="M8 17v-5h4v5"/></svg>
+            <div class="invest-target-text"><strong>Residential Rental</strong><span>Income-generating properties</span></div>
+          </div>
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="16" height="10" rx="1"/><path d="M5 7V5a5 5 0 0 1 10 0v2"/></svg>
+            <div class="invest-target-text"><strong>Commercial Real Estate</strong><span>Office &amp; retail assets</span></div>
+          </div>
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="9" width="7" height="8"/><rect x="12" y="6" width="7" height="11"/><path d="M5 9V6a2 2 0 0 1 2-2h6"/></svg>
+            <div class="invest-target-text"><strong>Mixed-Use Development</strong><span>Diversified income streams</span></div>
+          </div>
+          <div class="invest-target">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16l4-4 4 4 4-4 4 4"/><path d="M2 2h16v10H2z"/></svg>
+            <div class="invest-target-text"><strong>Strategic Land</strong><span>Development parcels</span></div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-   
-<!-- HIGHLIGHTS -->
-<section class="highlights">
-  <div class="container">
-    <div class="highlights-grid">
-      <div class="highlight-cell reveal"><div class="highlight-num">10+</div><div class="highlight-desc">Years Combined Experience</div></div>
-      <div class="highlight-cell reveal reveal-delay-1"><div class="highlight-num">4</div><div class="highlight-desc">Integrated Service Lines</div></div>
-      <div class="highlight-cell reveal reveal-delay-2"><div class="highlight-num">2017</div><div class="highlight-desc">Established in Lusaka</div></div>
-      <div class="highlight-cell reveal reveal-delay-3"><div class="highlight-num">100%</div><div class="highlight-desc">Fully Integrated Model</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CLOSING CTA -->
-<section class="closing-cta">
-  <div class="container">
-    <div class="reveal">
-      <span class="label">Get Started</span>
-      <h2>Ready to invest<br>with <em>confidence</em>?</h2>
-      <p>Speak with our team about investment opportunities, strategic partnerships, or property management mandates.</p>
-      <div class="closing-btns">
-        <a href="contact.html" class="btn-primary">Get In Touch</a>
-        <a href="investment.html" class="btn-outline">Learn More</a>
+      <div class="reveal">
+        <div class="returns-box">
+          <span class="label" style="display:block;margin-bottom:12px;">Return Focus</span>
+          <h3>What We Aim to Deliver</h3>
+          <ul class="returns-list">
+            <li><div class="returns-dot"></div>Stable, risk-adjusted income yields from quality rental assets</li>
+            <li><div class="returns-dot"></div>Long-term capital appreciation through disciplined value creation</li>
+            <li><div class="returns-dot"></div>Optimized asset performance via active management</li>
+            <li><div class="returns-dot"></div>Consistent, transparent reporting and investor alignment</li>
+            <li><div class="returns-dot"></div>Long-term capital preservation and portfolio growth</li>
+          </ul>
+        </div>
+        <div class="why-box reveal">
+          <span class="label">Why Estora Capital</span>
+          <ul class="returns-list">
+            <li><div class="returns-dot"></div>Deep understanding of the Lusaka and broader Zambian real estate market</li>
+            <li><div class="returns-dot"></div>Hands-on, active management throughout the full asset lifecycle</li>
+            <li><div class="returns-dot"></div>Transparent and disciplined investment processes</li>
+            <li><div class="returns-dot"></div>Full alignment of interests between management and investors</li>
+            <li><div class="returns-dot"></div>Focus on income-generating and capital-appreciating assets</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<div class="gold-divider"></div>
+
+<section class="section-pad" style="background:var(--bg);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Investment Highlights</span>
+      <h2>Assets that work harder</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-cell reveal">
+        <div class="approach-num">01</div>
+        <h4>Consistent Rental Income</h4>
+        <p>We focus on assets with structural demand drivers — location, accessibility, quality — that support reliable, recurring rental income through market cycles.</p>
+      </div>
+      <div class="approach-cell reveal reveal-delay-1">
+        <div class="approach-num">02</div>
+        <h4>Capital Appreciation</h4>
+        <p>Every acquisition is evaluated for its long-term capital trajectory. We hold assets through value cycles, allowing time for appreciation to materialise fully.</p>
+      </div>
+      <div class="approach-cell reveal reveal-delay-2">
+        <div class="approach-num">03</div>
+        <h4>Value Creation Opportunities</h4>
+        <p>We actively seek assets where operational improvement or physical development can unlock significant additional value beyond the base acquisition thesis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--navy);padding:80px 0;text-align:center;">
+  <div class="container reveal">
+    <span class="label" style="color:var(--gold-light);">Investor Enquiries</span>
+    <h2 style="color:#fff;margin:16px auto;max-width:520px;">Explore investment opportunities with Estora Capital</h2>
+    <p style="color:rgba(184,197,212,0.7);max-width:460px;margin:0 auto 36px;font-size:14px;line-height:1.85;">We welcome discussions with investors seeking disciplined, active real estate management in Zambia.</p>
+    <a href="contact.html" class="btn-gold">Contact Our Team</a>
+  </div>
+</section>
+
 <footer>
   <div class="footer-top">
-    <div>
-      <a href="index.html"><img src="assets/logo.png" alt="Estora Capital Investment" class="footer-logo" style="height:36px;display:block;margin-bottom:14px;"></a>
-      <p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p>
-    </div>
-    <div class="footer-links-group">
-      <h4>Company</h4>
-      <ul class="footer-links">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="investment.html">Investment</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-      </ul>
-    </div>
-    <div class="footer-links-group">
-      <h4>More</h4>
-      <ul class="footer-links">
-        <li><a href="strategy.html">Strategy</a></li>
-        <li><a href="sustainability.html">Sustainability</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="footer-links-group">
-      <h4>Contact</h4>
-      <ul class="footer-links">
-        <li><a href="#">Lusaka, Zambia</a></li>
-        <li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li>
-      </ul>
-    </div>
+    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
+    <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+    <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p>
-    <p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p>
-  </div>
+  <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
 </footer>
-
 <script src="shared.js"></script>
-<script>
-// ── Hero slideshow — JS crossfade, dots synced ──
-(function () {
-  const slides  = document.querySelectorAll('.hero-slide');
-  const dots    = document.querySelectorAll('.hero-dot');
-  let current   = 0;
-  const DELAY   = 6000; // 6 s per slide
-
-  function goTo(idx) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (idx + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-  }
-
-  // Auto-advance
-  let timer = setInterval(() => goTo(current + 1), DELAY);
-
-  // Manual dot click — resets timer
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      clearInterval(timer);
-      goTo(Number(dot.dataset.index));
-      timer = setInterval(() => goTo(current + 1), DELAY);
-    });
-  });
-})();
-</script>
 </body>
 </html>
