@@ -237,24 +237,29 @@ nav {
   to   { transform: scale(1.06); }
 }
 
-/* ── White tint + blue cast + darkening gradient overlay ── */
+/* ── Darkening gradient layer ── */
 .page-hero-overlay {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background:
-    rgba(255, 255, 255, 0.28),
-    rgba(30, 80, 160, 0.18),
-    linear-gradient(
-      160deg,
-      rgba(8, 20, 50, 0.65) 0%,
-      rgba(12, 35, 75, 0.40) 45%,
-      rgba(8, 18, 46, 0.72) 100%
-    );
+  background: linear-gradient(
+    160deg,
+    rgba(8, 20, 50, 0.60) 0%,
+    rgba(12, 35, 75, 0.35) 45%,
+    rgba(8, 18, 46, 0.65) 100%
+  );
 }
-/* Edge vignette */
+/* ── White tint — sits above gradient, below text ── */
+.page-hero-overlay::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+}
+/* ── Edge vignette ── */
 .page-hero-overlay::after {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 38%, rgba(4, 12, 32, 0.45) 100%);
+  background: radial-gradient(ellipse at center, transparent 38%, rgba(4, 12, 32, 0.40) 100%);
+  pointer-events: none;
 }
 
 /* Enhanced text rendering over photo */
