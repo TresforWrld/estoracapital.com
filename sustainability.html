@@ -22,15 +22,21 @@
   overflow: hidden;
 }
 
-/* Background image — place your image at: assets/sustainability-hero.jpeg */
+/* Background image */
 #page-hero .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('assets/sustainability-hero.jpeg');
+  background-image: url('https://i.imgur.com/icnPnCW.jpeg');
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
   animation: heroKen 14s ease-in-out infinite alternate;
   z-index: 0;
+}
+
+/* White tint — sits above image, below dark gradients */
+#page-hero .hero-tint {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: rgba(255, 255, 255, 0.30);
 }
 
 @keyframes heroKen {
@@ -40,7 +46,7 @@
 
 /* Dark gradient overlays — identical to index */
 #page-hero .hero-overlay-left {
-  position: absolute; inset: 0; z-index: 1;
+  position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(
     to right,
     rgba(8, 18, 40, 0.82) 0%,
@@ -50,14 +56,14 @@
   );
 }
 #page-hero .hero-overlay-bottom {
-  position: absolute; inset: 0; z-index: 1;
+  position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(to top, rgba(8,18,40,0.55) 0%, transparent 50%);
 }
 
 /* Subtle vertical gold rule */
 #page-hero .hero-line-accent {
   position: absolute; top: 0; bottom: 0; left: 51%;
-  width: 1px; z-index: 2; pointer-events: none;
+  width: 1px; z-index: 3; pointer-events: none;
   background: linear-gradient(
     to bottom,
     transparent 5%,
@@ -72,7 +78,7 @@
   position: absolute;
   top: 50%; left: 0;
   transform: translateY(-50%);
-  z-index: 3;
+  z-index: 4;
   padding: 0 60px;
   max-width: 52%;
 }
@@ -231,6 +237,7 @@
 <!-- ══════════════════ HERO ══════════════════ -->
 <section id="page-hero">
   <div class="hero-bg"></div>
+  <div class="hero-tint"></div>
   <div class="hero-overlay-left"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-line-accent"></div>
