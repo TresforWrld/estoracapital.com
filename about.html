@@ -49,6 +49,7 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   line-height: 1.7;
+  padding-top: 60px; /* offset for fixed nav */
 }
 
 /* ══════════════════════════════════════════
@@ -124,10 +125,8 @@ nav {
   border-bottom: 1px solid rgba(192,169,106,0.15);
   padding: 28px 28px 36px; z-index: 999;
   flex-direction: column; gap: 0;
-  transform: translateY(-8px); opacity: 0;
-  transition: transform 0.3s, opacity 0.3s;
 }
-.nav-drawer.open { display: flex; transform: translateY(0); opacity: 1; }
+.nav-drawer.open { display: flex; }
 .nav-drawer a {
   display: block; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
@@ -198,7 +197,7 @@ nav {
   display: flex;
   align-items: center;
   background: #0d1f3c;
-  padding: 60px 0 0;
+  padding: 60px 0;
 }
 
 /* Decorative glow */
@@ -222,18 +221,21 @@ nav {
   to   { transform: scale(1.06); }
 }
 
-/* White tint + blue cast + darkening gradient — matches index.html exactly */
-.page-hero-overlay {
+/* White tint layer — sits above photo, below overlay */
+.page-hero-tint {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background:
-    rgba(255, 255, 255, 0.28),
-    rgba(30, 80, 160, 0.18),
-    linear-gradient(
-      160deg,
-      rgba(8, 20, 50, 0.65) 0%,
-      rgba(12, 35, 75, 0.40) 45%,
-      rgba(8, 18, 46, 0.72) 100%
-    );
+  background: rgba(255, 255, 255, 0.30);
+}
+
+/* Dark gradient overlay — sits above tint */
+.page-hero-overlay {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(
+    160deg,
+    rgba(8, 20, 50, 0.65) 0%,
+    rgba(12, 35, 75, 0.40) 45%,
+    rgba(8, 18, 46, 0.72) 100%
+  );
 }
 /* Edge vignette */
 .page-hero-overlay::after {
@@ -243,7 +245,7 @@ nav {
 }
 
 /* Text inside hero */
-.page-hero-inner { position: relative; z-index: 3; width: 100%; }
+.page-hero-inner { position: relative; z-index: 4; width: 100%; }
 .page-hero .label { color: var(--gold-light); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
 .page-hero h1 {
   font-family: 'Roboto', sans-serif;
@@ -468,6 +470,7 @@ footer { background: var(--navy); }
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="page-hero-tint" aria-hidden="true"></div>
   <div class="page-hero-overlay" aria-hidden="true"></div>
   <div class="container page-hero-inner">
     <span class="label">About Estora Capital</span>
@@ -585,13 +588,14 @@ footer { background: var(--navy); }
   </div>
 </footer>
 
-<script src="shared.js"></script>
 <script>
 // Reveal on scroll
 (function() {
   const els = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
   }, { threshold: 0.12 });
   els.forEach(el => io.observe(el));
 })();
