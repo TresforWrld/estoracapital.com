@@ -1,253 +1,364 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us — Estora Capital Investment</title>
-<link rel="icon" type="image/png" href="assets/logo.png">
-<link rel="stylesheet" href="shared.css">
-<style>
+/* ── ESTORA CAPITAL — SHARED STYLES ── */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
-/* ── PAGE HERO — about image ── */
-.page-hero-bg {
-  background-image: url('assets/about-hero.jpeg');
-  background-position: center 40%;
+:root {
+  --nav-bg:      #0A1628;
+  --bg:          #F5F3EF;
+  --bg-alt:      #EDEAE4;
+  --bg-white:    #FFFFFF;
+  --bg-dark-sec: #1C1C1C;
+  --surface:     #FFFFFF;
+  --text:        #1A1A1A;
+  --text-mid:    #3D3D3D;
+  --text-muted:  #6B6B6B;
+  --text-faint:  #9A9A9A;
+  --gold:        #B8952A;
+  --gold-light:  #CDA83C;
+  --gold-dim:    #8A7020;
+  --gold-pale:   #F5EDD6;
+  --navy:        #0A1628;
+  --navy-mid:    #0F2040;
+  --navy-light:  #152848;
+  --line:        rgba(184,149,42,0.18);
+  --line-dark:   rgba(26,26,26,0.1);
+  --line-mid:    rgba(26,26,26,0.06);
+  --silver-nav:  rgba(184,197,212,0.8);
 }
 
-/* ── ABOUT GRID ── */
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
-}
-.about-left p {
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Open Sans', sans-serif;
-  font-size: 15px; color: var(--text-mid); line-height: 1.9; margin-bottom: 18px;
-}
-.about-left .lead {
-  font-family: 'Roboto', sans-serif; font-size: 20px; font-style: italic;
-  color: var(--navy); line-height: 1.55; font-weight: 300; margin-bottom: 18px;
+  font-weight: 400;
+  overflow-x: hidden;
+  line-height: 1.7;
 }
 
-/* ── TIMELINE ── */
-.timeline {
-  position: relative; padding-left: 28px;
-  border-left: 2px solid var(--line-dark);
-}
-.timeline-item { margin-bottom: 36px; position: relative; }
-.timeline-item::before {
-  content: ''; position: absolute; left: -35px; top: 6px;
-  width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg);
-}
-.timeline-year {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 10px; letter-spacing: 0.2em; color: var(--gold);
-  margin-bottom: 5px; font-weight: 700; text-transform: uppercase;
-}
-.timeline-text {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px; color: var(--text-mid); line-height: 1.7;
-}
-
-/* ── STATS GRID ── */
-.stats-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--line-dark);
-  border: 1px solid var(--line-dark); margin-top: 52px;
-}
-.stat-cell { background: var(--bg-white); padding: 36px 28px; }
-.stat-num {
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4 {
   font-family: 'Roboto', sans-serif;
-  font-size: 48px; font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--navy);
 }
-.stat-desc {
+p, li, span, a, td, th, blockquote {
   font-family: 'Open Sans', sans-serif;
-  font-size: 11px; letter-spacing: 0.1em;
-  color: var(--text-muted); text-transform: uppercase; font-weight: 600;
 }
-
-/* ── VISION BOX ── */
-.vision-box {
-  background: var(--navy); padding: 52px 44px; margin-top: 40px; position: relative;
-}
-.vision-box::before {
-  content: ''; position: absolute; top: 0; left: 40px; right: 40px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-.vision-box .label { color: var(--gold-light); margin-bottom: 16px; display: block; }
-.vision-box blockquote {
-  font-family: 'Roboto', sans-serif; font-size: 19px; color: #fff;
-  font-weight: 300; font-style: italic; line-height: 1.65;
-}
-
-/* ── MISSION GRID ── */
-.mission-grid {
-  display: grid; grid-template-columns: repeat(2,1fr);
-  gap: 1px; background: var(--line-dark);
-  border: 1px solid var(--line-dark); margin-top: 64px;
-}
-.mission-item {
-  background: var(--bg-white); padding: 32px 28px;
-  display: flex; align-items: flex-start; gap: 16px;
-}
-.mission-item svg { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
-.mission-item p {
+.label {
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px; color: var(--text-mid); line-height: 1.7;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
-/* ── RESPONSIVE ── */
+/* ══════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 60px;
+  background: rgba(10,22,40,0.97);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(184,197,212,0.1);
+  transition: background 0.4s;
+}
+.nav-logo img { height: 34px; width: auto; display: block; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a {
+  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--silver-nav); text-decoration: none;
+  position: relative; transition: color 0.3s; white-space: nowrap;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--gold); transition: width 0.35s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-cta {
+  background: transparent !important; border: 1px solid var(--gold) !important;
+  color: var(--gold) !important; padding: 8px 22px !important; cursor: pointer;
+  transition: background 0.3s, color 0.3s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+/* ── Hamburger ── */
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; background: none; border: none; z-index: 1100;
+}
+.nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--silver-nav); transition: all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--gold); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--gold); }
+
+/* ── Mobile drawer ── */
+.nav-drawer {
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(8,17,33,0.99); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(192,169,106,0.15);
+  padding: 28px 28px 36px; z-index: 999;
+  flex-direction: column; gap: 0;
+  transform: translateY(-8px); opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-drawer.open { display: flex; transform: translateY(0); opacity: 1; }
+.nav-drawer a {
+  display: block; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(184,197,212,0.8); text-decoration: none;
+  padding: 16px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer a:hover, .nav-drawer a.active { color: var(--gold); }
+.nav-drawer .drawer-cta {
+  margin-top: 20px; background: var(--gold); color: var(--navy) !important;
+  text-align: center; padding: 14px; font-weight: 700; border: none;
+}
+
+/* ══════════════════════════════════════════
+   BUTTONS
+   ══════════════════════════════════════════ */
+.btn-primary {
+  background: var(--navy); color: #fff;
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--navy); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-primary:hover { background: transparent; color: var(--navy); transform: translateY(-1px); }
+.btn-gold {
+  background: var(--gold); color: var(--navy);
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--gold); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--navy);
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--navy); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+.btn-outline-gold {
+  background: transparent; color: var(--gold);
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--gold); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-outline-gold:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════════ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+.section-pad { padding: 112px 0; }
+.section-pad-sm { padding: 72px 0; }
+.section-header { margin-bottom: 60px; }
+.section-header h2 { font-size: clamp(32px, 4vw, 54px); color: var(--navy); margin-top: 10px; }
+.gold-rule { width: 44px; height: 2px; background: var(--gold); margin-top: 20px; }
+.gold-divider { width: 100%; height: 1px; background: var(--line-dark); }
+
+/* ══════════════════════════════════════════
+   PAGE HERO — BASE (plain navy, no image)
+   Used by: investment.html, services.html,
+   strategy.html, portfolio.html, contact.html
+   ══════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  background: var(--navy);
+  padding: 60px 0 0;   /* clear fixed nav */
+}
+
+/* Decorative glow on all heroes */
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(192,169,106,0.07) 0%, transparent 65%);
+}
+/* Thin gold vertical rule — plain navy heroes only */
+.page-hero:not(.page-hero--image)::after {
+  content: '';
+  position: absolute; top: 0; right: 18%; bottom: 0; width: 1px; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(192,169,106,0.2), transparent);
+}
+
+/* Text inside all heroes */
+.page-hero-inner { position: relative; z-index: 3; width: 100%; }
+.page-hero .label      { color: var(--gold-light); }
+.page-hero h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(32px, 4.5vw, 58px);
+  color: #fff; font-weight: 600; margin-top: 12px;
+  line-height: 1.12; letter-spacing: -0.01em;
+}
+.page-hero h1 em       { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.page-hero p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14.5px; color: rgba(184,197,212,0.82);
+  max-width: 560px; line-height: 1.9; margin-top: 18px; font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   PAGE HERO — IMAGE VARIANT
+   Add class="page-hero page-hero--image" to <section>
+   Inside place:
+     <div class="page-hero-bg"  aria-hidden="true"></div>
+     <div class="page-hero-overlay" aria-hidden="true"></div>
+   Set background-image on .page-hero-bg in the page's own <style>
+   ══════════════════════════════════════════ */
+.page-hero--image {
+  background: #0d1f3c; /* safe fallback while image loads */
+}
+
+/* Photo layer — slow Ken Burns zoom */
+.page-hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: heroScale 16s ease-in-out infinite alternate;
+}
+@keyframes heroScale {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* Blue-tint + darkening gradient overlay
+   Produces the steel-blue tint seen on the index hero */
+.page-hero-overlay {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    rgba(30, 80, 160, 0.30),                  /* blue colour tint */
+    linear-gradient(
+      160deg,
+      rgba(8, 20, 50, 0.72) 0%,               /* dark navy top-left */
+      rgba(12, 35, 75, 0.52) 45%,             /* mid blue */
+      rgba(8, 18, 46, 0.80) 100%              /* dark bottom-right */
+    );
+}
+/* Edge vignette — keeps corners dark so text always pops */
+.page-hero-overlay::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 38%, rgba(4, 12, 32, 0.45) 100%);
+}
+
+/* Enhanced text rendering over photos */
+.page-hero--image .label {
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+.page-hero--image h1 {
+  text-shadow: 0 2px 24px rgba(4,18,50,0.55), 0 1px 4px rgba(0,0,0,0.35);
+}
+.page-hero--image p {
+  color: rgba(220,232,248,0.88);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+
+/* Gold accent bar below hero inner content */
+.page-hero--image .page-hero-inner::after {
+  content: '';
+  display: block;
+  width: 52px; height: 2px;
+  background: var(--gold);
+  margin-top: 30px;
+  opacity: 0.75;
+}
+
+/* ══════════════════════════════════════════
+   SHARED LISTS
+   ══════════════════════════════════════════ */
+.returns-list { list-style: none; }
+.returns-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--line-dark);
+  font-family: 'Open Sans', sans-serif; font-size: 14px; color: var(--text-mid);
+}
+.returns-list li:last-child { border-bottom: none; }
+.returns-dot {
+  width: 6px; height: 6px; background: var(--gold);
+  flex-shrink: 0; transform: rotate(45deg); margin-top: 6px;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+footer { background: var(--navy); }
+.footer-top {
+  padding: 56px 60px 40px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.footer-logo img { height: 36px; margin-bottom: 16px; display: block; }
+.footer-tagline { font-family: 'Open Sans', sans-serif; font-size: 12px; color: rgba(184,197,212,0.4); max-width: 220px; line-height: 1.7; }
+.footer-links-group h4 {
+  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.footer-links a { font-family: 'Open Sans', sans-serif; font-size: 12px; color: rgba(184,197,212,0.5); text-decoration: none; transition: color 0.3s; letter-spacing: 0.04em; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  padding: 20px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-family: 'Open Sans', sans-serif; font-size: 11px; color: rgba(184,197,212,0.3); letter-spacing: 0.06em; }
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════ */
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+.reveal { opacity:0; transform:translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 0 32px; }
+  .container { padding: 0 36px; }
+  .footer-top, .footer-bottom { padding-left: 36px; padding-right: 36px; }
+  .section-pad { padding: 80px 0; }
+}
 @media (max-width: 768px) {
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
-  .stats-grid, .mission-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .container { padding: 0 22px; }
+  .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
+  .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
+  .section-pad { padding: 64px 0; }
+  .page-hero { min-height: 44vh; }
+  .page-hero h1 { font-size: clamp(24px, 6vw, 40px); }
+  .page-hero p { font-size: 13px; }
 }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Estora Capital Investment"></a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html" class="active">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="investment.html">Investment</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="strategy.html">Strategy</a></li>
-    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
-  </ul>
-  <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
-</nav>
-<div class="nav-drawer">
-  <a href="index.html">Home</a>
-  <a href="about.html" class="active">About Us</a>
-  <a href="services.html">Services</a>
-  <a href="investment.html">Investment</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="strategy.html">Strategy</a>
-  <a href="sustainability.html">Sustainability</a>
-  <a href="contact.html" class="drawer-cta">Contact Us</a>
-</div>
-
-<!-- ══ PAGE HERO — uses shared .page-hero--image system ══ -->
-<section class="page-hero page-hero--image">
-  <div class="page-hero-bg" aria-hidden="true"></div>
-  <div class="page-hero-overlay" aria-hidden="true"></div>
-  <div class="container page-hero-inner">
-    <span class="label">About Estora Capital</span>
-    <h1>A disciplined partner<br>in <em>real estate</em></h1>
-    <p>Over 10 years of combined experience across property investment, development, asset management, and operations — all under one integrated model.</p>
-  </div>
-</section>
-
-<!-- ABOUT CONTENT -->
-<section class="section-pad" style="background:var(--bg-white);">
-  <div class="container">
-    <div class="about-grid">
-
-      <!-- LEFT: Text + stats -->
-      <div class="reveal about-left">
-        <span class="label">Who We Are</span>
-        <h2 style="margin-top:10px;margin-bottom:28px;">Built on discipline,<br>patience, and execution</h2>
-        <p class="lead">We believe sustainable returns are built through discipline, patience, and execution — grounded in long-term value creation and operational excellence.</p>
-        <p>Estora Capital is a Lusaka-based real estate investment firm with over 10 years of combined experience across property investment, development, asset management, and operations. We act as a fully integrated partner, managing assets from acquisition through to long-term performance optimization.</p>
-        <p>Since 2017, we have focused on identifying undervalued opportunities, enhancing asset performance, and delivering sustainable, risk-adjusted returns to our investors. Our integrated model ensures control across the full investment lifecycle — from acquisition and development to long-term asset management and optimization.</p>
-        <div class="stats-grid">
-          <div class="stat-cell reveal"><div class="stat-num">10+</div><div class="stat-desc">Years Combined Experience</div></div>
-          <div class="stat-cell reveal reveal-delay-1"><div class="stat-num">4</div><div class="stat-desc">Core Service Lines</div></div>
-          <div class="stat-cell reveal reveal-delay-2"><div class="stat-num">2017</div><div class="stat-desc">Established in Lusaka</div></div>
-          <div class="stat-cell reveal reveal-delay-3"><div class="stat-num">100%</div><div class="stat-desc">Integrated Management</div></div>
-        </div>
-      </div>
-
-      <!-- RIGHT: Timeline + vision -->
-      <div class="reveal">
-        <span class="label" style="display:block;margin-bottom:28px;">Our Journey</span>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-year">2017</div>
-            <div class="timeline-text">Establishment in Lusaka as a focused real estate investment firm, beginning with targeted property acquisitions across the city.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2019</div>
-            <div class="timeline-text">Expansion into professional property management services, broadening the platform to include tenant operations and rent collection.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2021</div>
-            <div class="timeline-text">Entry into active development projects, unlocking value through construction, renovation, and strategic repositioning of assets.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2023</div>
-            <div class="timeline-text">Adoption of a fully integrated asset management model, optimizing performance across the entire portfolio with enhanced operational controls.</div>
-          </div>
-        </div>
-        <div class="vision-box reveal">
-          <span class="label">Our Vision</span>
-          <blockquote>"To become a leading real estate investment and asset management firm in Zambia, recognized for consistency, performance, and trusted partnerships."</blockquote>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="gold-divider"></div>
-
-<!-- MISSION -->
-<section class="section-pad" style="background:var(--bg);">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="label">Our Mission</span>
-      <h2>What we are here to do</h2>
-      <div class="gold-rule"></div>
-    </div>
-    <div class="mission-grid">
-      <div class="mission-item reveal">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 2L2 20h18L11 2z"/><path d="M11 9v5"/><circle cx="11" cy="16" r="1" fill="currentColor"/></svg>
-        <p>Deliver stable, risk-adjusted returns to our investors through disciplined capital allocation and active portfolio management.</p>
-      </div>
-      <div class="mission-item reveal reveal-delay-1">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="16" height="12" rx="1"/><path d="M7 7V5a4 4 0 0 1 8 0v2"/><path d="M3 12h16"/></svg>
-        <p>Develop high-quality, income-generating assets that create lasting value for investors and the communities they serve.</p>
-      </div>
-      <div class="mission-item reveal">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l4-5 4 3 4-7 4 4"/><path d="M2 19h18"/></svg>
-        <p>Build long-term investor relationships founded on transparency, trust, and a consistent track record of performance.</p>
-      </div>
-      <div class="mission-item reveal reveal-delay-1">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="9"/><path d="M7 11a4 4 0 0 1 8 0"/><path d="M11 7v4l3 3"/></svg>
-        <p>Contribute meaningfully to Zambia's real estate growth through responsible investment and high-quality development activity.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="background:var(--navy);padding:80px 0;text-align:center;">
-  <div class="container reveal">
-    <span class="label" style="color:var(--gold-light);">Take the Next Step</span>
-    <h2 style="color:#fff;margin:16px auto 16px;max-width:520px;">Partner with Estora Capital</h2>
-    <p style="color:rgba(184,197,212,0.7);max-width:440px;margin:0 auto 36px;font-size:14px;line-height:1.85;">We welcome investment enquiries, strategic partnerships, and property management mandates.</p>
-    <a href="contact.html" class="btn-gold">Get In Touch</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <a href="index.html"><img src="assets/logo.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a>
-      <p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p>
-    </div>
-    <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
-    <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
-    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p>
-    <p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p>
-  </div>
-</footer>
-
-<script src="shared.js"></script>
-</body>
-</html>
+@media (max-width: 480px) {
+  nav { padding: 0 18px; }
+  .nav-logo img { height: 36px; }
+  .container { padding: 0 18px; }
+  .page-hero { min-height: 38vh; }
+  .page-hero h1 { font-size: 22px; }
+}
