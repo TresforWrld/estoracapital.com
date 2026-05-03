@@ -5,26 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us — Estora Capital Investment</title>
 <link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-/* ── PAGE HERO OVERRIDE — forces image to show regardless of shared.css ── */
+/* ── PAGE HERO OVERRIDE ── */
 .page-hero {
   position: relative !important;
   overflow: hidden !important;
-  background: #0d1f3c !important; /* fallback only */
+  background: #0d1f3c !important;
   min-height: 50vh !important;
   display: flex !important;
   align-items: center !important;
   padding: 60px 0 0 !important;
 }
 
-/* Kill shared.css pseudo-elements that sit on top and block the image */
 .page-hero::before,
 .page-hero::after {
   display: none !important;
 }
 
-/* Photo layer — sits at the very bottom */
 .page-hero-bg {
   position: absolute !important;
   inset: 0 !important;
@@ -41,52 +42,60 @@
   to   { transform: scale(1.05); }
 }
 
-/* Blue tint + dark gradient overlay — sits above photo */
+/* White tint + dark gradient overlay */
 .page-hero-overlay {
   position: absolute !important;
   inset: 0 !important;
-  background: rgba(40, 90, 160, 0.55) !important;
+  background:
+    rgba(255, 255, 255, 0.18),
+    linear-gradient(
+      to right,
+      rgba(8, 18, 40, 0.80) 0%,
+      rgba(8, 18, 40, 0.55) 50%,
+      rgba(8, 18, 40, 0.25) 100%
+    ) !important;
   z-index: 1 !important;
 }
 
-/* Text container floats above everything */
 .page-hero-inner {
   position: relative !important;
   z-index: 2 !important;
   width: 100% !important;
 }
 
-/* Text styles over the photo */
 .page-hero .label {
   color: #CDA83C !important;
   text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
   display: block;
   margin-bottom: 12px;
+  font-family: 'Open Sans', sans-serif !important;
 }
 .page-hero h1 {
-  font-size: clamp(32px, 4.5vw, 58px) !important;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: clamp(24px, 2.8vw, 46px) !important;
   color: #ffffff !important;
   font-weight: 600 !important;
   margin-top: 0 !important;
   text-shadow: 0 2px 28px rgba(4,18,50,0.6), 0 1px 4px rgba(0,0,0,0.4) !important;
-  line-height: 1.18;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
 }
 .page-hero h1 em {
   font-style: italic !important;
   color: #CDA83C !important;
-  font-weight: 400 !important;
+  font-weight: 300 !important;
 }
 .page-hero p {
-  font-size: 15px !important;
-  color: rgba(220,232,248,0.85) !important;
-  max-width: 560px !important;
-  line-height: 1.9 !important;
-  margin-top: 18px !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 13px !important;
+  color: rgba(220,232,248,0.80) !important;
+  max-width: 420px !important;
+  line-height: 1.85 !important;
+  margin-top: 16px !important;
   font-weight: 300 !important;
   text-shadow: 0 1px 8px rgba(0,0,0,0.35) !important;
 }
 
-/* Gold accent rule below text */
 .page-hero-inner::after {
   content: '';
   display: block;
@@ -97,27 +106,43 @@
   opacity: 0.8;
 }
 
-/* ── Rest of page ── */
+/* ── REST OF PAGE ── */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.lead { font-family: 'Playfair Display', serif; font-size: 21px; font-style: italic; color: var(--navy); line-height: 1.55; font-weight: 400; margin-bottom: 18px; }
-p { margin-bottom: 18px; }
+
+/* Lead quote — Roboto italic 300 to match index */
+.lead {
+  font-family: 'Roboto', sans-serif;
+  font-size: 21px;
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.55;
+  font-weight: 300;
+  margin-bottom: 18px;
+}
+
+p { font-family: 'Open Sans', sans-serif; margin-bottom: 18px; }
+
 .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--line-dark); }
 .timeline-item { margin-bottom: 36px; position: relative; }
 .timeline-item::before { content: ''; position: absolute; left: -35px; top: 6px; width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
-.timeline-year { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 5px; font-weight: 700; text-transform: uppercase; }
-.timeline-text { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); margin-top: 52px; }
+.timeline-year { font-family: 'Open Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 5px; font-weight: 700; text-transform: uppercase; }
+.timeline-text { font-family: 'Open Sans', sans-serif; font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); margin-top: 52px; overflow: hidden; }
 .stat-cell { background: var(--bg-white); padding: 36px 28px; }
-.stat-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 8px; }
-.stat-desc { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+.stat-num { font-family: 'Roboto', sans-serif; font-size: 48px; font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 8px; }
+.stat-desc { font-family: 'Open Sans', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+
 .vision-box { background: var(--navy); padding: 52px 44px; margin-top: 40px; position: relative; }
 .vision-box::before { content: ''; position: absolute; top: 0; left: 40px; right: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 .vision-box .label { color: var(--gold-light) !important; margin-bottom: 16px; display: block; text-shadow: none !important; }
-.vision-box blockquote { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; font-weight: 400; font-style: italic; line-height: 1.6; }
-.mission-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); margin-top: 64px; }
+.vision-box blockquote { font-family: 'Roboto', sans-serif; font-size: 20px; color: #fff; font-weight: 300; font-style: italic; line-height: 1.6; }
+
+.mission-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); margin-top: 64px; overflow: hidden; }
 .mission-item { background: var(--bg-white); padding: 32px 28px; display: flex; align-items: flex-start; gap: 16px; }
 .mission-item svg { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
-.mission-item p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 0; }
+.mission-item p { font-family: 'Open Sans', sans-serif; font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 0; }
+
 @media (max-width:768px) {
   .about-grid { grid-template-columns:1fr; gap:48px; }
   .stats-grid, .mission-grid { grid-template-columns:1fr; }
@@ -226,7 +251,7 @@ p { margin-bottom: 18px; }
   <div class="container reveal">
     <span class="label" style="color:var(--gold-light);text-shadow:none;">Take the Next Step</span>
     <h2 style="color:#fff;margin:16px auto 16px;max-width:520px;">Partner with Estora Capital</h2>
-    <p style="color:rgba(184,197,212,0.7);max-width:440px;margin:0 auto 36px;font-size:14px;line-height:1.85;text-shadow:none;">We welcome investment enquiries, strategic partnerships, and property management mandates.</p>
+    <p style="font-family:'Open Sans',sans-serif;color:rgba(184,197,212,0.7);max-width:440px;margin:0 auto 36px;font-size:14px;line-height:1.85;text-shadow:none;">We welcome investment enquiries, strategic partnerships, and property management mandates.</p>
     <a href="contact.html" class="btn-gold">Get In Touch</a>
   </div>
 </section>
