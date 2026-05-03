@@ -8,10 +8,25 @@
 <link rel="stylesheet" href="shared.css">
 <style>
 
-/* ── PAGE HERO IMAGE ── */
+  /* Override shared.css – add white tint overlay */
 .page-hero-bg {
-  background-image: url('assets/about-hero.jpeg');
-  background-position: center 40%;
+  position: relative;
+  isolation: isolate; /* optional: creates a new stacking context */
+}
+
+.page-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5); /* white tint – adjust opacity as needed */
+  pointer-events: none; /* keeps the tint from blocking clicks */
+  z-index: 1;
+}
+
+/* Ensure content inside .page-hero-bg sits above the tint */
+.page-hero-bg > * {
+  position: relative;
+  z-index: 2;
 }
 
 /* ── ABOUT GRID ── */
