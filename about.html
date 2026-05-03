@@ -42,74 +42,26 @@
   to   { transform: scale(1.05); }
 }
 
-/* White tint + dark gradient overlay */
-.page-hero-overlay {
-  position: absolute !important;
-  inset: 0 !important;
-  background:
-    rgba(255, 255, 255, 0.18),
-    linear-gradient(
-      to right,
-      rgba(8, 18, 40, 0.80) 0%,
-      rgba(8, 18, 40, 0.55) 50%,
-      rgba(8, 18, 40, 0.25) 100%
-    ) !important;
-  z-index: 1 !important;
-}
 
-.page-hero-inner {
-  position: relative !important;
-  z-index: 2 !important;
-  width: 100% !important;
-}
-
-.page-hero .label {
-  color: #CDA83C !important;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
-  display: block;
-  margin-bottom: 12px;
-  font-family: 'Open Sans', sans-serif !important;
-}
-.page-hero h1 {
-  font-family: 'Roboto', sans-serif !important;
-  font-size: clamp(24px, 2.8vw, 46px) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  margin-top: 0 !important;
-  text-shadow: 0 2px 28px rgba(4,18,50,0.6), 0 1px 4px rgba(0,0,0,0.4) !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.01em !important;
-}
-.page-hero h1 em {
-  font-style: italic !important;
-  color: #CDA83C !important;
-  font-weight: 300 !important;
-}
-.page-hero p {
-  font-family: 'Open Sans', sans-serif !important;
-  font-size: 13px !important;
-  color: rgba(220,232,248,0.80) !important;
-  max-width: 420px !important;
-  line-height: 1.85 !important;
-  margin-top: 16px !important;
-  font-weight: 300 !important;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.35) !important;
-}
-
-.page-hero-inner::after {
-  content: '';
-  display: block;
-  width: 48px;
-  height: 2px;
-  background: #B8952A;
-  margin-top: 30px;
-  opacity: 0.8;
-}
-
+  
 /* ── REST OF PAGE ── */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
-/* Lead quote — Roboto italic 300 to match index */
+  /* White tint — sits above slides, below dark gradient. Adjust opacity to taste */
+.hero-tint {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: rgba(255, 255, 255, 0.30);
+}
+
+.hero-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.hero-lines::before, .hero-lines::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(192,169,106,0.2), transparent);
+  animation: lineFade 7s ease-in-out infinite;
+}
+.hero-lines::before { left: 60%; }
+.hero-lines::after  { left: 75%; animation-delay: 2.8s; opacity: 0.4; }
+@keyframes lineFade { 0%,100%{opacity:0;transform:scaleY(0.2)} 50%{opacity:1;transform:scaleY(1)} }oto italic 300 to match index */
 .lead {
   font-family: 'Roboto', sans-serif;
   font-size: 21px;
