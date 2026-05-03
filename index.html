@@ -9,9 +9,8 @@
 <style>
 /* ── HERO ── */
 #hero {
-  height: 50vh;
-  min-height: 340px;
-  max-height: 600px;
+  height: 54vh;
+  min-height: 500px;
   display: flex; flex-direction: column; justify-content: flex-end;
   position: relative; overflow: hidden; padding: 0;
 }
@@ -117,10 +116,14 @@
   opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
 }
 .hero-btns .btn-primary {
-  background: var(--gold); color: var(--navy); border-color: var(--gold);
-  padding: 10px 22px; font-size: 10px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-color: rgba(255,255,255,0.55);
+  padding: 8px 16px; font-size: 10px;
+  backdrop-filter: blur(4px);
 }
-.hero-btns .btn-primary:hover { background: transparent; color: var(--gold); }
+.hero-btns .btn-primary:hover { background: rgba(255,255,255,0.22); color: #fff; }
 .hero-btns .btn-outline {
   color: rgba(240,244,248,0.9); border-color: rgba(240,244,248,0.4);
   padding: 10px 22px; font-size: 10px;
@@ -215,40 +218,24 @@
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .hero-stats { display: none; }
-  .hero-content { padding: 0 32px 28px; max-width: 560px; }
-  .cards-grid { grid-template-columns: repeat(2,1fr); }
+  .hero-content { padding: 0 32px 40px; max-width: 560px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
   .intro-inner { gap: 48px; }
 }
 @media (max-width: 768px) {
-  #hero {
-    height: 44vh;
-    min-height: 280px;
-    max-height: 420px;
-  }
-  .hero-content {
-    padding: 0 20px 22px;
-    max-width: 75%; /* text sits left, right side of image stays visible */
-  }
-  .hero-eyebrow { display: none; } /* hide eyebrow on mobile — saves space */
-  .hero-content h1 { font-size: 16px; margin-bottom: 8px; }
-  .hero-sub { display: none; } /* hide subtext on mobile — too cramped */
-  .hero-btns { gap: 8px; }
-  .hero-btns a { padding: 8px 16px; font-size: 9px; }
-  .hero-dots { bottom: 10px; }
-  .cards-grid { grid-template-columns: 1fr; }
+  #hero { min-height: 100svh; }
+  .hero-content { padding: 0 20px 32px; max-width: 78%; }
+  .hero-eyebrow { display: none; }
+  .hero-content h1 { font-size: 18px; margin-bottom: 8px; }
+  .hero-sub { display: none; }
+  .hero-dots { bottom: 16px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
   .intro-inner { grid-template-columns: 1fr; gap: 40px; }
   .intro-right { grid-template-columns: 1fr; }
-  .section-card { padding: 40px 26px; }
   .highlight-num { font-size: 40px; }
 }
 @media (max-width: 480px) {
-  #hero { height: 40vh; min-height: 240px; }
-  .hero-content { max-width: 80%; padding: 0 18px 20px; }
-  .hero-content h1 { font-size: 15px; }
-  .hero-btns { flex-direction: column; gap: 6px; }
-  .hero-btns a { text-align: center; padding: 8px 14px; }
+  .hero-content h1 { font-size: 16px; }
   .highlight-cell { padding: 32px 20px; }
 }
 </style>
@@ -345,56 +332,6 @@
   </div>
 </section>
 
-<!-- SECTION CARDS -->
-<section class="sections-area">
-  <div class="container">
-    <div class="cards-grid">
-
-      <a href="about.html" class="section-card reveal">
-        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="24" cy="17" r="7"/><path d="M8 42c0-8.84 7.16-16 16-16s16 7.16 16 16"/><path d="M36 10l4 4-6 6"/></svg>
-        <h3>About Us</h3>
-        <p>Our story, philosophy, vision, and the journey that has shaped Estora Capital into a leading Lusaka-based real estate investment firm since 2017.</p>
-        <div class="card-link">Who We Are <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-      </a>
-
-      <a href="services.html" class="section-card reveal reveal-delay-1">
-        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="6" width="16" height="16" rx="1"/><rect x="26" y="6" width="16" height="16" rx="1"/><rect x="6" y="26" width="16" height="16" rx="1"/><rect x="26" y="26" width="16" height="16" rx="1"/></svg>
-        <h3>Services</h3>
-        <p>Our end-to-end real estate platform covering property investment, development, asset management, and property operations — all under one roof.</p>
-        <div class="card-link">Explore Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-      </a>
-
-      <a href="investment.html" class="section-card reveal reveal-delay-2">
-        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 36l8-10 8 6 8-14 8 8"/><path d="M6 42h36"/><circle cx="16" cy="26" r="2" fill="currentColor"/><circle cx="24" cy="32" r="2" fill="currentColor"/><circle cx="32" cy="18" r="2" fill="currentColor"/></svg>
-        <h3>Investment</h3>
-        <p>Our investment approach, target asset classes, and the returns framework that guides every capital allocation decision we make.</p>
-        <div class="card-link">Investment Approach <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-      </a>
-
-      <a href="portfolio.html" class="section-card reveal">
-        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="14" width="36" height="26" rx="1"/><path d="M16 14v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M6 26h36"/><circle cx="24" cy="26" r="3" fill="currentColor"/></svg>
-        <h3>Portfolio</h3>
-        <p>A growing portfolio of residential, commercial, and development assets — all strategically positioned across Lusaka.</p>
-        <div class="card-link">View Portfolio <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-      </a>
-
-      <a href="strategy.html" class="section-card reveal reveal-delay-1">
-        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="8"/><line x1="24" y1="6" x2="24" y2="16"/><line x1="24" y1="32" x2="24" y2="42"/><line x1="6" y1="24" x2="16" y2="24"/><line x1="32" y1="24" x2="42" y2="24"/></svg>
-        <h3>Strategy</h3>
-        <p>Our strategic framework built on selective investment, active management, and disciplined value creation for long-term capital growth.</p>
-        <div class="card-link">Our Strategy <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-      </a>
-
-      <a href="sustainability.html" class="section-card reveal reveal-delay-2">
-        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M24 6C14 6 6 14 6 24s8 18 18 18 18-8 18-18"/><path d="M38 6c0 10-7 16-14 18 3-6 3-12 0-18"/><path d="M38 6l4 4M38 6l-4 4"/></svg>
-        <h3>Sustainability</h3>
-        <p>Our commitment to responsible real estate practices — supporting efficient resource use, sustainable development, and local economic growth.</p>
-        <div class="card-link">Our Commitment <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-      </a>
-
-    </div>
-  </div>
-</section>
 
 <!-- HIGHLIGHTS -->
 <section class="highlights">
