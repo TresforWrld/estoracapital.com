@@ -285,6 +285,60 @@ nav {
 }
 
 /* ══════════════════════════════════════════
+   PER-PAGE HERO BACKGROUND IMAGES
+   Each HTML page adds a class on <body> that
+   matches one of these selectors so shared.css
+   can assign the right image without touching
+   individual HTML files.
+
+   about.html     → <body class="page-about">
+   portfolio.html → <body class="page-portfolio">
+   investment.html→ <body class="page-investment">
+   services.html  → <body class="page-services">
+   strategy.html  → <body class="page-strategy">
+   contact.html   → <body class="page-contact">
+
+   index.html sets images directly in its own
+   <style> block so it is excluded here.
+   ══════════════════════════════════════════ */
+
+/* about.html */
+body.page-about .page-hero-bg {
+  background-image: url('assets/about-hero.jpeg');
+  background-position: center 40%;
+}
+
+/* portfolio.html — dedicated portfolio-hero image */
+body.page-portfolio .page-hero-bg {
+  background-image: url('assets/portfolio-hero.jpeg');
+  background-position: center 35%;
+}
+
+/* investment.html — home-hero-1 */
+body.page-investment .page-hero-bg {
+  background-image: url('assets/home-hero-1.jpeg');
+  background-position: center 40%;
+}
+
+/* services.html — home-hero-2 */
+body.page-services .page-hero-bg {
+  background-image: url('assets/home-hero-2.jpeg');
+  background-position: center 35%;
+}
+
+/* strategy.html — home-hero-3 */
+body.page-strategy .page-hero-bg {
+  background-image: url('assets/home-hero-3.jpeg');
+  background-position: center 30%;
+}
+
+/* contact.html — home-hero-1 (different crop) */
+body.page-contact .page-hero-bg {
+  background-image: url('assets/home-hero-1.jpeg');
+  background-position: center 55%;
+}
+
+/* ══════════════════════════════════════════
    SHARED LISTS
    ══════════════════════════════════════════ */
 .returns-list { list-style: none; }
