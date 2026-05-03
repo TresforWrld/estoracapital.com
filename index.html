@@ -9,8 +9,8 @@
 <style>
 /* ── HERO ── */
 #hero {
-  height: 54vh;
-  min-height: 500px;
+  height: 50vh;
+  min-height: 280px;
   display: flex; flex-direction: column; justify-content: flex-end;
   position: relative; overflow: hidden; padding: 0;
 }
@@ -218,24 +218,23 @@
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .hero-stats { display: none; }
-  .hero-content { padding: 0 32px 40px; max-width: 560px; }
+  .hero-content { padding: 0 32px 32px; max-width: 560px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
   .intro-inner { gap: 48px; }
 }
 @media (max-width: 768px) {
-  #hero { min-height: 100svh; }
-  .hero-content { padding: 0 20px 32px; max-width: 78%; }
+  .hero-content { padding: 0 20px 24px; max-width: 80%; }
   .hero-eyebrow { display: none; }
-  .hero-content h1 { font-size: 18px; margin-bottom: 8px; }
+  .hero-content h1 { font-size: 17px; margin-bottom: 8px; }
   .hero-sub { display: none; }
-  .hero-dots { bottom: 16px; }
+  .hero-dots { bottom: 14px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
   .intro-inner { grid-template-columns: 1fr; gap: 40px; }
   .intro-right { grid-template-columns: 1fr; }
   .highlight-num { font-size: 40px; }
 }
 @media (max-width: 480px) {
-  .hero-content h1 { font-size: 16px; }
+  .hero-content h1 { font-size: 15px; }
   .highlight-cell { padding: 32px 20px; }
 }
 </style>
