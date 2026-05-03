@@ -10,9 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
-/* ══════════════════════════════════════════
-   CSS VARIABLES — exact match to about.html
-   ══════════════════════════════════════════ */
 :root {
   --bg:          #F5F3EF;
   --bg-alt:      #EDEAE4;
@@ -28,9 +25,6 @@
   --silver-nav:  rgba(184,197,212,0.8);
 }
 
-/* ══════════════════════════════════════════
-   RESET & BASE
-   ══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -58,9 +52,7 @@ p, li, span, td, th, blockquote { font-family: 'Open Sans', sans-serif; }
   color: var(--gold);
 }
 
-/* ══════════════════════════════════════════
-   NAV
-   ══════════════════════════════════════════ */
+/* NAV */
 nav {
   position: sticky; top: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
@@ -121,9 +113,7 @@ nav {
   text-align: center; padding: 8px; font-weight: 700; border: none;
 }
 
-/* ══════════════════════════════════════════
-   BUTTONS
-   ══════════════════════════════════════════ */
+/* BUTTONS */
 .btn-primary {
   background: var(--navy); color: #fff;
   padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
@@ -141,15 +131,13 @@ nav {
 }
 .btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
 
-/* ══════════════════════════════════════════
-   LAYOUT
-   ══════════════════════════════════════════ */
+/* LAYOUT */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
 .gold-rule { width: 44px; height: 2px; background: var(--gold); margin-top: 20px; }
 .gold-divider { width: 100%; height: 1px; background: var(--line-dark); }
 
 /* ══════════════════════════════════════════
-   HERO — slideshow with white tint overlay
+   HERO
    ══════════════════════════════════════════ */
 #hero {
   height: 50vh; min-height: 280px;
@@ -157,35 +145,34 @@ nav {
   position: relative; overflow: hidden; padding: 0;
 }
 
-/* Slideshow slides */
+/* Slides — unzoomed: no scale transform, background-size: cover at natural framing */
 .hero-bg { position: absolute; inset: 0; }
 .hero-slide {
-  position: absolute; left: 0; right: 0; bottom: 0; top: -50%;
-  background-position: center bottom; background-size: cover; background-repeat: no-repeat;
+  position: absolute; inset: 0;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   opacity: 0;
   animation: heroImageCycle 24s ease-in-out infinite;
-  transform: scale(1.04) translateX(10px);
-  filter: saturate(0.95) contrast(1.04);
 }
 .hero-slide:nth-child(1) { animation-delay: 0s; }
 .hero-slide:nth-child(2) { animation-delay: 6s; }
 .hero-slide:nth-child(3) { animation-delay: 12s; }
 .hero-slide:nth-child(4) { animation-delay: 18s; }
+
+/* Subtle slow pan — very gentle, no scale zoom */
 @keyframes heroImageCycle {
-  0%   { opacity: 0; transform: scale(1.055) translateX(16px); }
-  6%   { opacity: 1; transform: scale(1.025) translateX(0); }
-  25%  { opacity: 1; transform: scale(1.01) translateX(-4px); }
-  31%  { opacity: 0; transform: scale(1.045) translateX(-18px); }
-  100% { opacity: 0; transform: scale(1.055) translateX(16px); }
+  0%   { opacity: 0; transform: translateX(8px); }
+  6%   { opacity: 1; transform: translateX(0); }
+  25%  { opacity: 1; transform: translateX(-6px); }
+  31%  { opacity: 0; transform: translateX(-14px); }
+  100% { opacity: 0; transform: translateX(8px); }
 }
 
-/* White tint — sits directly above slides */
 .hero-tint {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: rgba(5, 15, 28, 0.22);
 }
-
-/* Dark left + bottom gradients — above tint so text stays readable */
 .hero-gradient {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background:
@@ -193,8 +180,6 @@ nav {
     linear-gradient(90deg, rgba(5,15,28,0.88) 0%, rgba(5,15,28,0.62) 42%, rgba(5,15,28,0.18) 72%, rgba(5,15,28,0.28) 100%),
     linear-gradient(to top, rgba(5,15,28,0.72) 0%, transparent 58%);
 }
-
-/* Subtle gold vertical lines */
 .hero-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 3; }
 .hero-lines::before, .hero-lines::after {
   content: ''; position: absolute; top: 0; bottom: 0; width: 1px;
@@ -204,6 +189,19 @@ nav {
 .hero-lines::before { left: 60%; }
 .hero-lines::after  { left: 75%; animation-delay: 2.8s; opacity: 0.4; }
 @keyframes lineFade { 0%,100%{opacity:0;transform:scaleY(0.2)} 50%{opacity:1;transform:scaleY(1)} }
+
+/* Stats */
+.hero-stats {
+  position: absolute; top: 0; right: 0; display: flex; z-index: 4;
+  opacity: 0; animation: fadeIn 1s 1.2s forwards;
+}
+.hero-stat {
+  padding: 16px 22px; background: rgba(10,22,40,0.68); backdrop-filter: blur(8px);
+  border-left: 1px solid rgba(184,197,212,0.1); border-bottom: 1px solid rgba(184,197,212,0.1);
+  text-align: center; min-width: 90px;
+}
+.hero-stat-num { font-size: 20px; font-weight: 600; color: var(--gold-light); line-height: 1; }
+.hero-stat-lbl { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,197,212,0.5); margin-top: 4px; font-weight: 600; }
 
 /* Text content */
 .hero-content {
@@ -216,6 +214,8 @@ nav {
 }
 .hero-eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
 .hero-eyebrow .label { color: var(--gold-light); font-size: 9px; }
+
+/* Text stage: each slide fades in/out on 24s cycle */
 .hero-text-stage {
   position: relative;
   min-height: 172px;
@@ -225,53 +225,90 @@ nav {
   inset: 0 auto auto 0;
   max-width: 650px;
   opacity: 0;
-  transform: translateY(18px);
   animation: heroTextCycle 24s ease-in-out infinite;
 }
+.hero-text-slide:nth-child(1) { animation-delay: 0s; }
 .hero-text-slide:nth-child(2) { animation-delay: 6s; }
 .hero-text-slide:nth-child(3) { animation-delay: 12s; }
 .hero-text-slide:nth-child(4) { animation-delay: 18s; }
+
 @keyframes heroTextCycle {
   0%   { opacity: 0; transform: translateY(18px); filter: blur(3px); }
-  6%   { opacity: 1; transform: translateY(0); filter: blur(0); }
-  25%  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  6%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  25%  { opacity: 1; transform: translateY(0);    filter: blur(0); }
   31%  { opacity: 0; transform: translateY(-16px); filter: blur(3px); }
   100% { opacity: 0; transform: translateY(-16px); filter: blur(3px); }
 }
+
+/* Staggered line animations within each slide */
 .hero-content h1 {
   font-size: clamp(20px, 2.5vw, 30px); font-weight: 600; color: #fff;
   margin-bottom: 10px; line-height: 1.18;
 }
 .hero-content h1 em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+
+/* Each text slide's h1 and p animate in staggered — triggered by parent's fade-in */
+.hero-text-slide h1 {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroLineIn 24s ease-in-out infinite;
+  animation-delay: inherit;
+}
+.hero-text-slide:nth-child(1) h1 { animation-delay: 0.4s; }
+.hero-text-slide:nth-child(2) h1 { animation-delay: 6.4s; }
+.hero-text-slide:nth-child(3) h1 { animation-delay: 12.4s; }
+.hero-text-slide:nth-child(4) h1 { animation-delay: 18.4s; }
+
+.hero-text-slide .hero-sub {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroLineIn 24s ease-in-out infinite;
+}
+.hero-text-slide:nth-child(1) .hero-sub { animation-delay: 1.4s; }
+.hero-text-slide:nth-child(2) .hero-sub { animation-delay: 7.4s; }
+.hero-text-slide:nth-child(3) .hero-sub { animation-delay: 13.4s; }
+.hero-text-slide:nth-child(4) .hero-sub { animation-delay: 19.4s; }
+
+.hero-text-slide .hero-btns-inner {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroLineIn 24s ease-in-out infinite;
+}
+.hero-text-slide:nth-child(1) .hero-btns-inner { animation-delay: 2.4s; }
+.hero-text-slide:nth-child(2) .hero-btns-inner { animation-delay: 8.4s; }
+.hero-text-slide:nth-child(3) .hero-btns-inner { animation-delay: 14.4s; }
+.hero-text-slide:nth-child(4) .hero-btns-inner { animation-delay: 20.4s; }
+
+@keyframes heroLineIn {
+  /* visible window: 6%–25% of 24s = ~1.44s–6s */
+  0%    { opacity: 0; transform: translateY(14px); }
+  7%    { opacity: 1; transform: translateY(0); }
+  25%   { opacity: 1; transform: translateY(0); }
+  31%   { opacity: 0; transform: translateY(-10px); }
+  100%  { opacity: 0; transform: translateY(14px); }
+}
+
 .hero-sub {
   font-size: 12px; color: rgba(240,244,248,0.84); max-width: 520px;
   line-height: 1.72; margin-bottom: 20px; font-weight: 400;
 }
-.hero-btns {
+
+.hero-btns-inner {
   display: flex; gap: 10px; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
   margin-top: 2px;
 }
-.hero-btns .btn-primary {
+.hero-btns-inner .btn-ghost {
   background: rgba(255,255,255,0.12); color: #fff;
   border: 1px solid rgba(255,255,255,0.55);
-  padding: 8px 16px; font-size: 10px; backdrop-filter: blur(4px);
+  padding: 8px 18px; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  backdrop-filter: blur(4px); display: inline-block;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  font-family: 'Open Sans', sans-serif;
 }
-.hero-btns .btn-primary:hover { background: rgba(255,255,255,0.22); color: #fff; }
-.hero-scroll { display: none; }
-
-/* Stats — top right */
-.hero-stats {
-  position: absolute; top: 0; right: 0; display: flex; z-index: 4;
-  opacity: 0; animation: fadeIn 1s 1.2s forwards;
+.hero-btns-inner .btn-ghost:hover {
+  background: rgba(255,255,255,0.22); color: #fff; transform: translateY(-1px);
 }
-.hero-stat {
-  padding: 16px 22px; background: rgba(10,22,40,0.68); backdrop-filter: blur(8px);
-  border-left: 1px solid rgba(184,197,212,0.1); border-bottom: 1px solid rgba(184,197,212,0.1);
-  text-align: center; min-width: 90px;
-}
-.hero-stat-num { font-size: 20px; font-weight: 600; color: var(--gold-light); line-height: 1; }
-.hero-stat-lbl { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,197,212,0.5); margin-top: 4px; font-weight: 600; }
 
 /* Dots */
 .hero-dots {
@@ -286,26 +323,129 @@ nav {
 .hero-dot.active, .hero-dot:hover { background: var(--gold); border-color: var(--gold); }
 
 /* ══════════════════════════════════════════
-   INTRO BAND
+   BODY SECTION — replaced intro-band
    ══════════════════════════════════════════ */
-.intro-band { background: var(--bg-white); border-bottom: 1px solid var(--line-dark); }
-.intro-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; padding: 80px 0;
+.body-section {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--line-dark);
+  padding: 100px 0;
 }
-.intro-left p { font-size: 15px; color: var(--text-mid); line-height: 1.9; margin-bottom: 14px; }
-.intro-left .lead {
-  font-family: 'Roboto', sans-serif; font-size: 22px; font-style: italic;
-  color: var(--navy); line-height: 1.55; margin-bottom: 20px; font-weight: 400;
+
+/* Two-column opener */
+.body-opener {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 80px;
 }
-.intro-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); }
-.intro-cap {
-  background: var(--bg); padding: 28px 22px;
-  display: flex; align-items: flex-start; gap: 14px; transition: background 0.3s;
+.body-opener-left .overline {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
 }
-.intro-cap:hover { background: var(--bg-white); }
-.intro-cap svg { color: var(--gold); flex-shrink: 0; margin-top: 3px; }
-.intro-cap strong { display: block; font-family: 'Roboto', sans-serif; font-size: 16px; color: var(--navy); margin-bottom: 3px; font-weight: 500; }
-.intro-cap span { font-size: 12px; color: var(--text-muted); }
+.body-opener-left .overline-line { width: 28px; height: 1px; background: var(--gold); }
+.body-opener-left h2 {
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.18;
+  margin-bottom: 24px;
+}
+.body-opener-left h2 em {
+  font-style: italic; font-weight: 400; color: var(--gold);
+}
+.body-opener-left p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin-bottom: 14px;
+}
+
+.body-opener-right {
+  padding-top: 10px;
+}
+.body-opener-right blockquote {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--navy);
+  line-height: 1.65;
+  border-left: 2px solid var(--gold);
+  padding-left: 28px;
+  margin-bottom: 36px;
+}
+.body-opener-right .body-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line-dark);
+  border: 1px solid var(--line-dark);
+}
+.body-stat-cell {
+  background: var(--bg);
+  padding: 28px 22px;
+  transition: background 0.3s;
+}
+.body-stat-cell:hover { background: var(--bg-white); }
+.body-stat-num {
+  font-family: 'Roboto', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.body-stat-lbl {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Pillars row */
+.body-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line-dark);
+  border: 1px solid var(--line-dark);
+}
+.body-pillar {
+  background: var(--bg);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background 0.3s;
+  position: relative;
+}
+.body-pillar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.body-pillar:hover { background: var(--bg-white); }
+.body-pillar:hover::before { transform: scaleX(1); }
+
+.pillar-icon { color: var(--gold); }
+.pillar-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.pillar-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
 
 /* ══════════════════════════════════════════
    HIGHLIGHTS
@@ -325,9 +465,7 @@ nav {
 .closing-cta p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin: 0 auto 40px; line-height: 1.85; }
 .closing-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-/* ══════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════ */
+/* FOOTER */
 footer { background: var(--navy); }
 .footer-top {
   padding: 56px 60px 40px;
@@ -350,9 +488,7 @@ footer { background: var(--navy); }
 }
 .footer-copy { font-size: 11px; color: rgba(184,197,212,0.3); letter-spacing: 0.06em; }
 
-/* ══════════════════════════════════════════
-   ANIMATIONS & REVEAL
-   ══════════════════════════════════════════ */
+/* ANIMATIONS */
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
 @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
 .reveal { opacity:0; transform:translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -361,9 +497,7 @@ footer { background: var(--navy); }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
-/* ══════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════ */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   nav { padding: 0 32px; }
   .container { padding: 0 36px; }
@@ -371,7 +505,8 @@ footer { background: var(--navy); }
   .hero-stats { display: none; }
   .hero-content { padding: 72px 32px 32px; max-width: 560px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
-  .intro-inner { gap: 48px; }
+  .body-opener { gap: 48px; }
+  .body-pillars { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -384,16 +519,17 @@ footer { background: var(--navy); }
   .hero-eyebrow { display: none; }
   .hero-content h1 { font-size: 17px; margin-bottom: 8px; }
   .hero-sub { display: block; font-size: 10px; line-height: 1.55; max-width: 92%; }
-  .hero-text-stage { min-height: 178px; }
+  .hero-text-stage { min-height: 200px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
-  .intro-inner { grid-template-columns: 1fr; gap: 40px; }
-  .intro-right { grid-template-columns: 1fr; }
+  .body-opener { grid-template-columns: 1fr; gap: 40px; }
+  .body-pillars { grid-template-columns: 1fr; }
+  .body-opener-right .body-stat-row { grid-template-columns: 1fr 1fr; }
   .highlight-num { font-size: 40px; }
+  .body-section { padding: 60px 0; }
 }
 @media (max-width: 480px) {
   nav { padding: 0 18px; }
   .container { padding: 0 18px; }
-  .hero-content h1 { font-size: 15px; }
   .highlight-cell { padding: 32px 20px; }
 }
 </style>
@@ -425,94 +561,156 @@ footer { background: var(--navy); }
   <a href="contact.html" class="drawer-cta">Contact Us</a>
 </div>
 
-<!-- ══════════════════ HERO ══════════════════ -->
+<!-- HERO -->
 <section id="hero">
-  <!-- Slides -->
   <div class="hero-bg">
     <div class="hero-slide" style="background-image:url('https://i.imgur.com/w7iVKMV.jpeg');"></div>
     <div class="hero-slide" style="background-image:url('https://i.imgur.com/G70Ve7a.jpeg');"></div>
     <div class="hero-slide" style="background-image:url('https://i.imgur.com/x2KAlVI.jpeg');"></div>
     <div class="hero-slide" style="background-image:url('https://i.imgur.com/x2KAlVI.jpeg');"></div>
   </div>
-  <!-- White tint (z-index 1) -->
   <div class="hero-tint"></div>
-  <!-- Dark gradient (z-index 2) -->
   <div class="hero-gradient"></div>
-  <!-- Gold lines (z-index 3) -->
   <div class="hero-lines"></div>
-  <!-- Stats (z-index 4) -->
   <div class="hero-stats">
     <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-lbl">Years Experience</div></div>
     <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-lbl">Service Lines</div></div>
     <div class="hero-stat"><div class="hero-stat-num">2017</div><div class="hero-stat-lbl">Established</div></div>
   </div>
-  <!-- Text (z-index 4) -->
+
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
       <span class="label">Lusaka, Zambia &nbsp;·&nbsp; Est. 2017</span>
     </div>
+
     <div class="hero-text-stage">
+
+      <!-- Slide 1 -->
       <div class="hero-text-slide">
-        <h1>Building Long-Term Value Through Real Estate</h1>
+        <h1>Building Long-Term Value Through <em>Real Estate</em></h1>
         <p class="hero-sub">Estora Capital invests in high-potential property assets, delivering stable income and sustainable capital growth for our investors.</p>
+        <div class="hero-btns-inner">
+          <a href="about.html" class="btn-ghost">Learn More</a>
+        </div>
       </div>
+
+      <!-- Slide 2 -->
       <div class="hero-text-slide">
-        <h1>Strategic Investment. Disciplined Execution.</h1>
+        <h1>Strategic Investment. <em>Disciplined Execution.</em></h1>
         <p class="hero-sub">We identify undervalued opportunities and transform them into high-performing assets through active management and strategic development.</p>
+        <div class="hero-btns-inner">
+          <a href="about.html" class="btn-ghost">Learn More</a>
+        </div>
       </div>
+
+      <!-- Slide 3 -->
       <div class="hero-text-slide">
-        <h1>From Acquisition to Performance Optimization</h1>
-        <p class="hero-sub">We manage the full lifecycle of real estate, from development, asset management, and operations to ensuring consistent value creation at every stage.</p>
+        <h1>From Acquisition to <em>Performance Optimization</em></h1>
+        <p class="hero-sub">We manage the full lifecycle of real estate — from development and asset management to operations — ensuring consistent value creation at every stage.</p>
+        <div class="hero-btns-inner">
+          <a href="about.html" class="btn-ghost">Learn More</a>
+        </div>
       </div>
+
+      <!-- Slide 4 -->
       <div class="hero-text-slide">
-        <h1>A Trusted Partner in Zambian Real Estate</h1>
+        <h1>A Trusted Partner in <em>Zambian Real Estate</em></h1>
         <p class="hero-sub">With deep local expertise and a long-term approach, we provide investors with access to resilient, income-generating property opportunities.</p>
+        <div class="hero-btns-inner">
+          <a href="about.html" class="btn-ghost">Learn More</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-btns">
-      <a href="investment.html" class="btn-primary" style="padding:8px 18px;font-size:9px;letter-spacing:0.14em;">View Investments</a>
+
     </div>
   </div>
-  <!-- Dots -->
+
   <div class="hero-dots" id="heroDots">
     <div class="hero-dot active" onclick="goToSlide(0)"></div>
     <div class="hero-dot" onclick="goToSlide(1)"></div>
     <div class="hero-dot" onclick="goToSlide(2)"></div>
     <div class="hero-dot" onclick="goToSlide(3)"></div>
   </div>
-  <div class="hero-scroll"></div>
 </section>
 
-<!-- INTRO BAND -->
-<section class="intro-band">
+<!-- BODY SECTION -->
+<section class="body-section">
   <div class="container">
-    <div class="intro-inner">
-      <div class="intro-left reveal">
-        <p class="lead">"We don't just invest in real estate — we build, manage, and optimize assets to deliver lasting value."</p>
-        <p>Estora Capital combines acquisition discipline, development capability, and hands-on asset management to create resilient property investments across Zambia. We focus on real estate with clear demand drivers, reliable income potential, and opportunities for long-term appreciation.</p>
-        <p>Our integrated approach gives investors access to property opportunities that are actively managed from acquisition through optimization, ensuring every asset has a clear plan for income generation, operational performance, and sustainable capital growth.</p>
-        <div style="margin-top:32px"><a href="about.html" class="btn-primary" style="font-size:10px;padding:12px 28px;">Learn About Us</a></div>
+
+    <!-- Two-column opener -->
+    <div class="body-opener">
+
+      <div class="body-opener-left reveal">
+        <div class="overline">
+          <div class="overline-line"></div>
+          <span class="label">Who We Are</span>
+        </div>
+        <h2>We don't just invest in property — we <em>build</em> it, manage it, and make it perform.</h2>
+        <p>Estora Capital is a Lusaka-based real estate investment firm operating across the full property lifecycle. From identifying undervalued assets to optimizing them for long-term income generation, we take a hands-on, disciplined approach at every stage.</p>
+        <p>Our work is grounded in deep knowledge of the Zambian property market — the demand drivers, the development opportunities, and the fundamentals that underpin sustainable returns. We combine that local insight with rigorous investment discipline to deliver results that hold up over time.</p>
       </div>
-      <div class="intro-right reveal">
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17V9l7-6 7 6v8H3z"/><path d="M8 17v-5h4v5"/></svg>
-          <div><strong>Property Investment</strong><span>Portfolio growth &amp; acquisitions</span></div>
-        </div>
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="14" height="8"/><path d="M6 9V6a4 4 0 0 1 8 0v3"/><path d="M3 13h14"/></svg>
-          <div><strong>Property Development</strong><span>Value creation &amp; construction</span></div>
-        </div>
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 14l4-5 4 3 4-7 4 4"/><path d="M2 17h16"/></svg>
-          <div><strong>Asset Management</strong><span>Performance optimization</span></div>
-        </div>
-        <div class="intro-cap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="12" height="14" rx="1"/><path d="M7 3v14M4 9h7M4 13h5"/><circle cx="14" cy="14" r="3"/><path d="M14 12.5v1.5l1 1"/></svg>
-          <div><strong>Property Management</strong><span>Efficient operations</span></div>
+
+      <div class="body-opener-right reveal reveal-delay-1">
+        <blockquote>"Real estate is not speculation — it is patient capital, disciplined management, and the conviction to build where others see risk."</blockquote>
+        <div class="body-stat-row">
+          <div class="body-stat-cell">
+            <div class="body-stat-num">10+</div>
+            <div class="body-stat-lbl">Years Combined Experience</div>
+          </div>
+          <div class="body-stat-cell">
+            <div class="body-stat-num">2017</div>
+            <div class="body-stat-lbl">Established in Lusaka</div>
+          </div>
+          <div class="body-stat-cell">
+            <div class="body-stat-num">4</div>
+            <div class="body-stat-lbl">Integrated Service Lines</div>
+          </div>
+          <div class="body-stat-cell">
+            <div class="body-stat-num">100%</div>
+            <div class="body-stat-lbl">Fully Integrated Model</div>
+          </div>
         </div>
       </div>
+
     </div>
+
+    <!-- Pillars -->
+    <div class="body-pillars">
+
+      <div class="body-pillar reveal">
+        <svg class="pillar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 21V9l9-6 9 6v12H3z"/><path d="M9 21v-6h6v6"/>
+        </svg>
+        <div class="pillar-title">Property Investment</div>
+        <div class="pillar-text">We acquire residential and commercial assets with strong demand fundamentals and clear income potential, building a resilient portfolio designed for long-term capital growth.</div>
+      </div>
+
+      <div class="body-pillar reveal reveal-delay-1">
+        <svg class="pillar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+        </svg>
+        <div class="pillar-title">Property Development</div>
+        <div class="pillar-text">From site selection and planning to construction and delivery, we develop properties that meet real market needs and create lasting value in communities across Zambia.</div>
+      </div>
+
+      <div class="body-pillar reveal reveal-delay-2">
+        <svg class="pillar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        <div class="pillar-title">Asset Management</div>
+        <div class="pillar-text">We actively manage our portfolio to optimize performance at every stage — tracking income, improving occupancy, and identifying opportunities to enhance asset value over time.</div>
+      </div>
+
+      <div class="body-pillar reveal reveal-delay-3">
+        <svg class="pillar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
+        </svg>
+        <div class="pillar-title">Property Management</div>
+        <div class="pillar-text">Efficient day-to-day operations underpin investor returns. We manage properties with precision — handling tenant relations, maintenance, compliance, and reporting with full transparency.</div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -586,7 +784,9 @@ footer { background: var(--navy); }
 (function() {
   const els = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
   }, { threshold: 0.12 });
   els.forEach(el => io.observe(el));
 })();
@@ -603,25 +803,52 @@ footer { background: var(--navy); }
   }
 })();
 
-// Hero dots
+// Hero dots — sync to 24s cycle
 (function() {
   const dots = document.querySelectorAll('.hero-dot');
-  let current = 0;
   const total = dots.length;
-  setInterval(() => {
-    dots.forEach(d => d.classList.remove('active'));
-    current = (current + 1) % total;
-    dots[current].classList.add('active');
-  }, 6000);
-  window.goToSlide = function(idx) {
+  let current = 0;
+
+  function updateDot(idx) {
     dots.forEach(d => d.classList.remove('active'));
     dots[idx].classList.add('active');
     current = idx;
+  }
 
-    const slides = document.querySelectorAll('.hero-slide');
+  // Auto-advance every 6s (matching CSS animation)
+  setInterval(() => {
+    updateDot((current + 1) % total);
+  }, 6000);
+
+  // Manual dot click: restart all CSS animations from the chosen slide
+  window.goToSlide = function(idx) {
+    updateDot(idx);
+
+    const slides     = document.querySelectorAll('.hero-slide');
     const textSlides = document.querySelectorAll('.hero-text-slide');
-    slides.forEach((slide, i) => { slide.style.animationDelay = `${(i - idx) * 6}s`; });
-    textSlides.forEach((slide, i) => { slide.style.animationDelay = `${(i - idx) * 6}s`; });
+
+    // Stagger delays so chosen slide is "current"
+    slides.forEach((el, i) => {
+      el.style.animation = 'none';
+      void el.offsetWidth; // reflow
+      const delay = ((i - idx + total) % total) * 6;
+      el.style.animation = `heroImageCycle 24s ease-in-out ${delay}s infinite`;
+    });
+
+    const lineOffsets = [0.4, 1.4, 2.4]; // h1, sub, btn relative offset
+    textSlides.forEach((slide, i) => {
+      const base = ((i - idx + total) % total) * 6;
+      slide.style.animation = 'none';
+      void slide.offsetWidth;
+      slide.style.animation = `heroTextCycle 24s ease-in-out ${base}s infinite`;
+
+      const h1  = slide.querySelector('h1');
+      const sub = slide.querySelector('.hero-sub');
+      const btn = slide.querySelector('.hero-btns-inner');
+      if (h1)  { h1.style.animation  = 'none'; void h1.offsetWidth;  h1.style.animation  = `heroLineIn 24s ease-in-out ${base + lineOffsets[0]}s infinite`; }
+      if (sub) { sub.style.animation = 'none'; void sub.offsetWidth; sub.style.animation = `heroLineIn 24s ease-in-out ${base + lineOffsets[1]}s infinite`; }
+      if (btn) { btn.style.animation = 'none'; void btn.offsetWidth; btn.style.animation = `heroLineIn 24s ease-in-out ${base + lineOffsets[2]}s infinite`; }
+    });
   };
 })();
 </script>
