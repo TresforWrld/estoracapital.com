@@ -11,105 +11,12 @@
 <link rel="stylesheet" href="shared.css">
 <style>
 
-/* ── HERO OVERRIDE ── */
-.page-hero {
-  position: relative !important;
-  overflow: hidden !important;
-  background: #0d1f3c !important;
-  min-height: 50vh !important;
-  display: flex !important;
-  align-items: center !important;
-  padding: 60px 0 0 !important;
-}
-.page-hero::before,
-.page-hero::after { display: none !important; }
-
-/* Background image — place your image at: assets/services-hero.jpeg */
+/* ── SERVICES HERO IMAGE ── */
 .page-hero-bg {
-  position: absolute !important;
-  inset: 0 !important;
-  background-image: url('assets/services-hero.jpeg') !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  z-index: 0 !important;
-  animation: heroDrift 16s ease-in-out infinite alternate;
-}
-@keyframes heroDrift {
-  from { transform: scale(1); }
-  to   { transform: scale(1.05); }
+  background-image: url('assets/services-hero.jpeg');
+  background-position: center center;
 }
 
-/* White tint + directional dark gradient */
-.page-hero-overlay {
-  position: absolute !important;
-  inset: 0 !important;
-  background:
-    rgba(255, 255, 255, 0.18),
-    linear-gradient(
-      to right,
-      rgba(8, 18, 40, 0.80) 0%,
-      rgba(8, 18, 40, 0.55) 50%,
-      rgba(8, 18, 40, 0.22) 100%
-    ) !important;
-  z-index: 1 !important;
-}
-
-.page-hero-inner {
-  position: relative !important;
-  z-index: 2 !important;
-  width: 100% !important;
-}
-
-/* Eyebrow row — matches index */
-.hero-eyebrow {
-  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
-}
-.hero-eyebrow-line { width: 32px; height: 1px; background: #B8952A; flex-shrink: 0; }
-
-.page-hero .label {
-  font-family: 'Open Sans', sans-serif !important;
-  color: rgba(192,169,106,0.95) !important;
-  font-size: 10px !important;
-  letter-spacing: 0.22em !important;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
-  display: block;
-  margin-bottom: 0;
-}
-.page-hero h1 {
-  font-family: 'Roboto', sans-serif !important;
-  font-size: clamp(24px, 2.8vw, 46px) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  margin-top: 0 !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.01em !important;
-  text-shadow: 0 2px 28px rgba(4,18,50,0.6), 0 1px 4px rgba(0,0,0,0.4) !important;
-}
-.page-hero h1 em {
-  font-style: italic !important;
-  color: #CDA83C !important;
-  font-weight: 300 !important;
-}
-.page-hero p {
-  font-family: 'Open Sans', sans-serif !important;
-  font-size: 13px !important;
-  color: rgba(220,230,240,0.80) !important;
-  max-width: 420px !important;
-  line-height: 1.85 !important;
-  margin-top: 16px !important;
-  font-weight: 300 !important;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.35) !important;
-}
-.page-hero-inner::after {
-  content: '';
-  display: block;
-  width: 48px;
-  height: 2px;
-  background: #B8952A;
-  margin-top: 30px;
-  opacity: 0.8;
-}
 
 /* ── SERVICES PAGE STYLES ── */
 .services-intro { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; padding-bottom:72px; border-bottom:1px solid var(--line-dark); margin-bottom:72px; }
@@ -159,14 +66,11 @@
   <a href="contact.html" class="drawer-cta">Contact Us</a>
 </div>
 
-<section class="page-hero">
+<section class="page-hero page-hero--image">
   <div class="page-hero-bg" aria-hidden="true"></div>
   <div class="page-hero-overlay" aria-hidden="true"></div>
   <div class="container page-hero-inner">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      <span class="label">What We Offer</span>
-    </div>
+    <span class="label">What We Offer</span>
     <h1>A comprehensive<br><em>real estate platform</em></h1>
     <p>We provide an end-to-end suite of real estate services designed to maximize asset performance and deliver superior investor returns.</p>
   </div>
