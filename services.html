@@ -8,65 +8,370 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
 <style>
+/* ══════════════════════════════════════════
+   DESIGN TOKENS
+   ══════════════════════════════════════════ */
+:root {
+  --nav-bg:      #0A1628;
+  --bg:          #F5F3EF;
+  --bg-alt:      #EDEAE4;
+  --bg-white:    #FFFFFF;
+  --bg-dark-sec: #1C1C1C;
+  --surface:     #FFFFFF;
+  --text:        #1A1A1A;
+  --text-mid:    #3D3D3D;
+  --text-muted:  #6B6B6B;
+  --text-faint:  #9A9A9A;
+  --gold:        #B8952A;
+  --gold-light:  #CDA83C;
+  --gold-dim:    #8A7020;
+  --gold-pale:   #F5EDD6;
+  --navy:        #0A1628;
+  --navy-mid:    #0F2040;
+  --navy-light:  #152848;
+  --line:        rgba(184,149,42,0.18);
+  --line-dark:   rgba(26,26,26,0.1);
+  --line-mid:    rgba(26,26,26,0.06);
+  --silver-nav:  rgba(184,197,212,0.8);
+}
 
-/* ── SERVICES HERO IMAGE ── */
+/* ══════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY
+   ══════════════════════════════════════════ */
+h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+p, li, span, a, td, th, blockquote { font-family: 'Open Sans', sans-serif; }
+.label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ══════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 60px;
+  background: rgba(10,22,40,0.97);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(184,197,212,0.1);
+  transition: background 0.4s;
+}
+.nav-logo img { height: 34px; width: auto; display: block; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a {
+  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--silver-nav); text-decoration: none;
+  position: relative; transition: color 0.3s; white-space: nowrap;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--gold); transition: width 0.35s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-cta {
+  background: transparent !important; border: 1px solid var(--gold) !important;
+  color: var(--gold) !important; padding: 8px 22px !important;
+  transition: background 0.3s, color 0.3s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; background: none; border: none; z-index: 1100;
+}
+.nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--silver-nav); transition: all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--gold); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--gold); }
+
+.nav-drawer {
+  display: none; position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(8,17,33,0.99); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(192,169,106,0.15);
+  padding: 28px 28px 36px; z-index: 999;
+  flex-direction: column; gap: 0;
+  transform: translateY(-8px); opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-drawer.open { display: flex; transform: translateY(0); opacity: 1; }
+.nav-drawer a {
+  display: block; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(184,197,212,0.8); text-decoration: none;
+  padding: 16px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer a:hover, .nav-drawer a.active { color: var(--gold); }
+.nav-drawer .drawer-cta {
+  margin-top: 20px; background: var(--gold); color: var(--navy) !important;
+  text-align: center; padding: 14px; font-weight: 700; border: none;
+}
+
+/* ══════════════════════════════════════════
+   BUTTONS
+   ══════════════════════════════════════════ */
+.btn-gold {
+  background: var(--gold); color: var(--navy);
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--gold); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-1px); }
+.btn-outline-gold {
+  background: transparent; color: var(--gold);
+  padding: 14px 34px; font-family: 'Open Sans', sans-serif; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border: 2px solid var(--gold); cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s; display: inline-block;
+}
+.btn-outline-gold:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════════ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+.section-pad { padding: 112px 0; }
+.gold-rule { width: 44px; height: 2px; background: var(--gold); margin-top: 20px; }
+
+/* ══════════════════════════════════════════
+   PAGE HERO
+   ══════════════════════════════════════════ */
+.page-hero {
+  position: relative; overflow: hidden;
+  min-height: 50vh; display: flex; align-items: center;
+  background: #0d1f3c;
+  padding: 60px 0 0;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(192,169,106,0.07) 0%, transparent 65%);
+}
+/* Photo layer */
 .page-hero-bg {
-  background-image: url('assets/services-hero.jpeg');
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('https://i.imgur.com/q7LfzKV.jpeg');
+  background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
+  animation: heroScale 16s ease-in-out infinite alternate;
+}
+@keyframes heroScale {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+/* Darkening gradient */
+.page-hero-overlay {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(
+    160deg,
+    rgba(8, 20, 50, 0.60) 0%,
+    rgba(12, 35, 75, 0.35) 45%,
+    rgba(8, 18, 46, 0.65) 100%
+  );
+}
+/* White tint */
+.page-hero-overlay::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+}
+/* Edge vignette */
+.page-hero-overlay::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 38%, rgba(4, 12, 32, 0.40) 100%);
+  pointer-events: none;
+}
+/* Text */
+.page-hero-inner { position: relative; z-index: 3; width: 100%; }
+.page-hero .label { color: var(--gold-light); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+.page-hero h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(32px, 4.5vw, 58px);
+  color: #fff; font-weight: 600; margin-top: 12px;
+  line-height: 1.12; letter-spacing: -0.01em;
+  text-shadow: 0 2px 24px rgba(4,18,50,0.55), 0 1px 4px rgba(0,0,0,0.35);
+}
+.page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.page-hero p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14.5px; color: rgba(220,232,248,0.88);
+  max-width: 560px; line-height: 1.9; margin-top: 18px; font-weight: 300;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+.page-hero-inner::after {
+  content: ''; display: block;
+  width: 52px; height: 2px;
+  background: var(--gold);
+  margin-top: 30px; opacity: 0.75;
 }
 
-
-/* ── SERVICES PAGE STYLES ── */
-.services-intro { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; padding-bottom:72px; border-bottom:1px solid var(--line-dark); margin-bottom:72px; }
-.services-intro p { font-family:'Open Sans',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.9; }
-.services-intro p.lead { font-family:'Roboto',sans-serif; font-size:21px; font-style:italic; color:var(--navy); line-height:1.55; font-weight:300; margin-bottom:16px; }
-
-.service-block { display:grid; grid-template-columns:1fr 2fr; gap:64px; align-items:start; padding:64px 0; border-bottom:1px solid var(--line-dark); }
-.service-block:last-child { border-bottom:none; }
-.service-block.reverse { direction:rtl; }
-.service-block.reverse > * { direction:ltr; }
-
-.service-num { font-family:'Roboto',sans-serif; font-size:80px; font-weight:700; color:rgba(184,149,42,0.1); line-height:1; margin-bottom:-24px; }
-.service-icon-wrap { width:56px; height:56px; background:var(--gold-pale); display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
-.service-icon-wrap svg { color:var(--gold); }
-.service-left h3 { font-family:'Roboto',sans-serif; font-size:32px; color:var(--navy); margin-bottom:20px; font-weight:600; }
-.service-left p { font-family:'Open Sans',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.9; margin-bottom:14px; }
-.service-features { list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:12px; }
-.service-features li { display:flex; align-items:center; gap:12px; font-family:'Open Sans',sans-serif; font-size:13px; color:var(--text-mid); font-weight:500; }
-.service-features li::before { content:''; width:6px; height:6px; background:var(--gold); flex-shrink:0; transform:rotate(45deg); }
-
-/* Dark card quote — Roboto instead of Playfair */
-.service-quote {
-  font-family:'Roboto',sans-serif;
-  font-size:18px; color:#fff; font-style:italic; font-weight:300; line-height:1.6;
+/* ══════════════════════════════════════════
+   SHARED LISTS
+   ══════════════════════════════════════════ */
+.returns-list { list-style: none; }
+.returns-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--line-dark);
+  font-family: 'Open Sans', sans-serif; font-size: 14px; color: var(--text-mid);
+}
+.returns-list li:last-child { border-bottom: none; }
+.returns-dot {
+  width: 6px; height: 6px; background: var(--gold);
+  flex-shrink: 0; transform: rotate(45deg); margin-top: 6px;
 }
 
-@media (max-width:1024px) { .service-block { grid-template-columns:1fr; gap:32px; } .service-block.reverse { direction:ltr; } .services-intro { grid-template-columns:1fr; gap:32px; } }
-@media (max-width:768px) { .service-num { font-size:56px; } }
+/* ══════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════ */
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+.reveal { opacity:0; transform:translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+footer { background: var(--navy); }
+.footer-top {
+  padding: 56px 60px 40px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.footer-tagline { font-family: 'Open Sans', sans-serif; font-size: 12px; color: rgba(184,197,212,0.4); max-width: 220px; line-height: 1.7; }
+.footer-links-group h4 {
+  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.footer-links a { font-family: 'Open Sans', sans-serif; font-size: 12px; color: rgba(184,197,212,0.5); text-decoration: none; transition: color 0.3s; letter-spacing: 0.04em; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  padding: 20px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-family: 'Open Sans', sans-serif; font-size: 11px; color: rgba(184,197,212,0.3); letter-spacing: 0.06em; }
+
+/* ══════════════════════════════════════════
+   SERVICES PAGE STYLES
+   ══════════════════════════════════════════ */
+.services-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+  padding-bottom: 72px; border-bottom: 1px solid var(--line-dark); margin-bottom: 72px;
+}
+.services-intro p { font-family: 'Open Sans', sans-serif; font-size: 15px; color: var(--text-mid); line-height: 1.9; }
+.services-intro p.lead { font-family: 'Roboto', sans-serif; font-size: 21px; font-style: italic; color: var(--navy); line-height: 1.55; font-weight: 300; margin-bottom: 16px; }
+
+.service-block {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 64px;
+  align-items: start; padding: 64px 0; border-bottom: 1px solid var(--line-dark);
+}
+.service-block:last-child { border-bottom: none; }
+.service-block.reverse { direction: rtl; }
+.service-block.reverse > * { direction: ltr; }
+
+.service-num { font-family: 'Roboto', sans-serif; font-size: 80px; font-weight: 700; color: rgba(184,149,42,0.1); line-height: 1; margin-bottom: -24px; }
+.service-icon-wrap { width: 56px; height: 56px; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.service-icon-wrap svg { color: var(--gold); }
+.service-left h3 { font-family: 'Roboto', sans-serif; font-size: 32px; color: var(--navy); margin-bottom: 20px; font-weight: 600; }
+.service-left p { font-family: 'Open Sans', sans-serif; font-size: 15px; color: var(--text-mid); line-height: 1.9; margin-bottom: 14px; }
+.service-features { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+.service-features li { display: flex; align-items: center; gap: 12px; font-family: 'Open Sans', sans-serif; font-size: 13px; color: var(--text-mid); font-weight: 500; }
+.service-features li::before { content: ''; width: 6px; height: 6px; background: var(--gold); flex-shrink: 0; transform: rotate(45deg); }
+
+.service-quote { font-family: 'Roboto', sans-serif; font-size: 18px; color: #fff; font-style: italic; font-weight: 300; line-height: 1.6; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 0 32px; }
+  .container { padding: 0 36px; }
+  .footer-top, .footer-bottom { padding-left: 36px; padding-right: 36px; }
+  .section-pad { padding: 80px 0; }
+  .service-block { grid-template-columns: 1fr; gap: 32px; }
+  .service-block.reverse { direction: ltr; }
+  .services-intro { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .container { padding: 0 22px; }
+  .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
+  .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
+  .section-pad { padding: 64px 0; }
+  .page-hero { min-height: 44vh; }
+  .page-hero h1 { font-size: clamp(24px, 6vw, 40px); }
+  .page-hero p { font-size: 13px; }
+  .service-num { font-size: 56px; }
+}
+@media (max-width: 480px) {
+  nav { padding: 0 18px; }
+  .container { padding: 0 18px; }
+  .page-hero { min-height: 38vh; }
+  .page-hero h1 { font-size: 22px; }
+}
 </style>
 </head>
 <body>
+
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="services.html" class="active">Services</a></li>
-    <li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="investment.html">Investment</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
     <li><a href="strategy.html">Strategy</a></li>
     <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
   </ul>
   <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-drawer">
-  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html" class="active">Services</a>
-  <a href="investment.html">Investment</a><a href="portfolio.html">Portfolio</a>
-  <a href="strategy.html">Strategy</a><a href="sustainability.html">Sustainability</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="services.html" class="active">Services</a>
+  <a href="investment.html">Investment</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="strategy.html">Strategy</a>
+  <a href="sustainability.html">Sustainability</a>
   <a href="contact.html" class="drawer-cta">Contact Us</a>
 </div>
 
-<section class="page-hero page-hero--image">
+<!-- HERO -->
+<section class="page-hero">
   <div class="page-hero-bg" aria-hidden="true"></div>
   <div class="page-hero-overlay" aria-hidden="true"></div>
   <div class="container page-hero-inner">
@@ -76,8 +381,10 @@
   </div>
 </section>
 
+<!-- SERVICES CONTENT -->
 <section class="section-pad" style="background:var(--bg-white);">
   <div class="container">
+
     <div class="services-intro reveal">
       <div>
         <span class="label">Overview</span>
@@ -92,11 +399,13 @@
       </div>
     </div>
 
-    <!-- SERVICE 1 -->
+    <!-- SERVICE 01 — Property Investment -->
     <div class="service-block reveal">
       <div class="service-left">
         <div class="service-num">01</div>
-        <div class="service-icon-wrap"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 24V12l10-8 10 8v12H4z"/><path d="M10 24v-7h8v7"/><circle cx="14" cy="13" r="2.5"/></svg></div>
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 24V12l10-8 10 8v12H4z"/><path d="M10 24v-7h8v7"/><circle cx="14" cy="13" r="2.5"/></svg>
+        </div>
         <h3>Property Investment</h3>
         <p>We identify and acquire high-potential assets in strategic locations, focusing on strong fundamentals and long-term growth potential across the Lusaka and broader Zambian market.</p>
         <p>Our investment process is grounded in rigorous due diligence, market analysis, and a disciplined approach to pricing. We target assets that can deliver both income yield and capital appreciation.</p>
@@ -120,11 +429,13 @@
       </div>
     </div>
 
-    <!-- SERVICE 2 -->
+    <!-- SERVICE 02 — Property Development -->
     <div class="service-block reverse reveal">
       <div class="service-left">
         <div class="service-num">02</div>
-        <div class="service-icon-wrap"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="12" width="20" height="12"/><path d="M8 12V8M14 12V4M20 12V9"/><path d="M4 12h20"/></svg></div>
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="12" width="20" height="12"/><path d="M8 12V8M14 12V4M20 12V9"/><path d="M4 12h20"/></svg>
+        </div>
         <h3>Property Development</h3>
         <p>We unlock value through land development, renovations, repositioning, and new construction projects that create lasting capital appreciation and expand the income base of the portfolio.</p>
         <p>Our development capability means we are not reliant on third parties to execute value-add strategies — we can manage projects directly, controlling costs and timelines.</p>
@@ -144,11 +455,13 @@
       </div>
     </div>
 
-    <!-- SERVICE 3 -->
+    <!-- SERVICE 03 — Asset Management -->
     <div class="service-block reveal">
       <div class="service-left">
         <div class="service-num">03</div>
-        <div class="service-icon-wrap"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l6-8 6 4 6-10 6 6"/><path d="M2 24h24"/><circle cx="10" cy="12" r="1.5" fill="currentColor"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/><circle cx="22" cy="10" r="1.5" fill="currentColor"/></svg></div>
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l6-8 6 4 6-10 6 6"/><path d="M2 24h24"/><circle cx="10" cy="12" r="1.5" fill="currentColor"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/><circle cx="22" cy="10" r="1.5" fill="currentColor"/></svg>
+        </div>
         <h3>Asset Management</h3>
         <p>We actively manage assets to improve income performance, control operational costs, and enhance long-term value through disciplined portfolio oversight and continuous optimization.</p>
         <p>Our asset management approach treats each property as a business — setting performance benchmarks, tracking key metrics, and making proactive decisions to protect and grow value.</p>
@@ -172,11 +485,13 @@
       </div>
     </div>
 
-    <!-- SERVICE 4 -->
+    <!-- SERVICE 04 — Property Management -->
     <div class="service-block reverse reveal">
       <div class="service-left">
         <div class="service-num">04</div>
-        <div class="service-icon-wrap"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="4" width="16" height="20" rx="1"/><path d="M10 4v20M6 12h16M6 18h8"/><circle cx="19" cy="19" r="4.5"/><path d="M19 17v2l1.5 1.5"/></svg></div>
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="4" width="16" height="20" rx="1"/><path d="M10 4v20M6 12h16M6 18h8"/><circle cx="19" cy="19" r="4.5"/><path d="M19 17v2l1.5 1.5"/></svg>
+        </div>
         <h3>Property Management</h3>
         <p>We ensure efficient day-to-day operations through professional tenant management, structured maintenance coordination, and reliable rent collection — protecting asset quality and income stability.</p>
         <p>Strong property management is the foundation of consistent returns. Our hands-on approach reduces vacancy, minimizes maintenance costs, and builds lasting tenant relationships.</p>
@@ -195,9 +510,11 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
+<!-- CTA BAND -->
 <section style="background:var(--navy);padding:80px 0;text-align:center;">
   <div class="container reveal">
     <span class="label" style="color:var(--gold-light);">Work With Us</span>
@@ -210,15 +527,76 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
-    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
-    <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
-    <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
-    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
+    <div>
+      <a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a>
+      <p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p>
+    </div>
+    <div class="footer-links-group">
+      <h4>Company</h4>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="investment.html">Investment</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+      </ul>
+    </div>
+    <div class="footer-links-group">
+      <h4>More</h4>
+      <ul class="footer-links">
+        <li><a href="strategy.html">Strategy</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-links-group">
+      <h4>Contact</h4>
+      <ul class="footer-links">
+        <li><a href="#">Lusaka, Zambia</a></li>
+        <li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-bottom"><p class="footer-copy">&copy; 2026 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p>
+    <p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p>
+  </div>
 </footer>
-<script src="shared.js"></script>
+
+<script>
+// ── Hamburger / mobile drawer ──
+(function() {
+  const btn = document.querySelector('.nav-hamburger');
+  const drawer = document.querySelector('.nav-drawer');
+  if (!btn || !drawer) return;
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!btn.contains(e.target) && !drawer.contains(e.target)) {
+      btn.classList.remove('open');
+      drawer.classList.remove('open');
+    }
+  });
+})();
+
+// ── Scroll reveal ──
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  const io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>
