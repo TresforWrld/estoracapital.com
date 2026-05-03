@@ -13,7 +13,7 @@
    DESIGN TOKENS
    ══════════════════════════════════════════ */
 :root {
-  --nav-bg:      #0A1628;
+  --nav-bg:      #071322;
   --bg:          #F5F3EF;
   --bg-alt:      #EDEAE4;
   --bg-white:    #FFFFFF;
@@ -27,7 +27,7 @@
   --gold-light:  #CDA83C;
   --gold-dim:    #8A7020;
   --gold-pale:   #F5EDD6;
-  --navy:        #0A1628;
+  --navy:        #071322;
   --navy-mid:    #0F2040;
   --navy-light:  #152848;
   --line:        rgba(184,149,42,0.18);
@@ -122,16 +122,16 @@ nav {
 }
 .nav-drawer.open { display: flex; transform: translateY(0); opacity: 1; }
 .nav-drawer a {
-  display: block; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
+  display: block; font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: rgba(184,197,212,0.8); text-decoration: none;
-  padding: 16px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
+  padding: 8px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
 }
 .nav-drawer a:last-child { border-bottom: none; }
 .nav-drawer a:hover, .nav-drawer a.active { color: var(--gold); }
 .nav-drawer .drawer-cta {
-  margin-top: 20px; background: var(--gold); color: var(--navy) !important;
-  text-align: center; padding: 14px; font-weight: 700; border: none;
+  margin-top: 10px; background: var(--gold); color: var(--navy) !important;
+  text-align: center; padding: 8px; font-weight: 700; border: none;
 }
 
 /* ══════════════════════════════════════════
@@ -177,15 +177,15 @@ nav {
 /* Photo layer */
 .page-hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  background-image: url('https://i.imgur.com/q7LfzKV.jpeg');
+  background-image: url('https://i.imgur.com/7CAnac8.jpeg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  animation: heroScale 16s ease-in-out infinite alternate;
+  animation: heroScale 18s ease-in-out infinite alternate;
 }
 @keyframes heroScale {
-  from { transform: scale(1); }
-  to   { transform: scale(1.06); }
+  from { transform: scale(1.02); filter:saturate(0.95) contrast(1.04); }
+  to   { transform: scale(1.07); filter:saturate(1.03) contrast(1.08); }
 }
 /* Darkening gradient */
 .page-hero-overlay {
@@ -376,8 +376,8 @@ footer { background: var(--navy); }
   <div class="page-hero-overlay" aria-hidden="true"></div>
   <div class="container page-hero-inner">
     <span class="label">What We Offer</span>
-    <h1>A comprehensive<br><em>real estate platform</em></h1>
-    <p>We provide an end-to-end suite of real estate services designed to maximize asset performance and deliver superior investor returns.</p>
+    <h1>Managing Assets. Creating Value.</h1>
+    <p>We combine development, investment, and management to deliver sustainable real estate performance.</p>
   </div>
 </section>
 

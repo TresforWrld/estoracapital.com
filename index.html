@@ -23,7 +23,7 @@
   --gold:        #B8952A;
   --gold-light:  #CDA83C;
   --gold-pale:   #F5EDD6;
-  --navy:        #0A1628;
+  --navy:        #071322;
   --line-dark:   rgba(26,26,26,0.1);
   --silver-nav:  rgba(184,197,212,0.8);
 }
@@ -105,20 +105,20 @@ nav {
   display: none; position: fixed; top: 60px; left: 0; right: 0;
   background: rgba(8,17,33,0.99); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(192,169,106,0.15);
-  padding: 28px 28px 36px; z-index: 999; flex-direction: column; gap: 0;
+  padding: 14px 20px 18px; z-index: 999; flex-direction: column; gap: 0;
 }
 .nav-drawer.open { display: flex; }
 .nav-drawer a {
-  display: block; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
+  display: block; font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
   color: rgba(184,197,212,0.8); text-decoration: none;
-  padding: 16px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
+  padding: 8px 0; border-bottom: 1px solid rgba(184,197,212,0.08); transition: color 0.3s;
 }
 .nav-drawer a:last-child { border-bottom: none; }
 .nav-drawer a:hover, .nav-drawer a.active { color: var(--gold); }
 .nav-drawer .drawer-cta {
-  margin-top: 20px; background: var(--gold); color: var(--navy) !important;
-  text-align: center; padding: 14px; font-weight: 700; border: none;
+  margin-top: 10px; background: var(--gold); color: var(--navy) !important;
+  text-align: center; padding: 8px; font-weight: 700; border: none;
 }
 
 /* ══════════════════════════════════════════
@@ -162,35 +162,36 @@ nav {
 .hero-slide {
   position: absolute; left: 0; right: 0; bottom: 0; top: -50%;
   background-position: center bottom; background-size: cover; background-repeat: no-repeat;
-  opacity: 0; animation: heroSlideshow 18s ease-in-out infinite; transform: scale(1.03);
+  opacity: 0;
+  animation: heroImageCycle 24s ease-in-out infinite;
+  transform: scale(1.04) translateX(10px);
+  filter: saturate(0.95) contrast(1.04);
 }
 .hero-slide:nth-child(1) { animation-delay: 0s; }
 .hero-slide:nth-child(2) { animation-delay: 6s; }
 .hero-slide:nth-child(3) { animation-delay: 12s; }
-@keyframes heroSlideshow {
-  0%   { opacity: 0; transform: scale(1.03); }
-  5%   { opacity: 1; }
-  30%  { opacity: 1; }
-  38%  { opacity: 0; transform: scale(1.07); }
-  100% { opacity: 0; transform: scale(1.07); }
+.hero-slide:nth-child(4) { animation-delay: 18s; }
+@keyframes heroImageCycle {
+  0%   { opacity: 0; transform: scale(1.055) translateX(16px); }
+  6%   { opacity: 1; transform: scale(1.025) translateX(0); }
+  25%  { opacity: 1; transform: scale(1.01) translateX(-4px); }
+  31%  { opacity: 0; transform: scale(1.045) translateX(-18px); }
+  100% { opacity: 0; transform: scale(1.055) translateX(16px); }
 }
 
 /* White tint — sits directly above slides */
 .hero-tint {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(5, 15, 28, 0.22);
 }
 
-/* Dark left + bottom gradients — above white tint so text stays readable */
+/* Dark left + bottom gradients — above tint so text stays readable */
 .hero-gradient {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: linear-gradient(
-    to top,
-    rgba(8, 18, 40, 0.80) 0%,
-    rgba(8, 18, 40, 0.42) 35%,
-    rgba(8, 18, 40, 0.10) 60%,
-    transparent 100%
-  );
+  background:
+    radial-gradient(circle at 78% 18%, rgba(208,166,75,0.15) 0%, transparent 28%),
+    linear-gradient(90deg, rgba(5,15,28,0.88) 0%, rgba(5,15,28,0.62) 42%, rgba(5,15,28,0.18) 72%, rgba(5,15,28,0.28) 100%),
+    linear-gradient(to top, rgba(5,15,28,0.72) 0%, transparent 58%);
 }
 
 /* Subtle gold vertical lines */
@@ -215,20 +216,41 @@ nav {
 }
 .hero-eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
 .hero-eyebrow .label { color: var(--gold-light); font-size: 9px; }
+.hero-text-stage {
+  position: relative;
+  min-height: 172px;
+}
+.hero-text-slide {
+  position: absolute;
+  inset: 0 auto auto 0;
+  max-width: 650px;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroTextCycle 24s ease-in-out infinite;
+}
+.hero-text-slide:nth-child(2) { animation-delay: 6s; }
+.hero-text-slide:nth-child(3) { animation-delay: 12s; }
+.hero-text-slide:nth-child(4) { animation-delay: 18s; }
+@keyframes heroTextCycle {
+  0%   { opacity: 0; transform: translateY(18px); filter: blur(3px); }
+  6%   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  25%  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  31%  { opacity: 0; transform: translateY(-16px); filter: blur(3px); }
+  100% { opacity: 0; transform: translateY(-16px); filter: blur(3px); }
+}
 .hero-content h1 {
-  font-size: clamp(20px, 2.4vw, 28px); font-weight: 600; color: #fff;
-  margin-bottom: 10px; line-height: 1.25;
-  opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+  font-size: clamp(20px, 2.5vw, 30px); font-weight: 600; color: #fff;
+  margin-bottom: 10px; line-height: 1.18;
 }
 .hero-content h1 em { font-style: italic; color: var(--gold-light); font-weight: 400; }
 .hero-sub {
-  font-size: 12px; color: rgba(240,244,248,0.80); max-width: 480px;
-  line-height: 1.75; margin-bottom: 20px; font-weight: 400;
-  opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+  font-size: 12px; color: rgba(240,244,248,0.84); max-width: 520px;
+  line-height: 1.72; margin-bottom: 20px; font-weight: 400;
 }
 .hero-btns {
   display: flex; gap: 10px; flex-wrap: wrap;
   opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
+  margin-top: 2px;
 }
 .hero-btns .btn-primary {
   background: rgba(255,255,255,0.12); color: #fff;
@@ -347,7 +369,7 @@ footer { background: var(--navy); }
   .container { padding: 0 36px; }
   .footer-top, .footer-bottom { padding-left: 36px; padding-right: 36px; }
   .hero-stats { display: none; }
-  .hero-content { padding: 0 32px 32px; max-width: 560px; }
+  .hero-content { padding: 72px 32px 32px; max-width: 560px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
   .intro-inner { gap: 48px; }
 }
@@ -357,10 +379,12 @@ footer { background: var(--navy); }
   .container { padding: 0 22px; }
   .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
   .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
-  .hero-content { padding: 0 20px 24px; max-width: 80%; }
+  #hero { min-height: 54vh; height: 54vh; }
+  .hero-content { padding: 64px 20px 24px; max-width: 88%; }
   .hero-eyebrow { display: none; }
   .hero-content h1 { font-size: 17px; margin-bottom: 8px; }
-  .hero-sub { display: none; }
+  .hero-sub { display: block; font-size: 10px; line-height: 1.55; max-width: 92%; }
+  .hero-text-stage { min-height: 178px; }
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
   .intro-inner { grid-template-columns: 1fr; gap: 40px; }
   .intro-right { grid-template-columns: 1fr; }
@@ -405,9 +429,10 @@ footer { background: var(--navy); }
 <section id="hero">
   <!-- Slides -->
   <div class="hero-bg">
-    <div class="hero-slide" style="background-image:url('https://i.imgur.com/zvnt96i.jpeg');"></div>
-    <div class="hero-slide" style="background-image:url('https://i.imgur.com/7n82krl.jpeg');"></div>
-    <div class="hero-slide" style="background-image:url('https://i.imgur.com/6IVtewZ.jpeg');"></div>
+    <div class="hero-slide" style="background-image:url('https://i.imgur.com/w7iVKMV.jpeg');"></div>
+    <div class="hero-slide" style="background-image:url('https://i.imgur.com/G70Ve7a.jpeg');"></div>
+    <div class="hero-slide" style="background-image:url('https://i.imgur.com/x2KAlVI.jpeg');"></div>
+    <div class="hero-slide" style="background-image:url('https://i.imgur.com/x2KAlVI.jpeg');"></div>
   </div>
   <!-- White tint (z-index 1) -->
   <div class="hero-tint"></div>
@@ -427,8 +452,24 @@ footer { background: var(--navy); }
       <div class="hero-eyebrow-line"></div>
       <span class="label">Lusaka, Zambia &nbsp;·&nbsp; Est. 2017</span>
     </div>
-    <h1>Building <em>long-term value</em> through strategic real estate investment</h1>
-    <p class="hero-sub">Estora Capital is a Lusaka-based real estate investment firm focused on acquiring, developing, and actively managing property assets that deliver stable income and long-term capital growth.</p>
+    <div class="hero-text-stage">
+      <div class="hero-text-slide">
+        <h1>Building Long-Term Value Through Real Estate</h1>
+        <p class="hero-sub">Estora Capital invests in high-potential property assets, delivering stable income and sustainable capital growth for our investors.</p>
+      </div>
+      <div class="hero-text-slide">
+        <h1>Strategic Investment. Disciplined Execution.</h1>
+        <p class="hero-sub">We identify undervalued opportunities and transform them into high-performing assets through active management and strategic development.</p>
+      </div>
+      <div class="hero-text-slide">
+        <h1>From Acquisition to Performance Optimization</h1>
+        <p class="hero-sub">We manage the full lifecycle of real estate, from development, asset management, and operations to ensuring consistent value creation at every stage.</p>
+      </div>
+      <div class="hero-text-slide">
+        <h1>A Trusted Partner in Zambian Real Estate</h1>
+        <p class="hero-sub">With deep local expertise and a long-term approach, we provide investors with access to resilient, income-generating property opportunities.</p>
+      </div>
+    </div>
     <div class="hero-btns">
       <a href="investment.html" class="btn-primary" style="padding:8px 18px;font-size:9px;letter-spacing:0.14em;">View Investments</a>
     </div>
@@ -438,6 +479,7 @@ footer { background: var(--navy); }
     <div class="hero-dot active" onclick="goToSlide(0)"></div>
     <div class="hero-dot" onclick="goToSlide(1)"></div>
     <div class="hero-dot" onclick="goToSlide(2)"></div>
+    <div class="hero-dot" onclick="goToSlide(3)"></div>
   </div>
   <div class="hero-scroll"></div>
 </section>
@@ -448,7 +490,8 @@ footer { background: var(--navy); }
     <div class="intro-inner">
       <div class="intro-left reveal">
         <p class="lead">"We don't just invest in real estate — we build, manage, and optimize assets to deliver lasting value."</p>
-        <p>Since 2017, Estora Capital has focused on identifying undervalued opportunities, enhancing asset performance, and delivering sustainable, risk-adjusted returns. Our integrated model ensures control across the full investment lifecycle.</p>
+        <p>Estora Capital combines acquisition discipline, development capability, and hands-on asset management to create resilient property investments across Zambia. We focus on real estate with clear demand drivers, reliable income potential, and opportunities for long-term appreciation.</p>
+        <p>Our integrated approach gives investors access to property opportunities that are actively managed from acquisition through optimization, ensuring every asset has a clear plan for income generation, operational performance, and sustainable capital growth.</p>
         <div style="margin-top:32px"><a href="about.html" class="btn-primary" style="font-size:10px;padding:12px 28px;">Learn About Us</a></div>
       </div>
       <div class="intro-right reveal">
@@ -574,6 +617,11 @@ footer { background: var(--navy); }
     dots.forEach(d => d.classList.remove('active'));
     dots[idx].classList.add('active');
     current = idx;
+
+    const slides = document.querySelectorAll('.hero-slide');
+    const textSlides = document.querySelectorAll('.hero-text-slide');
+    slides.forEach((slide, i) => { slide.style.animationDelay = `${(i - idx) * 6}s`; });
+    textSlides.forEach((slide, i) => { slide.style.animationDelay = `${(i - idx) * 6}s`; });
   };
 })();
 </script>
