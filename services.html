@@ -5,26 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Services — Estora Capital Investment</title>
 <link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
+
+/* ── HERO OVERRIDE ── */
+.page-hero {
+  position: relative !important;
+  overflow: hidden !important;
+  background: #0d1f3c !important;
+  min-height: 50vh !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 60px 0 0 !important;
+}
+.page-hero::before,
+.page-hero::after { display: none !important; }
+
+/* Background image — place your image at: assets/services-hero.jpeg */
+.page-hero-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: url('assets/services-hero.jpeg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  z-index: 0 !important;
+  animation: heroDrift 16s ease-in-out infinite alternate;
+}
+@keyframes heroDrift {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+
+/* White tint + directional dark gradient */
+.page-hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    rgba(255, 255, 255, 0.18),
+    linear-gradient(
+      to right,
+      rgba(8, 18, 40, 0.80) 0%,
+      rgba(8, 18, 40, 0.55) 50%,
+      rgba(8, 18, 40, 0.22) 100%
+    ) !important;
+  z-index: 1 !important;
+}
+
+.page-hero-inner {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+}
+
+/* Eyebrow row — matches index */
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+}
+.hero-eyebrow-line { width: 32px; height: 1px; background: #B8952A; flex-shrink: 0; }
+
+.page-hero .label {
+  font-family: 'Open Sans', sans-serif !important;
+  color: rgba(192,169,106,0.95) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.22em !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
+  display: block;
+  margin-bottom: 0;
+}
+.page-hero h1 {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: clamp(24px, 2.8vw, 46px) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  margin-top: 0 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
+  text-shadow: 0 2px 28px rgba(4,18,50,0.6), 0 1px 4px rgba(0,0,0,0.4) !important;
+}
+.page-hero h1 em {
+  font-style: italic !important;
+  color: #CDA83C !important;
+  font-weight: 300 !important;
+}
+.page-hero p {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 13px !important;
+  color: rgba(220,230,240,0.80) !important;
+  max-width: 420px !important;
+  line-height: 1.85 !important;
+  margin-top: 16px !important;
+  font-weight: 300 !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.35) !important;
+}
+.page-hero-inner::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: #B8952A;
+  margin-top: 30px;
+  opacity: 0.8;
+}
+
+/* ── SERVICES PAGE STYLES ── */
 .services-intro { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; padding-bottom:72px; border-bottom:1px solid var(--line-dark); margin-bottom:72px; }
-.services-intro p { font-size:15px; color:var(--text-mid); line-height:1.9; }
-.services-intro p.lead { font-family:'Playfair Display',serif; font-size:21px; font-style:italic; color:var(--navy); line-height:1.55; font-weight:400; margin-bottom:16px; }
+.services-intro p { font-family:'Open Sans',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.9; }
+.services-intro p.lead { font-family:'Roboto',sans-serif; font-size:21px; font-style:italic; color:var(--navy); line-height:1.55; font-weight:300; margin-bottom:16px; }
 
 .service-block { display:grid; grid-template-columns:1fr 2fr; gap:64px; align-items:start; padding:64px 0; border-bottom:1px solid var(--line-dark); }
 .service-block:last-child { border-bottom:none; }
 .service-block.reverse { direction:rtl; }
 .service-block.reverse > * { direction:ltr; }
 
-.service-num { font-family:'Playfair Display',serif; font-size:80px; font-weight:600; color:rgba(184,149,42,0.1); line-height:1; margin-bottom:-24px; }
-.service-left { }
+.service-num { font-family:'Roboto',sans-serif; font-size:80px; font-weight:700; color:rgba(184,149,42,0.1); line-height:1; margin-bottom:-24px; }
 .service-icon-wrap { width:56px; height:56px; background:var(--gold-pale); display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
 .service-icon-wrap svg { color:var(--gold); }
-.service-left h3 { font-size:32px; color:var(--navy); margin-bottom:20px; font-weight:600; }
-.service-left p { font-size:15px; color:var(--text-mid); line-height:1.9; margin-bottom:14px; }
+.service-left h3 { font-family:'Roboto',sans-serif; font-size:32px; color:var(--navy); margin-bottom:20px; font-weight:600; }
+.service-left p { font-family:'Open Sans',sans-serif; font-size:15px; color:var(--text-mid); line-height:1.9; margin-bottom:14px; }
 .service-features { list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:12px; }
-.service-features li { display:flex; align-items:center; gap:12px; font-size:13px; color:var(--text-mid); font-weight:500; }
+.service-features li { display:flex; align-items:center; gap:12px; font-family:'Open Sans',sans-serif; font-size:13px; color:var(--text-mid); font-weight:500; }
 .service-features li::before { content:''; width:6px; height:6px; background:var(--gold); flex-shrink:0; transform:rotate(45deg); }
+
+/* Dark card quote — Roboto instead of Playfair */
+.service-quote {
+  font-family:'Roboto',sans-serif;
+  font-size:18px; color:#fff; font-style:italic; font-weight:300; line-height:1.6;
+}
 
 @media (max-width:1024px) { .service-block { grid-template-columns:1fr; gap:32px; } .service-block.reverse { direction:ltr; } .services-intro { grid-template-columns:1fr; gap:32px; } }
 @media (max-width:768px) { .service-num { font-size:56px; } }
@@ -50,8 +160,13 @@
 </div>
 
 <section class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="page-hero-overlay" aria-hidden="true"></div>
   <div class="container page-hero-inner">
-    <span class="label">What We Offer</span>
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">What We Offer</span>
+    </div>
     <h1>A comprehensive<br><em>real estate platform</em></h1>
     <p>We provide an end-to-end suite of real estate services designed to maximize asset performance and deliver superior investor returns.</p>
   </div>
@@ -120,7 +235,7 @@
         <div style="background:var(--navy);padding:40px 36px;position:relative;">
           <div style="position:absolute;top:0;left:32px;right:32px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
           <span class="label" style="color:var(--gold-light);display:block;margin-bottom:16px;">Development Philosophy</span>
-          <p style="font-family:'Playfair Display',serif;font-size:18px;color:#fff;font-style:italic;font-weight:400;line-height:1.6;">Every development project begins with a clear value creation thesis and ends with a better-performing asset.</p>
+          <p class="service-quote">Every development project begins with a clear value creation thesis and ends with a better-performing asset.</p>
         </div>
       </div>
     </div>
@@ -172,7 +287,7 @@
         <div style="background:var(--navy);padding:40px 36px;position:relative;">
           <div style="position:absolute;top:0;left:32px;right:32px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
           <span class="label" style="color:var(--gold-light);display:block;margin-bottom:16px;">Our Standard</span>
-          <p style="font-family:'Playfair Display',serif;font-size:18px;color:#fff;font-style:italic;font-weight:400;line-height:1.6;">Exceptional property management isn't just about maintenance — it's about protecting the investor's income stream at every touchpoint.</p>
+          <p class="service-quote">Exceptional property management isn't just about maintenance — it's about protecting the investor's income stream at every touchpoint.</p>
         </div>
       </div>
     </div>
@@ -183,7 +298,7 @@
   <div class="container reveal">
     <span class="label" style="color:var(--gold-light);">Work With Us</span>
     <h2 style="color:#fff;margin:16px auto;max-width:520px;">Ready to engage our services?</h2>
-    <p style="color:rgba(184,197,212,0.7);max-width:440px;margin:0 auto 36px;font-size:14px;line-height:1.85;">Whether you need a single service or the full platform, we are ready to discuss how we can add value.</p>
+    <p style="font-family:'Open Sans',sans-serif;color:rgba(184,197,212,0.7);max-width:440px;margin:0 auto 36px;font-size:14px;line-height:1.85;">Whether you need a single service or the full platform, we are ready to discuss how we can add value.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
       <a href="contact.html" class="btn-gold">Contact Us</a>
       <a href="investment.html" class="btn-outline-gold">View Investment Approach</a>
@@ -198,7 +313,7 @@
     <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
     <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
   </div>
-  <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
+  <div class="footer-bottom"><p class="footer-copy">&copy; 2026 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p><p class="footer-copy">Real Estate &nbsp;·&nbsp; Asset Management &nbsp;·&nbsp; Property Development</p></div>
 </footer>
 <script src="shared.js"></script>
 </body>
