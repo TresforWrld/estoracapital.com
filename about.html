@@ -4,72 +4,120 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us — Estora Capital Investment</title>
-<link rel="icon" type="image/png" href="https://i.imgur.com/wzks9g8.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-/* ── PAGE HERO OVERRIDE ── */
+
+/* ══════════════════════════════════════════
+   PAGE HERO — identical to index.html hero
+   50vh, white tint, bottom-only dark gradient,
+   no left/right blue, text pinned bottom-left
+   ══════════════════════════════════════════ */
+
 .page-hero {
-  position: relative !important;
-  overflow: hidden !important;
-  background: #0d1f3c !important;
-  min-height: 50vh !important;
-  display: flex !important;
-  align-items: center !important;
-  padding: 60px 0 0 !important;
+  position: relative;
+  overflow: hidden;
+  height: 50vh;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  background: var(--navy);
 }
-
 .page-hero::before,
-.page-hero::after {
-  display: none !important;
-}
+.page-hero::after { display: none !important; }
 
+/* Swap URL below to change the hero photo */
 .page-hero-bg {
-  position: absolute !important;
-  inset: 0 !important;
-  background-image: url('https://i.imgur.com/7n82krl.jpeg') !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  z-index: 0 !important;
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('assets/about-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   animation: heroDrift 16s ease-in-out infinite alternate;
 }
+@keyframes heroDrift { from { transform:scale(1); } to { transform:scale(1.05); } }
 
-@keyframes heroDrift {
-  from { transform: scale(1); }
-  to   { transform: scale(1.05); }
+/* White tint — same 0.30 as index */
+.page-hero-tint {
+  position: absolute; inset: 0; z-index: 1;
+  background: rgba(255,255,255,0.30);
+  pointer-events: none;
 }
 
+/* Bottom-only dark gradient — NO left/right/blue tones */
+.page-hero-gradient {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(10,22,40,0.78) 0%,
+    rgba(10,22,40,0.38) 32%,
+    rgba(10,22,40,0.05) 58%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
 
-  
-/* ── REST OF PAGE ── */
+/* Text — bottom-left, matches index .hero-content */
+.page-hero-inner {
+  position: relative; z-index: 3;
+  width: 100%;
+  padding: 0 60px 40px;
+}
+
+/* Eyebrow: gold line + label */
+.page-hero-eyebrow {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+}
+.page-hero-eyebrow-line { width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.page-hero-eyebrow .label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 9px; letter-spacing: 0.22em;
+  color: var(--gold-light); text-shadow: none;
+}
+
+/* h1 — clamp matches index hero h1 */
+.page-hero h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 600; color: #fff;
+  margin: 0 0 10px; line-height: 1.25;
+  letter-spacing: -0.01em; text-shadow: none;
+}
+.page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+
+/* Subtext — matches index hero-sub */
+.page-hero-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px; color: rgba(240,244,248,0.80);
+  max-width: 460px; line-height: 1.8; font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width:1024px) { .page-hero-inner { padding: 0 36px 32px; } }
+@media (max-width:768px)  {
+  .page-hero-inner { padding: 0 20px 24px; max-width: 82%; }
+  .page-hero h1 { font-size: 17px; }
+  .page-hero-sub { display: none; }
+}
+@media (max-width:480px)  {
+  .page-hero h1 { font-size: 15px; }
+  .page-hero-eyebrow { display: none; }
+}
+
+/* ══════════════════════════════════════════
+   REST OF PAGE
+   ══════════════════════════════════════════ */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
-  /* White tint — sits above slides, below dark gradient. Adjust opacity to taste */
-.hero-tint {
-  position: absolute; inset: 0; pointer-events: none; z-index: 1;
-  background: rgba(255, 255, 255, 0.30);
-}
-
-.hero-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
-.hero-lines::before, .hero-lines::after {
-  content: ''; position: absolute; top: 0; bottom: 0; width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(192,169,106,0.2), transparent);
-  animation: lineFade 7s ease-in-out infinite;
-}
-.hero-lines::before { left: 60%; }
-.hero-lines::after  { left: 75%; animation-delay: 2.8s; opacity: 0.4; }
-@keyframes lineFade { 0%,100%{opacity:0;transform:scaleY(0.2)} 50%{opacity:1;transform:scaleY(1)} }oto italic 300 to match index */
 .lead {
   font-family: 'Roboto', sans-serif;
-  font-size: 21px;
-  font-style: italic;
-  color: var(--navy);
-  line-height: 1.55;
-  font-weight: 300;
-  margin-bottom: 18px;
+  font-size: 21px; font-style: italic;
+  color: var(--navy); line-height: 1.55;
+  font-weight: 300; margin-bottom: 18px;
 }
 
 p { font-family: 'Open Sans', sans-serif; margin-bottom: 18px; }
@@ -87,7 +135,7 @@ p { font-family: 'Open Sans', sans-serif; margin-bottom: 18px; }
 
 .vision-box { background: var(--navy); padding: 52px 44px; margin-top: 40px; position: relative; }
 .vision-box::before { content: ''; position: absolute; top: 0; left: 40px; right: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.vision-box .label { color: var(--gold-light) !important; margin-bottom: 16px; display: block; text-shadow: none !important; }
+.vision-box .label { color: var(--gold-light) !important; margin-bottom: 16px; display: block; }
 .vision-box blockquote { font-family: 'Roboto', sans-serif; font-size: 20px; color: #fff; font-weight: 300; font-style: italic; line-height: 1.6; }
 
 .mission-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); margin-top: 64px; overflow: hidden; }
@@ -103,7 +151,7 @@ p { font-family: 'Open Sans', sans-serif; margin-bottom: 18px; }
 </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital Investment"></a>
+  <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Estora Capital Investment"></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html" class="active">About</a></li>
@@ -126,13 +174,18 @@ p { font-family: 'Open Sans', sans-serif; margin-bottom: 18px; }
   <a href="contact.html" class="drawer-cta">Contact Us</a>
 </div>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-bg" aria-hidden="true"></div>
-  <div class="page-hero-overlay" aria-hidden="true"></div>
+  <div class="page-hero-tint" aria-hidden="true"></div>
+  <div class="page-hero-gradient" aria-hidden="true"></div>
   <div class="container page-hero-inner">
-    <span class="label">About Estora Capital</span>
+    <div class="page-hero-eyebrow">
+      <div class="page-hero-eyebrow-line"></div>
+      <span class="label">About Estora Capital</span>
+    </div>
     <h1>A disciplined partner<br>in <em>real estate</em></h1>
-    <p>Over 10 years of combined experience across property investment, development, asset management, and operations — all under one integrated model.</p>
+    <p class="page-hero-sub">Over 10 years of combined experience across property investment, development, asset management, and operations — all under one integrated model.</p>
   </div>
 </section>
 
@@ -201,16 +254,16 @@ p { font-family: 'Open Sans', sans-serif; margin-bottom: 18px; }
 
 <section style="background:var(--navy);padding:80px 0;text-align:center;">
   <div class="container reveal">
-    <span class="label" style="color:var(--gold-light);text-shadow:none;">Take the Next Step</span>
+    <span class="label" style="color:var(--gold-light);">Take the Next Step</span>
     <h2 style="color:#fff;margin:16px auto 16px;max-width:520px;">Partner with Estora Capital</h2>
-    <p style="font-family:'Open Sans',sans-serif;color:rgba(184,197,212,0.7);max-width:440px;margin:0 auto 36px;font-size:14px;line-height:1.85;text-shadow:none;">We welcome investment enquiries, strategic partnerships, and property management mandates.</p>
+    <p style="font-family:'Open Sans',sans-serif;color:rgba(184,197,212,0.7);max-width:440px;margin:0 auto 36px;font-size:14px;line-height:1.85;">We welcome investment enquiries, strategic partnerships, and property management mandates.</p>
     <a href="contact.html" class="btn-gold">Get In Touch</a>
   </div>
 </section>
 
 <footer>
   <div class="footer-top">
-    <div><a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
+    <div><a href="index.html"><img src="assets/logo.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a><p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p></div>
     <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
     <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
     <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
