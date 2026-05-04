@@ -180,6 +180,19 @@ nav {
   padding: 60px 0; 
 }
 
+/* ══════════════════════════════════════════
+   PAGE HERO — IMAGE VARIANT
+   ══════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  background: #0d1f3c;
+  padding: 60px 0;
+}
+
 /* Decorative glow */
 .page-hero::before {
   content: '';
@@ -224,6 +237,33 @@ nav {
   background: radial-gradient(ellipse at center, transparent 38%, rgba(4, 12, 32, 0.45) 100%);
 }
 
+/* Text inside hero */
+.page-hero-inner { position: relative; z-index: 4; width: 100%; }
+.page-hero .label { color: var(--gold-light); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+.page-hero h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(32px, 4.5vw, 58px);
+  color: #fff; font-weight: 600; margin-top: 12px;
+  line-height: 1.12; letter-spacing: -0.01em;
+  text-shadow: 0 2px 24px rgba(4,18,50,0.55), 0 1px 4px rgba(0,0,0,0.35);
+}
+.page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.page-hero p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14.5px; color: rgba(220,232,248,0.88);
+  max-width: 560px; line-height: 1.9; margin-top: 18px; font-weight: 300;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+
+/* Gold accent bar below hero content */
+.page-hero-inner::after {
+  content: '';
+  display: block;
+  width: 52px; height: 2px;
+  background: var(--gold);
+  margin-top: 30px;
+  opacity: 0.75;
+}
 /* Text inside hero */
 .page-hero-inner { position: relative; z-index: 4; width: 100%; }
 .page-hero .label { color: var(--gold-light); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
