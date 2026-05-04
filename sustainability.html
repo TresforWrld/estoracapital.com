@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sustainability — Estora Capital Investment</title>
-<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="icon" type="image/png" href="https://i.imgur.com/ZSgjSrR.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -163,6 +163,9 @@ nav {
   height: 50vh; min-height: 280px; padding: 0;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #0d1f3c;
 }
 
 /* 1. Background photo */
@@ -375,7 +378,14 @@ footer { background: var(--navy); }
   .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
   .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
   .section-pad { padding: 64px 0; }
-  #page-hero { height: 52vh; min-height: 300px; max-height: 460px; }
+  #page-hero {
+  height: 50vh; min-height: 280px; padding: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #0d1f3c;
+}
   #page-hero .hero-content { max-width: 80%; padding: 0 22px; }
   #page-hero h1 { font-size: 19px; margin-bottom: 10px; }
   #page-hero .hero-sub { font-size: 12px; margin-bottom: 18px; }
@@ -387,30 +397,47 @@ footer { background: var(--navy); }
 @media (max-width: 480px) {
   nav { padding: 0 18px; }
   .container { padding: 0 18px; }
-  #page-hero { height: 46vh; min-height: 260px; }
+  #page-hero {
+  height: 50vh; min-height: 280px; padding: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #0d1f3c;
+}
   #page-hero .hero-content { max-width: 88%; }
   #page-hero h1 { font-size: 16px; }
   #page-hero .hero-sub { display: none; }
 }
 
+
 .footer-addresses li {
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex; flex-direction: column; gap: 4px; padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
+.footer-addresses li:last-child { border-bottom: none; }
 .footer-addr-label {
   font-family: 'Open Sans', sans-serif; font-size: 9px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
-  display: block;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #F5F0E8;
+  display: block; margin-bottom: 2px;
 }
-.footer-addresses li a {
-  font-size: 11px; line-height: 1.55;
+.footer-addr-line {
+  display: flex; align-items: flex-start; gap: 6px;
 }
+.footer-addr-line a {
+  font-size: 11px !important; line-height: 1.55; color: rgba(184,197,212,0.55) !important;
+}
+.footer-addr-line a:hover { color: var(--gold) !important; }
+.footer-contact-info { margin-top: 6px; }
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Estora Capital Investment"></a>
+  <a href="index.html" class="nav-logo"><img src="https://i.imgur.com/ZSgjSrR.png" alt="Estora Capital Investment"></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -567,27 +594,57 @@ footer { background: var(--navy); }
 <footer>
   <div class="footer-top">
     <div>
-      <a href="index.html"><img src="assets/logo.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a>
+      <a href="index.html"><img src="https://i.imgur.com/ZSgjSrR.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a>
       <p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p>
     </div>
     <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
     <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
-        <div class="footer-links-group">
+            <div class="footer-links-group">
       <h4>Contact</h4>
       <ul class="footer-links footer-addresses">
         <li>
           <span class="footer-addr-label">Denmark</span>
-          <a href="#">Blegdamsvej 6, 2200 K&#248;benhavn N, Denmark</a>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="#">Blegdamsvej 6, 2200 K&#248;benhavn N, Denmark</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+4591767170">+45 91767170</a>
+          </span>
         </li>
         <li>
           <span class="footer-addr-label">Uganda</span>
-          <a href="#">Plot 1 Colville Street, Kampala, Uganda</a>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="#">Plot 1 Colville Street, Kampala, Uganda</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+256700190069">+256 700190069</a>
+          </span>
         </li>
         <li>
           <span class="footer-addr-label">Zambia</span>
-          <a href="#">Plot 165 Bwinjimfumu Road, Northmead, Lusaka, Zambia</a>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="#">Plot 165 Bwinjimfumu Road, Northmead, Lusaka, Zambia</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+260974925062">+260 974925062</a>
+          </span>
         </li>
-        <li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li>
+        <li class="footer-contact-info">
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:info@estoracapital.com">info@estoracapital.com</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <a href="https://estoracapital.com" target="_blank" rel="noopener">estoracapital.com</a>
+          </span>
+        </li>
       </ul>
     </div>
   </div>
