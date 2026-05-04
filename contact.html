@@ -174,12 +174,9 @@ nav {
    HERO — matches index.html exactly
    ══════════════════════════════════════════ */
 #hero {
-  position: relative;
-  overflow: hidden;
-  min-height: 65vh;   /* matches About page */
-  display: flex;
-  align-items: center;
-  padding: 80px 0;
+  height: 50vh; min-height: 280px; padding: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden;
 }
 .hero-img {
   position: absolute; inset: 0;
@@ -362,6 +359,18 @@ footer { background: var(--navy); }
   #hero { min-height: 38vh; }
   .hero-content h1 { font-size: 15px; }
 }
+
+.footer-addresses li {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.footer-addr-label {
+  font-family: 'Open Sans', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  display: block;
+}
+.footer-addresses li a {
+  font-size: 11px; line-height: 1.55;
+}
 </style>
 </head>
 <body>
@@ -535,7 +544,24 @@ footer { background: var(--navy); }
     </div>
     <div class="footer-links-group"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="investment.html">Investment</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
     <div class="footer-links-group"><h4>More</h4><ul class="footer-links"><li><a href="strategy.html">Strategy</a></li><li><a href="sustainability.html">Sustainability</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
-    <div class="footer-links-group"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Lusaka, Zambia</a></li><li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li></ul></div>
+        <div class="footer-links-group">
+      <h4>Contact</h4>
+      <ul class="footer-links footer-addresses">
+        <li>
+          <span class="footer-addr-label">Denmark</span>
+          <a href="#">Blegdamsvej 6, 2200 K&#248;benhavn N, Denmark</a>
+        </li>
+        <li>
+          <span class="footer-addr-label">Uganda</span>
+          <a href="#">Plot 1 Colville Street, Kampala, Uganda</a>
+        </li>
+        <li>
+          <span class="footer-addr-label">Zambia</span>
+          <a href="#">Plot 165 Bwinjimfumu Road, Northmead, Lusaka, Zambia</a>
+        </li>
+        <li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">&copy; 2026 Estora Capital Investment. Lusaka, Zambia. All rights reserved.</p>
