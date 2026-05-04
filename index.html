@@ -149,7 +149,7 @@ nav {
 .hero-bg { position: absolute; inset: 0; }
 .hero-slide {
   position: absolute; inset: 0;
-  background-position: center center;
+  background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 0;
@@ -516,11 +516,13 @@ footer { background: var(--navy); }
   .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
   .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
   #hero { min-height: 54vh; height: 54vh; }
+  .hero-slide { background-position: center center; }
   .hero-content { left: 4%; width: 78%; max-width: none; bottom: 10%; }
   .hero-eyebrow { display: none; }
   .hero-content h1 { font-size: 17px; margin-bottom: 8px; }
   .hero-sub { display: block; font-size: 10px; line-height: 1.55; max-width: 92%; }
   .hero-text-stage { min-height: 220px; }
+
   .highlights-grid { grid-template-columns: repeat(2,1fr); }
   .body-opener { grid-template-columns: 1fr; gap: 40px; }
   .body-pillars { grid-template-columns: 1fr; }
@@ -533,6 +535,9 @@ footer { background: var(--navy); }
   .container { padding: 0 18px; }
   .highlight-cell { padding: 32px 20px; }
 }
+.footer-addresses li { display: flex; flex-direction: column; gap: 2px; }
+.footer-addr-label { font-family: 'Open Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); display: block; }
+.footer-addresses li a { font-size: 11px; line-height: 1.55; }
 </style>
 </head>
 <body>
@@ -746,7 +751,7 @@ footer { background: var(--navy); }
 <footer>
   <div class="footer-top">
     <div>
-      <a href="index.html"><img src="https://i.imgur.com/wzks9g8.png" alt="Estora Capital" style="height:36px;display:block;margin-bottom:14px;"></a>
+      <a href="index.html"><img src="assets/logo.png" alt="Estora Capital Investment" style="height:36px;display:block;margin-bottom:14px;"></a>
       <p class="footer-tagline">A Lusaka-based real estate investment and asset management firm committed to long-term value creation.</p>
     </div>
     <div class="footer-links-group">
@@ -766,12 +771,12 @@ footer { background: var(--navy); }
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
-        <div class="footer-links-group">
+    <div class="footer-links-group">
       <h4>Contact</h4>
       <ul class="footer-links footer-addresses">
         <li>
           <span class="footer-addr-label">Denmark</span>
-          <a href="#">Blegdamsvej 6, 2200 K&#248;benhavn N, Denmark</a>
+          <a href="#">Blegdamsvej 6, 2200 K&oslash;benhavn N, Denmark</a>
         </li>
         <li>
           <span class="footer-addr-label">Uganda</span>
