@@ -162,77 +162,6 @@ nav {
 .gold-rule { width: 44px; height: 2px; background: var(--gold); margin-top: 20px; }
 
 /* ══════════════════════════════════════════
-   PAGE HERO
-   ══════════════════════════════════════════ */
-.page-hero {
-  height: 50vh; min-height: 280px; padding: 0;
-  position: relative; overflow: hidden; display: flex; align-items: center;
-  background: #0d1f3c;
-}
-.page-hero::before {
-  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(192,169,106,0.07) 0%, transparent 65%);
-}
-/* Photo layer */
-.page-hero-bg {
-  position: absolute; inset: 0; z-index: 0;
-  background-image: url('https://i.imgur.com/7CAnac8.jpeg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  animation: heroScale 18s ease-in-out infinite alternate;
-}
-@keyframes heroScale {
-  from { transform: scale(1.02); filter:saturate(0.95) contrast(1.04); }
-  to   { transform: scale(1.07); filter:saturate(1.03) contrast(1.08); }
-}
-/* Darkening gradient */
-.page-hero-overlay {
-  position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: linear-gradient(
-    160deg,
-    rgba(8, 20, 50, 0.60) 0%,
-    rgba(12, 35, 75, 0.35) 45%,
-    rgba(8, 18, 46, 0.65) 100%
-  );
-}
-/* White tint */
-.page-hero-overlay::before {
-  content: ''; position: absolute; inset: 0;
-  background: rgba(255, 255, 255, 0.28);
-  pointer-events: none;
-}
-/* Edge vignette */
-.page-hero-overlay::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 38%, rgba(4, 12, 32, 0.40) 100%);
-  pointer-events: none;
-}
-/* Text */
-.page-hero-inner { position: relative; z-index: 3; width: 100%; }
-.page-hero .label { color: var(--gold-light); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
-.page-hero h1 {
-  font-family: 'Roboto', sans-serif;
-  font-size: clamp(32px, 4.5vw, 58px);
-  color: #fff; font-weight: 600; margin-top: 12px;
-  line-height: 1.12; letter-spacing: -0.01em;
-  text-shadow: 0 2px 24px rgba(4,18,50,0.55), 0 1px 4px rgba(0,0,0,0.35);
-}
-.page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
-.page-hero p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14.5px; color: rgba(220,232,248,0.88);
-  max-width: 560px; line-height: 1.9; margin-top: 18px; font-weight: 300;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
-}
-.page-hero-inner::after {
-  content: ''; display: block;
-  width: 52px; height: 2px;
-  background: var(--gold);
-  margin-top: 30px; opacity: 0.75;
-}
-
-/* ══════════════════════════════════════════
    SHARED LISTS
    ══════════════════════════════════════════ */
 .returns-list { list-style: none; }
@@ -251,25 +180,12 @@ nav {
    ANIMATIONS
    ══════════════════════════════════════════ */
 @keyframes fadeUp { from { opacity:0; transform:translateY(24px); }
-/* Page hero — text entrance animations */
-.page-hero-inner .label {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.25s forwards;
-}
-.page-hero-inner h1 {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.50s forwards;
-}
-.page-hero-inner p {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.75s forwards;
-}
-.page-hero-inner::after {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.95s forwards;
-}
-@keyframes heroTextIn {
-  from { opacity: 0; transform: translateY(22px); }
+
+
+
+
+
+
   to   { opacity: 1; transform: translateY(0); }
 }
  to { opacity:1; transform:translateY(0); } }
@@ -336,6 +252,8 @@ footer { background: var(--navy); }
    RESPONSIVE
    ══════════════════════════════════════════ */
 @media (max-width: 1024px) {
+  .page-hero .hero-content { padding: 0 36px; max-width: 62%; }
+  .page-hero .hero-scroll { left: 36px; }
   nav { padding: 0 32px; }
   .container { padding: 0 36px; }
   .footer-top, .footer-bottom { padding-left: 36px; padding-right: 36px; }
@@ -345,22 +263,32 @@ footer { background: var(--navy); }
   .services-intro { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 768px) {
+  .page-hero { height: 50vh; min-height: 280px; }
+  .page-hero .hero-content { max-width: 80%; padding: 0 22px; }
+  .page-hero h1 { font-size: 19px; margin-bottom: 10px; }
+  .page-hero .hero-sub { font-size: 12px; margin-bottom: 18px; }
+  .page-hero .hero-line-accent { display: none; }
+  .page-hero .hero-scroll { display: none; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .container { padding: 0 22px; }
   .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
   .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
   .section-pad { padding: 64px 0; }
-  .page-hero { min-height: 50vh; }
-  .page-hero h1 { font-size: clamp(24px, 6vw, 40px); }
-  .page-hero p { font-size: 13px; }
+  
+  
+  
   .service-num { font-size: 56px; }
 }
 @media (max-width: 480px) {
+  .page-hero { height: 50vh; min-height: 280px; }
+  .page-hero .hero-content { max-width: 88%; }
+  .page-hero h1 { font-size: 16px; }
+  .page-hero .hero-sub { display: none; }
   nav { padding: 0 18px; }
   .container { padding: 0 18px; }
-  .page-hero { min-height: 50vh; }
-  .page-hero h1 { font-size: 22px; }
+  
+  
 }
 
 
@@ -383,6 +311,123 @@ footer { background: var(--navy); }
 }
 .footer-addr-line a:hover { color: var(--gold) !important; }
 .footer-contact-info { margin-top: 6px; }
+
+/* ══════════════════════════════════════════
+   PAGE HERO — sustainability/about style
+   ══════════════════════════════════════════ */
+.page-hero {
+  height: 50vh; min-height: 280px; padding: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #0d1f3c;
+}
+
+/* 1. Background photo */
+.page-hero .hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('https://i.imgur.com/7CAnac8.jpeg');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  animation: heroKen 16s ease-in-out infinite alternate;
+}
+@keyframes heroKen {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* 2. White tint */
+.page-hero .hero-tint {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* 3. Dark left-side gradient */
+.page-hero .hero-overlay-left {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(8, 18, 40, 0.80) 0%,
+    rgba(8, 18, 40, 0.55) 45%,
+    rgba(8, 18, 40, 0.18) 72%,
+    transparent 100%
+  );
+}
+
+/* 4. Bottom vignette */
+.page-hero .hero-overlay-bottom {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(to top, rgba(8,18,40,0.52) 0%, transparent 50%);
+}
+
+/* 5. Subtle gold vertical rule */
+.page-hero .hero-line-accent {
+  position: absolute; top: 0; bottom: 0; left: 51%;
+  width: 1px; z-index: 3; pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 5%,
+    rgba(192,169,106,0.25) 35%,
+    rgba(192,169,106,0.25) 65%,
+    transparent 95%
+  );
+}
+
+/* 6. Text content */
+.page-hero .hero-content {
+  position: absolute;
+  top: 50%; left: 0;
+  transform: translateY(-50%);
+  z-index: 4;
+  padding: 0 60px;
+  max-width: 52%;
+}
+.page-hero .hero-eyebrow {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
+}
+.page-hero .hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.page-hero .hero-eyebrow .label { color: rgba(192,169,106,0.95); font-size: 10px; letter-spacing: 0.22em; }
+.page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.page-hero .hero-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px; color: rgba(220,230,240,0.82);
+  line-height: 1.85; margin-bottom: 28px; font-weight: 300; max-width: 420px;
+  opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+}
+.page-hero .hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
+}
+.page-hero .hero-btns .btn-outline {
+  color: rgba(240,244,248,0.88); border-color: rgba(200,215,230,0.38);
+  padding: 12px 26px; font-size: 10px;
+}
+.page-hero .hero-btns .btn-outline:hover {
+  background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.55);
+}
+
+/* Scroll indicator */
+.page-hero .hero-scroll {
+  position: absolute; bottom: 26px; left: 60px; z-index: 5;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeIn 1s 1.2s forwards;
+}
+.page-hero .hero-scroll-line {
+  width: 1px; height: 42px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: sPulse 2.2s ease-in-out infinite;
+}
+@keyframes sPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+.page-hero .hero-scroll span {
+  font-family: 'Open Sans', sans-serif; font-size: 9px;
+  letter-spacing: 0.24em; color: rgba(184,197,212,0.45);
+  writing-mode: vertical-rl; font-weight: 600; text-transform: uppercase;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
 
 </style>
 </head>
@@ -415,12 +460,33 @@ footer { background: var(--navy); }
 
 <!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero-bg" aria-hidden="true"></div>
-  <div class="page-hero-overlay" aria-hidden="true"></div>
-  <div class="container page-hero-inner">
-    <span class="label"></span>
-    <h1>Managing Assets. Creating Value.</h1>
-    <p>We combine development, investment, and management to deliver sustainable real estate performance.</p>
+  <!-- 1. Photo -->
+  <div class="hero-bg"></div>
+  <!-- 2. White tint -->
+  <div class="hero-tint"></div>
+  <!-- 3. Dark gradient left -->
+  <div class="hero-overlay-left"></div>
+  <!-- 4. Dark gradient bottom -->
+  <div class="hero-overlay-bottom"></div>
+  <!-- 5. Gold rule -->
+  <div class="hero-line-accent"></div>
+
+  <!-- 6. Text -->
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">Our Services</span>
+    </div>
+    <h1>Managing Assets.<br><em>Creating Value.</em></h1>
+    <p class="hero-sub">We combine development, investment, and management to deliver sustainable real estate performance.</p>
+    <div class="hero-btns">
+      <a href="contact.html" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
