@@ -157,98 +157,130 @@ nav {
 /* ══════════════════════════════════════════
    PAGE HERO
    ══════════════════════════════════════════ */
-.page-hero {
+#page-hero {
   height: 50vh; min-height: 280px; padding: 0;
-  position: relative; overflow: hidden; display: flex; align-items: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
   background: #0d1f3c;
 }
-.page-hero::before {
-  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(192,169,106,0.07) 0%, transparent 65%);
-}
-/* Photo layer */
-.page-hero-bg {
+
+/* 1. Background photo */
+#page-hero .hero-bg {
   position: absolute; inset: 0; z-index: 0;
   background-image: url('https://i.imgur.com/7CAnac8.jpeg');
   background-size: cover;
-  background-position: center center;
+  background-position: center 30%;
   background-repeat: no-repeat;
-  animation: heroScale 18s ease-in-out infinite alternate;
+  animation: heroKen 16s ease-in-out infinite alternate;
 }
-@keyframes heroScale {
-  from { transform: scale(1.02); filter:saturate(0.95) contrast(1.04); }
-  to   { transform: scale(1.07); filter:saturate(1.03) contrast(1.08); }
+@keyframes heroKen {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
 }
-/* Darkening gradient */
-.page-hero-overlay {
+
+/* 2. White tint — sits directly above photo */
+#page-hero .hero-tint {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* 3. Dark left-side gradient — keeps text legible */
+#page-hero .hero-overlay-left {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background: linear-gradient(
-    160deg,
-    rgba(8, 20, 50, 0.60) 0%,
-    rgba(12, 35, 75, 0.35) 45%,
-    rgba(8, 18, 46, 0.65) 100%
+    to right,
+    rgba(8, 18, 40, 0.80) 0%,
+    rgba(8, 18, 40, 0.55) 45%,
+    rgba(8, 18, 40, 0.18) 72%,
+    transparent 100%
   );
 }
-/* White tint */
-.page-hero-overlay::before {
-  content: ''; position: absolute; inset: 0;
-  background: rgba(255, 255, 255, 0.28);
-  pointer-events: none;
+
+/* 4. Bottom vignette */
+#page-hero .hero-overlay-bottom {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(to top, rgba(8,18,40,0.52) 0%, transparent 50%);
 }
-/* Edge vignette */
-.page-hero-overlay::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 38%, rgba(4, 12, 32, 0.40) 100%);
-  pointer-events: none;
+
+/* 5. Subtle gold vertical rule */
+#page-hero .hero-line-accent {
+  position: absolute; top: 0; bottom: 0; left: 51%;
+  width: 1px; z-index: 3; pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 5%,
+    rgba(192,169,106,0.25) 35%,
+    rgba(192,169,106,0.25) 65%,
+    transparent 95%
+  );
 }
-/* Text */
-.page-hero-inner { position: relative; z-index: 3; width: 100%; }
-.page-hero .label { color: var(--gold-light); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
-.page-hero h1 {
+
+/* 6. Text content */
+#page-hero .hero-content {
+  position: absolute;
+  top: 50%; left: 0;
+  transform: translateY(-50%);
+  z-index: 4;
+  padding: 0 60px;
+  max-width: 52%;
+}
+#page-hero .hero-eyebrow {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
+}
+#page-hero .hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold); flex-shrink: 0; }
+#page-hero .hero-eyebrow .label { color: rgba(192,169,106,0.95); font-size: 10px; letter-spacing: 0.22em; }
+#page-hero h1 {
   font-family: 'Roboto', sans-serif;
-  font-size: clamp(32px, 4.5vw, 58px);
-  color: #fff; font-weight: 600; margin-top: 12px;
-  line-height: 1.12; letter-spacing: -0.01em;
-  text-shadow: 0 2px 24px rgba(4,18,50,0.55), 0 1px 4px rgba(0,0,0,0.35);
+  font-size: clamp(24px, 2.8vw, 46px);
+  font-weight: 600; color: #fff;
+  line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 16px;
+  opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
 }
-.page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
-.page-hero p {
+#page-hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+#page-hero .hero-sub {
   font-family: 'Open Sans', sans-serif;
-  font-size: 14.5px; color: rgba(220,232,248,0.88);
-  max-width: 560px; line-height: 1.9; margin-top: 18px; font-weight: 300;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  font-size: 13px; color: rgba(220,230,240,0.82);
+  line-height: 1.85; margin-bottom: 28px; font-weight: 300; max-width: 420px;
+  opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
 }
-.page-hero-inner::after {
-  content: ''; display: block;
-  width: 52px; height: 2px;
-  background: var(--gold);
-  margin-top: 30px; opacity: 0.75;
+#page-hero .hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
+}
+#page-hero .hero-btns .btn-outline {
+  color: rgba(240,244,248,0.88); border-color: rgba(200,215,230,0.38);
+  padding: 12px 26px; font-size: 10px;
+}
+#page-hero .hero-btns .btn-outline:hover {
+  background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.55);
+}
+
+/* Scroll indicator */
+#page-hero .hero-scroll {
+  position: absolute; bottom: 26px; left: 60px; z-index: 5;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeIn 1s 1.2s forwards;
+}
+#page-hero .hero-scroll-line {
+  width: 1px; height: 42px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: sPulse 2.2s ease-in-out infinite;
+}
+@keyframes sPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+#page-hero .hero-scroll span {
+  font-family: 'Open Sans', sans-serif; font-size: 9px;
+  letter-spacing: 0.24em; color: rgba(184,197,212,0.45);
+  writing-mode: vertical-rl; font-weight: 600; text-transform: uppercase;
 }
 
 /* ══════════════════════════════════════════
    ANIMATIONS
    ══════════════════════════════════════════ */
 @keyframes fadeUp { from { opacity:0; transform:translateY(24px); }
-/* Page hero — text entrance animations */
-.page-hero-inner .label {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.25s forwards;
-}
-.page-hero-inner h1 {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.50s forwards;
-}
-.page-hero-inner p {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.75s forwards;
-}
-.page-hero-inner::after {
-  opacity: 0;
-  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.95s forwards;
-}
-@keyframes heroTextIn {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
+to   { opacity: 1; transform: translateY(0); }
 }
  to { opacity:1; transform:translateY(0); } }
 @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
@@ -374,9 +406,8 @@ footer { background: var(--navy); }
   .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
   .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
   .section-pad { padding: 64px 0; }
-  .page-hero { min-height: 50vh; }
-  .page-hero h1 { font-size: clamp(24px, 6vw, 40px); }
-  .page-hero p { font-size: 13px; }
+  #page-hero .hero-content { padding: 0 36px; max-width: 62%; }
+  #page-hero .hero-scroll { left: 36px; }
 }
 @media (max-width: 640px) {
   .portfolio-grid { grid-template-columns:1fr; }
@@ -385,21 +416,30 @@ footer { background: var(--navy); }
 @media (max-width: 480px) {
   nav { padding: 0 18px; }
   .container { padding: 0 18px; }
-  .page-hero { min-height: 50vh; }
-  .page-hero h1 { font-size: 22px; }
+  #page-hero .hero-content { max-width: 88%; }
+  #page-hero h1 { font-size: 16px; }
+  #page-hero .hero-sub { display: none; }
 }
 
 .footer-addresses li {
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex; flex-direction: column; gap: 4px; padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
+.footer-addresses li:last-child { border-bottom: none; }
 .footer-addr-label {
   font-family: 'Open Sans', sans-serif; font-size: 9px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
-  display: block;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #F5F0E8;
+  display: block; margin-bottom: 2px;
 }
-.footer-addresses li a {
-  font-size: 11px; line-height: 1.55;
+.footer-addr-line {
+  display: flex; align-items: flex-start; gap: 6px;
 }
+.footer-addr-line a {
+  font-size: 11px !important; line-height: 1.55; color: rgba(184,197,212,0.55) !important;
+}
+.footer-addr-line a:hover { color: var(--gold) !important; }
+.footer-contact-info { margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -429,14 +469,35 @@ footer { background: var(--navy); }
   <a href="contact.html" class="drawer-cta">Contact Us</a>
 </div>
 
-<!-- HERO -->
-<section class="page-hero">
-  <div class="page-hero-bg" aria-hidden="true"></div>
-  <div class="page-hero-overlay" aria-hidden="true"></div>
-  <div class="container page-hero-inner">
-    <span class="label">Our Portfolio</span>
-    <h1>Real Estate That Delivers Value</h1>
-    <p>From residential to commercial, our portfolio is built to generate income and drive appreciation.</p>
+<!-- ══════════════════ PAGE HERO ══════════════════ -->
+<section id="page-hero">
+  <!-- 1. Photo -->
+  <div class="hero-bg"></div>
+  <!-- 2. White tint -->
+  <div class="hero-tint"></div>
+  <!-- 3. Dark gradient left -->
+  <div class="hero-overlay-left"></div>
+  <!-- 4. Dark gradient bottom -->
+  <div class="hero-overlay-bottom"></div>
+  <!-- 5. Gold rule -->
+  <div class="hero-line-accent"></div>
+
+  <!-- 6. Text -->
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">Our Portfolio</span>
+    </div>
+    <h1>Real Estate That<br><em>Delivers Value</em></h1>
+    <p class="hero-sub">From residential to commercial, our portfolio is built to generate income and drive appreciation.</p>
+    <div class="hero-btns">
+      <a href="contact.html" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
@@ -636,20 +697,50 @@ footer { background: var(--navy); }
         <div class="footer-links-group">
       <h4>Contact</h4>
       <ul class="footer-links footer-addresses">
+        <li class="footer-contact-info" style="margin-bottom:4px;">
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:info@estoracapital.com">info@estoracapital.com</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <a href="https://estoracapital.com" target="_blank" rel="noopener">estoracapital.com</a>
+          </span>
+        </li>
         <li>
           <span class="footer-addr-label">Denmark</span>
-          <a href="#">Blegdamsvej 6, 2200 K&#248;benhavn N, Denmark</a>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="#">Blegdamsvej 6, 2200 K&#248;benhavn N, Denmark</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+4591767170">+45 91767170</a>
+          </span>
         </li>
         <li>
           <span class="footer-addr-label">Uganda</span>
-          <a href="#">Plot 1 Colville Street, Kampala, Uganda</a>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="#">Plot 1 Colville Street, Kampala, Uganda</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+256700190069">+256 700190069</a>
+          </span>
         </li>
         <li>
           <span class="footer-addr-label">Zambia</span>
-          <a href="#">Plot 165 Bwinjimfumu Road, Northmead, Lusaka, Zambia</a>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="#">Plot 165 Bwinjimfumu Road, Northmead, Lusaka, Zambia</a>
+          </span>
+          <span class="footer-addr-line">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+260974925062">+260 974925062</a>
+          </span>
         </li>
-        <li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li>
-      </ul>
+      
     </div>
   </div>
   <div class="footer-bottom">
