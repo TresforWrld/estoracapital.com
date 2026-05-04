@@ -191,13 +191,12 @@ nav {
    PAGE HERO — with background image
    ══════════════════════════════════════════ */
 .page-hero {
+  height: 50vh; min-height: 280px; padding: 0;
   position: relative;
   overflow: hidden;
-  min-height: 50vh;
   display: flex;
   align-items: center;
   background: #0d1f3c; /* safe fallback */
-  padding: 60px 0 0;
 }
 
 /* Decorative radial glow */
@@ -328,7 +327,29 @@ footer { background: var(--navy); }
 /* ══════════════════════════════════════════
    ANIMATIONS
    ══════════════════════════════════════════ */
-@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); }
+/* Page hero — text entrance animations */
+.page-hero-inner .label {
+  opacity: 0;
+  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.25s forwards;
+}
+.page-hero-inner h1 {
+  opacity: 0;
+  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.50s forwards;
+}
+.page-hero-inner p {
+  opacity: 0;
+  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.75s forwards;
+}
+.page-hero-inner::after {
+  opacity: 0;
+  animation: heroTextIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.95s forwards;
+}
+@keyframes heroTextIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ to { opacity:1; transform:translateY(0); } }
 @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
 .reveal { opacity:0; transform:translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
@@ -383,7 +404,7 @@ footer { background: var(--navy); }
   .footer-top { flex-direction: column; padding: 44px 22px 32px; gap: 32px; }
   .footer-bottom { padding: 18px 22px; justify-content: center; text-align: center; }
   .section-pad { padding: 64px 0; }
-  .page-hero { min-height: 44vh; }
+  .page-hero { min-height: 50vh; }
   .page-hero h1 { font-size: clamp(24px, 6vw, 40px); }
   .page-hero p { font-size: 13px; }
   .invest-targets { grid-template-columns:1fr; }
@@ -393,8 +414,20 @@ footer { background: var(--navy); }
   nav { padding: 0 18px; }
   .nav-logo img { height: 36px; }
   .container { padding: 0 18px; }
-  .page-hero { min-height: 38vh; }
+  .page-hero { min-height: 50vh; }
   .page-hero h1 { font-size: 22px; }
+}
+
+.footer-addresses li {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.footer-addr-label {
+  font-family: 'Open Sans', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  display: block;
+}
+.footer-addresses li a {
+  font-size: 11px; line-height: 1.55;
 }
 </style>
 </head>
@@ -557,10 +590,21 @@ footer { background: var(--navy); }
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
-    <div class="footer-links-group">
+        <div class="footer-links-group">
       <h4>Contact</h4>
-      <ul class="footer-links">
-        <li><a href="#">Lusaka, Zambia</a></li>
+      <ul class="footer-links footer-addresses">
+        <li>
+          <span class="footer-addr-label">Denmark</span>
+          <a href="#">Blegdamsvej 6, 2200 K&#248;benhavn N, Denmark</a>
+        </li>
+        <li>
+          <span class="footer-addr-label">Uganda</span>
+          <a href="#">Plot 1 Colville Street, Kampala, Uganda</a>
+        </li>
+        <li>
+          <span class="footer-addr-label">Zambia</span>
+          <a href="#">Plot 165 Bwinjimfumu Road, Northmead, Lusaka, Zambia</a>
+        </li>
         <li><a href="mailto:info@estoracapital.com">info@estoracapital.com</a></li>
       </ul>
     </div>
